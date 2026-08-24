@@ -1,0 +1,143 @@
+schema = 1
+
+[[products]]
+id = "lyraos-desktop"
+kind = "edition"
+repository = "lyra-os-linux/lyraos-desktop"
+local_path = "lyraos-desktop"
+release_cycle = "independent"
+obs_packages = ["lyra-installer"]
+consumes = ["beam", "sulafat", "vega", "lyraos-desktop-linuxtoys", "lyraos-desktop-sheliak", "lyraos-desktop-theme", "lyraos-desktop-updater", "lyraos-desktop-welcome"]
+
+[[products]]
+id = "lyraos-server"
+kind = "edition"
+repository = "lyra-os-linux/lyraos-server"
+local_path = "lyraos-server"
+release_cycle = "independent"
+consumes = ["vega-cli", "vega-web", "vegad"]
+
+[[products]]
+id = "lyraos-desktop-updater"
+kind = "application"
+repository = "lyra-os-linux/lyraos-desktop-updater"
+local_path = "lyraos-desktop-updater"
+obs_packages = ["lyra-upgrade"]
+consumed_by = ["lyraos-desktop"]
+canonical_docs = ["docs/adr/0007-lyra-upgrade-trust-boundaries.md", "docs/lyra-upgrade-architecture.md", "docs/lyra-upgrade-state-machine.md"]
+
+[[products]]
+id = "lyraos-desktop-welcome"
+kind = "application"
+repository = "lyra-os-linux/lyraos-desktop-welcome"
+local_path = "lyraos-desktop-welcome"
+obs_packages = ["lyra-welcome"]
+consumed_by = ["lyraos-desktop"]
+
+[[products]]
+id = "lyraos-desktop-sheliak"
+kind = "application"
+repository = "lyra-os-linux/lyraos-desktop-sheliak"
+local_path = "lyraos-desktop-sheliak"
+obs_packages = ["sheliak"]
+consumed_by = ["lyraos-desktop"]
+
+[[products]]
+id = "lyraos-desktop-theme"
+kind = "branding"
+repository = "lyra-os-linux/lyraos-desktop-theme"
+local_path = "lyraos-desktop-theme"
+obs_packages = ["lyra-theme"]
+consumed_by = ["lyraos-desktop"]
+
+[[products]]
+id = "lyraos-desktop-linuxtoys"
+kind = "third-party-packaging"
+repository = "lyra-os-linux/lyraos-desktop-linuxtoys"
+local_path = "lyraos-desktop-linuxtoys"
+upstream = "psygreg/linuxtoys"
+obs_packages = ["linuxtoys"]
+consumed_by = ["lyraos-desktop"]
+
+[[products]]
+id = "vega"
+kind = "application"
+repository = "lyra-os-linux/vega"
+local_path = "vega"
+obs_packages = ["vega-gtk"]
+consumes = ["lyra-vega-dbus", "vegad"]
+consumed_by = ["lyraos-desktop"]
+
+[[products]]
+id = "vega-cli"
+kind = "application-component"
+repository = "lyra-os-linux/vega-cli"
+local_path = "vega-cli"
+obs_packages = ["vega-cli"]
+consumes = ["vegad"]
+consumed_by = ["lyraos-server"]
+
+[[products]]
+id = "vega-web"
+kind = "application-component"
+repository = "lyra-os-linux/vega-web"
+local_path = "vega-web"
+obs_packages = ["vega-web"]
+consumes = ["lyra-vega-dbus", "vegad"]
+consumed_by = ["lyraos-server"]
+
+[[products]]
+id = "vegad"
+kind = "privileged-service"
+repository = "lyra-os-linux/vegad"
+local_path = "vegad"
+obs_packages = ["vegad"]
+consumes = ["lyra-vega-dbus"]
+consumed_by = ["vega", "vega-cli", "vega-web"]
+
+[[products]]
+id = "lyra-vega-dbus"
+kind = "shared-contract"
+repository = "lyra-os-linux/lyra-vega-dbus"
+local_path = "lyra-vega-dbus"
+consumed_by = ["vega", "vega-web", "vegad"]
+
+[[products]]
+id = "beam"
+kind = "application"
+repository = "lyra-os-linux/beam"
+local_path = "beam"
+obs_packages = ["beam"]
+consumed_by = ["lyraos-desktop"]
+
+[[products]]
+id = "sulafat"
+kind = "application"
+repository = "lyra-os-linux/sulafat"
+local_path = "sulafat"
+obs_packages = ["sulafat"]
+consumed_by = ["lyraos-desktop"]
+
+[[products]]
+id = "site"
+kind = "website"
+repository = "lyra-os-linux/site"
+local_path = "site"
+
+[[products]]
+id = "vscode"
+kind = "third-party-packaging"
+repository = "lyra-os-linux/vscode"
+local_path = "vscode"
+upstream = "microsoft/vscode"
+obs_packages = ["vscode-repo"]
+consumed_by = ["lyraos-desktop"]
+
+[[products]]
+id = "zededitor"
+kind = "third-party-packaging"
+repository = "lyra-os-linux/zededitor"
+local_path = "zededitor"
+upstream = "zed-industries/zed"
+obs_packages = ["zed"]
+consumed_by = ["lyraos-desktop"]

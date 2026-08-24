@@ -1,0 +1,15 @@
+schema = 1
+
+[release]
+opensuse_base = "Leap 16.0"
+architecture = "x86_64"
+signing_fingerprint = "399218A6E088C4053F4533BE58097F767EDCA82E"
+
+[release.evidence]
+schema = 1
+desktop_owner = "lyraos-desktop"
+server_owner = "lyraos-server"
+
+[keys.release_public]
+canonical = "lyraos-desktop/docs/release-signing-key.asc"
+replicas = ["lyraos-desktop-updater/docs/release-signing-key.asc"]
