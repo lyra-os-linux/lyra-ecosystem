@@ -28,5 +28,36 @@ python3 scripts/validate.py
 ```
 
 A validação confere o schema do catálogo, repositórios locais, documentos
-canônicos, contratos compartilhados e consistência da chave pública de
-release. Ela não compila produtos nem modifica o OBS.
+canônicos, owners, reciprocidade e ausência de ciclos nas dependências,
+componentes distribuídos, contratos compartilhados e consistência da chave
+pública de release. Ela não compila produtos nem modifica o OBS. Em pushes
+para `main` e pull requests, o workflow também executa a suíte `unittest`.
+
+## Gate integrado em VM
+
+Uma candidata já inicializada e acessível por SSH pode ser verificada sem
+alterações remotas. O gate confere identidade, Zypper, serviços, D-Bus,
+Polkit, SELinux/vegad e os contratos específicos de armazenamento e runtime:
+
+```bash
+python3 scripts/vm-integration-gate.py \
+  --target root@ENDERECO_DA_VM \
+  --edition desktop \
+  --version 27.02-alpha6 \
+  --output evidence/desktop-27.02-alpha6-vm.json
+```
+
+O resultado é um JSON fail-closed. A promoção exige todos os checks verdes;
+no período de transição do domínio `vegad_t`, qualquer AVC do vegad bloqueia a
+mudança da política para enforcing.
+
+Antes do build, registre os commits e a presença de mudanças locais em todos
+os repositórios, sem copiar nomes ou conteúdo dos arquivos alterados:
+
+```bash
+python3 scripts/workspace-manifest.py --output evidence/workspace-state.json
+```
+
+Uma candidata publicável exige `dirty: false` em todas as entradas; durante o
+desenvolvimento, o manifesto ainda permite reproduzir quais commits serviram
+de base para a combinação local.

@@ -12,6 +12,7 @@ from pathlib import Path
 
 ECOSYSTEM = Path(__file__).resolve().parents[1]
 WORKSPACE = ECOSYSTEM.parent
+REPOSITORY = re.compile(r"^[a-z0-9](?:[a-z0-9-]*/)[a-z0-9][a-z0-9-]*$")
 
 
 def load_toml(path: Path) -> dict:
@@ -29,10 +30,9 @@ def local_markdown_targets(path: Path) -> list[Path]:
     return targets
 
 
-def validate() -> list[str]:
+def catalog_errors(catalog: dict, workspace: Path) -> list[str]:
+    """Validate ownership and the complete, acyclic distribution graph."""
     errors: list[str] = []
-    catalog = load_toml(ECOSYSTEM / "products.toml")
-    contracts = load_toml(ECOSYSTEM / "contracts.toml")
     products = catalog.get("products", [])
     ids = [product.get("id") for product in products]
 
@@ -41,17 +41,73 @@ def validate() -> list[str]:
     if len(ids) != len(set(ids)):
         errors.append("products.toml: product ids must be unique")
 
-    known = set(ids)
+    known = {product.get("id"): product for product in products if product.get("id")}
+    repositories: set[str] = set()
     for product in products:
+        product_id = product.get("id", "<missing>")
+        for field in ("kind", "repository", "local_path", "owner"):
+            if not product.get(field):
+                errors.append(f"{product_id}: missing {field}")
+        repository = product.get("repository", "")
+        if repository and not REPOSITORY.fullmatch(repository):
+            errors.append(f"{product_id}: invalid repository {repository!r}")
+        if repository in repositories:
+            errors.append(f"{product_id}: duplicate repository {repository}")
+        repositories.add(repository)
+        if repository and product.get("owner") != repository.split("/", 1)[0]:
+            errors.append(f"{product_id}: owner must match repository organization")
+
+        local_path = product.get("local_path")
+        if not local_path or not (workspace / local_path).is_dir():
+            errors.append(f"{product_id}: missing local repository {local_path!r}")
+        for relation in ("consumes", "consumed_by"):
+            related_ids = product.get(relation, [])
+            if len(related_ids) != len(set(related_ids)):
+                errors.append(f"{product_id}: duplicate {relation} target")
+            for related in related_ids:
+                if related not in known:
+                    errors.append(f"{product_id}: unknown {relation} target {related}")
+
+    for product_id, product in known.items():
+        for dependency in product.get("consumes", []):
+            if dependency in known and product_id not in known[dependency].get("consumed_by", []):
+                errors.append(f"{product_id} -> {dependency}: missing reciprocal consumed_by")
+        for consumer in product.get("consumed_by", []):
+            if consumer in known and product_id not in known[consumer].get("consumes", []):
+                errors.append(f"{product_id} -> {consumer}: distributed component is not cataloged by consumer")
+
+    visiting: set[str] = set()
+    visited: set[str] = set()
+
+    def visit(product_id: str, trail: tuple[str, ...]) -> None:
+        if product_id in visiting:
+            start = trail.index(product_id)
+            errors.append("products.toml: dependency cycle: " + " -> ".join((*trail[start:], product_id)))
+            return
+        if product_id in visited:
+            return
+        visiting.add(product_id)
+        for dependency in known[product_id].get("consumes", []):
+            if dependency in known:
+                visit(dependency, (*trail, product_id))
+        visiting.remove(product_id)
+        visited.add(product_id)
+
+    for product_id in known:
+        visit(product_id, ())
+    return errors
+
+
+def validate() -> list[str]:
+    errors: list[str] = []
+    catalog = load_toml(ECOSYSTEM / "products.toml")
+    contracts = load_toml(ECOSYSTEM / "contracts.toml")
+    errors.extend(catalog_errors(catalog, WORKSPACE))
+    for product in catalog.get("products", []):
         product_id = product.get("id", "<missing>")
         local_path = product.get("local_path")
         if not local_path or not (WORKSPACE / local_path).is_dir():
-            errors.append(f"{product_id}: missing local repository {local_path!r}")
             continue
-        for relation in ("consumes", "consumed_by"):
-            for related in product.get(relation, []):
-                if related not in known:
-                    errors.append(f"{product_id}: unknown {relation} target {related}")
         for document in product.get("canonical_docs", []):
             if not (WORKSPACE / local_path / document).is_file():
                 errors.append(f"{product_id}: missing canonical document {document}")

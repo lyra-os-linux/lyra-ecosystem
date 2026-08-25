@@ -1,0 +1,38 @@
+name: Catalog contracts
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          path: lyra-ecosystem
+      - name: Check out cataloged repositories
+        working-directory: lyra-ecosystem
+        run: |
+          python3 - <<'PY' | while IFS= read -r repository; do
+          import tomllib
+          with open("products.toml", "rb") as stream:
+              for product in tomllib.load(stream)["products"]:
+                  print(product["repository"])
+          PY
+            if [[ "$repository" == "lyra-os-linux/lyra-ecosystem" ]]; then
+              continue
+            fi
+            gh repo clone "$repository" "../${repository#*/}" -- --depth=1
+          done
+        env:
+          GH_TOKEN: ${{ github.token }}
+      - name: Validate catalog and contracts
+        working-directory: lyra-ecosystem
+        run: |
+          python3 scripts/validate.py
+          python3 -m unittest discover -s tests -v
