@@ -8,7 +8,7 @@ edição.
 
 1. A mudança entra no repositório proprietário e passa pelos testes locais.
 2. O pacote é construído no projeto OBS de staging correspondente.
-3. O RPM é validado em openSUSE Leap 16.0, incluindo smoke test proporcional
+3. O RPM é validado na base atual, openSUSE Leap 16.1, incluindo smoke test proporcional
    ao risco do componente.
 4. A promoção para o projeto de release registra revisão e evidência.
 5. A edição atualiza ou confirma o `srcmd5` aprovado em `obs/projects.toml`.

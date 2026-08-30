@@ -21,7 +21,7 @@ class VmIntegrationGateTests(unittest.TestCase):
             commands.append(command)
             return 0, "ok"
 
-        report = gate.execute("desktop", "27.02-alpha6", runner)
+        report = gate.execute("desktop", "1.0-alpha.6", runner)
         self.assertEqual(report["status"], "passed")
         self.assertIn("zypper --non-interactive verify", commands)
         self.assertTrue(any("vegad_t" in command for command in commands))
@@ -31,14 +31,14 @@ class VmIntegrationGateTests(unittest.TestCase):
         def runner(command: str) -> tuple[int, str]:
             return (1, "AVC found") if "ausearch" in command else (0, "ok")
 
-        report = gate.execute("server", "27.02-beta1", runner)
+        report = gate.execute("server", "1.0-beta.1", runner)
         self.assertEqual(report["status"], "failed")
         failed = [item for item in report["checks"] if item["status"] == "failed"]
         self.assertEqual(failed, [{"name": "vegad-avc", "status": "failed", "output": "AVC found"}])
 
     def test_editions_have_distinct_storage_and_runtime_contracts(self) -> None:
-        desktop = gate.execute("desktop", "27.02", lambda _: (0, ""))
-        server = gate.execute("server", "27.02", lambda _: (0, ""))
+        desktop = gate.execute("desktop", "1.0", lambda _: (0, ""))
+        server = gate.execute("server", "1.0", lambda _: (0, ""))
         desktop_names = {item["name"] for item in desktop["checks"]}
         server_names = {item["name"] for item in server["checks"]}
         self.assertIn("snapper", desktop_names)

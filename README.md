@@ -43,8 +43,8 @@ Polkit, SELinux/vegad e os contratos específicos de armazenamento e runtime:
 python3 scripts/vm-integration-gate.py \
   --target root@ENDERECO_DA_VM \
   --edition desktop \
-  --version 27.02-alpha6 \
-  --output evidence/desktop-27.02-alpha6-vm.json
+  --version 1.0-alpha.6 \
+  --output evidence/desktop-1.0-alpha.6-vm.json
 ```
 
 O resultado é um JSON fail-closed. A promoção exige todos os checks verdes;

@@ -143,6 +143,44 @@ def validate() -> list[str]:
         if actual != fingerprint:
             errors.append(f"{relative}: signing fingerprint differs from contract")
 
+    release_contract = contracts["release"]
+    if release_contract.get("planned_release_date") != "2027-02-20":
+        errors.append("contracts.toml: planned release date must be 2027-02-20")
+    if release_contract.get("support_model") != "community":
+        errors.append("contracts.toml: support model must be community")
+    if release_contract.get("server_codename") != "Delos":
+        errors.append("contracts.toml: server generation codename must be Delos")
+
+    site = (WORKSPACE / "site/index.html").read_text()
+    for required in ("20 fev 2027", "Suporte comunitário"):
+        if required not in site:
+            errors.append(f"site/index.html: missing canonical release policy {required!r}")
+
+    release_manifests = (
+        "lyraos-desktop/release.toml",
+        "lyraos-desktop-kde/release.toml",
+        "lyraos-desktop-xfce/release.toml",
+        "lyraos-server/release-server.toml",
+    )
+    expected = {
+        "version": release_contract["product_version"],
+        "codename": release_contract["codename"],
+        "codename_id": release_contract["codename_id"],
+        "base_distribution": "opensuse-leap",
+        "base_version": release_contract["base_version"],
+    }
+    for relative in release_manifests:
+        values = load_toml(WORKSPACE / relative)["release"]
+        manifest_expected = dict(expected)
+        if relative == "lyraos-server/release-server.toml":
+            manifest_expected["codename"] = release_contract["server_codename"]
+            manifest_expected["codename_id"] = release_contract["server_codename_id"]
+        for field, expected_value in manifest_expected.items():
+            if values.get(field) != expected_value:
+                errors.append(
+                    f"{relative}: {field} differs from canonical release contract"
+                )
+
     release = load_toml(WORKSPACE / "lyraos-desktop" / "release.toml")["release"]
     stage_label = f"{release['stage'].capitalize()} {release['iteration']}"
     readme = (WORKSPACE / "lyraos-desktop" / "README.md").read_text()

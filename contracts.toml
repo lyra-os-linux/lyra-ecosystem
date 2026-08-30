@@ -1,8 +1,17 @@
 schema = 1
 
 [release]
-opensuse_base = "Leap 16.0"
+product_version = "1.0"
+generation = 1
+codename = "Odisseia"
+codename_id = "odisseia"
+server_codename = "Delos"
+server_codename_id = "delos"
+base_distribution = "openSUSE Leap"
+base_version = "16.1"
 architecture = "x86_64"
+planned_release_date = "2027-02-20"
+support_model = "community"
 signing_fingerprint = "399218A6E088C4053F4533BE58097F767EDCA82E"
 
 [release.evidence]
