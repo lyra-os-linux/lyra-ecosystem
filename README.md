@@ -36,7 +36,7 @@ para `main` e pull requests, o workflow também executa a suíte `unittest`.
 ## Gate integrado em VM
 
 Uma candidata já inicializada e acessível por SSH pode ser verificada sem
-alterações remotas. O gate confere identidade, Zypper, serviços, D-Bus,
+instalar, remover pacotes ou aplicar reparos. O gate confere identidade, Zypper, serviços, D-Bus,
 Polkit, SELinux/vegad e os contratos específicos de armazenamento e runtime:
 
 ```bash
@@ -46,6 +46,14 @@ python3 scripts/vm-integration-gate.py \
   --version 1.0-alpha.6 \
   --output evidence/desktop-1.0-alpha.6-vm.json
 ```
+
+A checagem de dependências usa
+`zypper --xmlout --non-interactive --no-refresh verify --dry-run --details`
+e exige um resumo XML sem propostas de reparo.
+Saída zero sozinha não aprova a candidata. Consultas D-Bus não ativam serviços.
+Falhas, timeout, saída excessiva ou XML inválido reprovam o diagnóstico; logs e
+caches normais das ferramentas podem ser escritos. Veja a
+[qualificação do gate somente leitura](docs/readonly-gate-qualification.md).
 
 O resultado é um JSON fail-closed. A promoção exige todos os checks verdes;
 no período de transição do domínio `vegad_t`, qualquer AVC do vegad bloqueia a

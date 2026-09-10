@@ -9,6 +9,15 @@ permissions:
   contents: read
 
 jobs:
+  readonly-gate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - name: Validate read-only VM gate independently of portfolio drift
+        env:
+          PYTHONDONTWRITEBYTECODE: "1"
+        run: python3 -m unittest discover -s tests -p test_vm_integration_gate.py -v
+
   validate:
     runs-on: ubuntu-latest
     steps:
