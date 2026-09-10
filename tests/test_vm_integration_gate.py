@@ -35,7 +35,7 @@ class VmIntegrationGateTests(unittest.TestCase):
                     self.assertEqual(gate.main(), 0)
                 self.assertEqual(json.loads(output.read_text())["version"], version)
             for version in ("1.1-alpha7", "1.1-alpha.0", "01.1", "1.1\n", "1.1$(id)", "1.1';id", "v1.1"):
-                with self.subTest(version=version), patch.object(sys, "argv", [*args[:6], "--version", version, "--output", str(output)]), patch.object(gate, "ssh_runner") as ssh, contextlib.redirect_stderr(io.StringIO()):
+                with self.subTest(version=version), patch.object(sys, "argv", [*args[:5], "--version", version, "--output", str(output)]), patch.object(gate, "ssh_runner") as ssh, contextlib.redirect_stderr(io.StringIO()):
                     with self.assertRaises(SystemExit) as error:
                         gate.main()
                     self.assertEqual(error.exception.code, 2)
