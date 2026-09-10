@@ -69,10 +69,19 @@ limites e timeout. Há job CI próprio para executar esses testes mesmo quando
 contratos de outros repositórios divergem; o job geral continua obrigatório e
 não tem falhas suprimidas.
 
-## Divergências preexistentes — item #6
+## Contratos reconciliados — item #6
 
-A validação geral local retorna as mesmas oito divergências antes e depois:
-política/data de suporte no site, versão das quatro edições e base/versionamento
-Desktop. Esses contratos e o filtro YY.MM da CLI pertencem à auditoria #6.
-Este ensaio usa diretamente `execute()` e não afirma que a CLI aceita 1.0 hoje.
-A correção de dependências não altera versões de produto nem essas políticas.
+As divergências observadas no baseline foram tratadas na mesma PR: o contrato
+canônico agora acompanha o produto 1.1/Leap 16.1 já adotado pelas quatro edições.
+O catálogo inclui os 26 repositórios e declara os manifestos de cada edição;
+o CI obtém todos eles. GNOME continua prioritário e KDE/XFCE secundários.
+O site é validado pelo JSON-LD SoftwareApplication (versão/arquitetura), sem
+impor frases traduzidas ou textos retirados no redesenho. A data planejada e
+o suporte comunitário permanecem no contrato; isso não afirma que o site
+publique essas políticas nem altera a data planejada.
+
+A CLI aceita versões MAJOR.MINOR[.PATCH] e sufixos de estágio/iteração/rebuild,
+e compara LYRA_ARTIFACT_VERSION para distinguir candidatas do mesmo produto.
+Testes executam esse diagnóstico sobre as identidades geradas das edições e
+recusam versões divergentes. A qualificação nativa acima cobre o comando de
+dependências e seu parser, que permanecem inalterados nesta reconciliação.

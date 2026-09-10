@@ -16,7 +16,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Callable
 
-VERSION = re.compile(r"^\d{2}\.\d{2}(?:-(?:alpha|beta|rc)\d+)?$")
+VERSION = re.compile(r"(?:0|[1-9][0-9]*)\.(?:0|[1-9][0-9]*)(?:\.(?:0|[1-9][0-9]*))?(?:-(?:alpha|beta|rc)\.[1-9][0-9]*(?:\.[1-9][0-9]*)?)?")
 TARGET = re.compile(r"^[A-Za-z0-9_.@:-]+$")
 
 
@@ -155,8 +155,10 @@ def ssh_runner(target: str) -> Callable[[str], tuple[int, str]]:
 
 
 def execute(edition: str, version: str, runner: Callable[[str], tuple[int, str]]) -> dict[str, object]:
+    if not VERSION.fullmatch(version):
+        raise ValueError("invalid release version")
     identity_file = "/usr/lib/lyra-os/release" if edition == "desktop" else "/usr/lib/lyra-os/server-release"
-    checks = (Check("identity", f"grep -Fqx \"LYRA_VERSION_ID='{version}'\" {identity_file}"), *COMMON_CHECKS, *EDITION_CHECKS[edition])
+    checks = (Check("identity", f"grep -Fqx \"LYRA_ARTIFACT_VERSION='{version}'\" {identity_file}"), *COMMON_CHECKS, *EDITION_CHECKS[edition])
     results = []
     for check in checks:
         status, output = runner(check.command)
@@ -184,7 +186,7 @@ def main() -> int:
     if not TARGET.fullmatch(args.target):
         parser.error("invalid SSH target")
     if not VERSION.fullmatch(args.version):
-        parser.error("version must use YY.MM with an optional prerelease suffix")
+        parser.error("version must use MAJOR.MINOR[.PATCH] with an optional -alpha.N, -beta.N or -rc.N suffix (and optional rebuild .N)")
     report = execute(args.edition, args.version, ssh_runner(args.target))
     args.output.parent.mkdir(parents=True, exist_ok=True)
     args.output.write_text(json.dumps(report, indent=2, sort_keys=True) + "\n", encoding="utf-8")

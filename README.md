@@ -16,6 +16,10 @@ runtime.
 - [`contracts.toml`](contracts.toml): valores que precisam permanecer
   coerentes entre mais de um repositório.
 
+O catálogo inclui os 26 repositórios, com GNOME prioritário e KDE/XFCE em
+segundo plano. O campo `release_manifest` de cada edição determina os contratos
+validados e todos os repositórios do catálogo são obtidos no CI.
+
 O catálogo descreve os repositórios, mas cada repositório continua sendo a
 fonte canônica de seu código, comandos de teste e ciclo de release.
 
@@ -43,9 +47,12 @@ Polkit, SELinux/vegad e os contratos específicos de armazenamento e runtime:
 python3 scripts/vm-integration-gate.py \
   --target root@ENDERECO_DA_VM \
   --edition desktop \
-  --version 1.0-alpha.6 \
-  --output evidence/desktop-1.0-alpha.6-vm.json
+  --version 1.1-alpha.7 \
+  --output evidence/desktop-1.1-alpha.7-vm.json
 ```
+
+`--version` identifica o artefato exato (`LYRA_ARTIFACT_VERSION`), incluindo
+estágio, iteração e eventual rebuild, como `1.1-beta.1.1` no Server.
 
 A checagem de dependências usa
 `zypper --xmlout --non-interactive --no-refresh verify --dry-run --details`

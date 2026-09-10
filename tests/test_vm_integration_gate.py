@@ -1,7 +1,13 @@
 from __future__ import annotations
 
 import importlib.util
+import contextlib
+import io
+import json
+import shlex
+import subprocess
 import sys
+import tempfile
 import unittest
 from unittest.mock import patch
 from pathlib import Path
@@ -18,6 +24,48 @@ HEALTHY = (ROOT / "tests/fixtures/verify-healthy.xml").read_text()
 
 
 class VmIntegrationGateTests(unittest.TestCase):
+    def test_cli_accepts_release_versions_and_rejects_unsafe_input_before_ssh(self):
+        with tempfile.TemporaryDirectory() as directory:
+            output = Path(directory) / "report.json"
+            for version in ("1.1", "1.1.2", "1.1-alpha.7", "1.1-beta.1.1", "1.1-rc.1"):
+                args = ["gate", "--target", "root@candidate", "--edition", "desktop",
+                        "--version", version, "--output", str(output)]
+                runner = lambda command: (0, HEALTHY if command == gate.DEPENDENCY_COMMAND else "ok")
+                with patch.object(sys, "argv", args), patch.object(gate, "ssh_runner", return_value=runner), contextlib.redirect_stdout(io.StringIO()):
+                    self.assertEqual(gate.main(), 0)
+                self.assertEqual(json.loads(output.read_text())["version"], version)
+            for version in ("1.1-alpha7", "1.1-alpha.0", "01.1", "1.1\n", "1.1$(id)", "1.1';id", "v1.1"):
+                with self.subTest(version=version), patch.object(sys, "argv", [*args[:6], "--version", version, "--output", str(output)]), patch.object(gate, "ssh_runner") as ssh, contextlib.redirect_stderr(io.StringIO()):
+                    with self.assertRaises(SystemExit) as error:
+                        gate.main()
+                    self.assertEqual(error.exception.code, 2)
+                    ssh.assert_not_called()
+                    with self.assertRaises(ValueError):
+                        gate.execute("desktop", version, runner)
+
+    def test_identity_checks_generated_artifact_instead_of_product_version(self):
+        fixtures = (("desktop", "1.1-alpha.7", "release"),
+                    ("server", "1.1-beta.1.1", "server-release"))
+        with tempfile.TemporaryDirectory() as directory:
+            for edition, artifact, filename in fixtures:
+                identity = Path(directory) / filename
+                identity.write_text(f"LYRA_ARTIFACT_VERSION='{artifact}'\nLYRA_VERSION_ID='1.1'\n")
+
+                def runner(command):
+                    if command.startswith("grep "):
+                        args = shlex.split(command)
+                        self.assertEqual(args[-1], f"/usr/lib/lyra-os/{filename}")
+                        args[-1] = str(identity)
+                        result = subprocess.run(args, capture_output=True, text=True, check=False)
+                        return result.returncode, result.stdout
+                    return 0, HEALTHY if command == gate.DEPENDENCY_COMMAND else "ok"
+
+                self.assertEqual(gate.execute(edition, artifact, runner)["status"], "passed")
+                for wrong in ("1.1", "1.1-alpha.8"):
+                    report = gate.execute(edition, wrong, runner)
+                    self.assertEqual(report["status"], "failed")
+                    self.assertEqual(report["checks"][0]["status"], "failed")
+
     def test_desktop_passes_only_when_every_read_only_check_passes(self) -> None:
         commands = []
 

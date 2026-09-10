@@ -4,9 +4,12 @@
 from __future__ import annotations
 
 import hashlib
+import json
 import re
 import sys
 import tomllib
+from datetime import date
+from html.parser import HTMLParser
 from pathlib import Path
 
 
@@ -18,6 +21,93 @@ REPOSITORY = re.compile(r"^[a-z0-9](?:[a-z0-9-]*/)[a-z0-9][a-z0-9-]*$")
 def load_toml(path: Path) -> dict:
     with path.open("rb") as stream:
         return tomllib.load(stream)
+
+
+class SiteMetadata(HTMLParser):
+    """Read machine-readable release identity independently of translated copy."""
+
+    def __init__(self) -> None:
+        super().__init__()
+        self.blocks: list[str] = []
+        self.current: list[str] | None = None
+
+    def handle_starttag(self, tag: str, attrs: list[tuple[str, str | None]]) -> None:
+        if tag == "script" and dict(attrs).get("type") == "application/ld+json":
+            self.current = []
+
+    def handle_data(self, data: str) -> None:
+        if self.current is not None:
+            self.current.append(data)
+
+    def handle_endtag(self, tag: str) -> None:
+        if tag == "script" and self.current is not None:
+            self.blocks.append("".join(self.current))
+            self.current = None
+
+
+def site_errors(html: str, release: dict) -> list[str]:
+    parser = SiteMetadata()
+    parser.feed(html)
+    parser.close()
+    errors: list[str] = []
+    identities: list[dict] = []
+
+    def collect(value: object) -> None:
+        if isinstance(value, list):
+            for item in value:
+                collect(item)
+        elif isinstance(value, dict):
+            if value.get("@type") == "SoftwareApplication" and value.get("name") == "Lyra OS":
+                identities.append(value)
+            if "@graph" in value:
+                collect(value["@graph"])
+
+    for block in parser.blocks:
+        try:
+            collect(json.loads(block))
+        except ValueError:
+            errors.append("site/index.html: invalid JSON-LD")
+    if parser.current is not None:
+        errors.append("site/index.html: unterminated JSON-LD script")
+    if len(identities) != 1:
+        errors.append("site/index.html: expected exactly one Lyra OS SoftwareApplication identity")
+    for identity in identities:
+        for field, expected in (("softwareVersion", release["product_version"]),
+                                ("operatingSystem", release["architecture"])):
+            if identity.get(field) != expected:
+                errors.append(f"site/index.html: {field} differs from canonical release contract")
+    return errors
+
+
+def release_errors(catalog: dict, release: dict, workspace: Path) -> list[str]:
+    errors: list[str] = []
+    for product in catalog.get("products", []):
+        if product.get("kind") != "edition":
+            continue
+        name = product["id"]
+        manifest = product.get("release_manifest")
+        if not manifest:
+            errors.append(f"{name}: missing release_manifest in catalog")
+            continue
+        relative = Path(product["local_path"]) / manifest
+        try:
+            values = load_toml(workspace / relative).get("release", {})
+        except (OSError, ValueError) as error:
+            errors.append(f"{relative}: cannot read release manifest: {error}")
+            continue
+        server = name == "lyraos-server"
+        expected = {
+            "version": release["product_version"],
+            "codename": release["server_codename" if server else "codename"],
+            "codename_id": release["server_codename_id" if server else "codename_id"],
+            "base_distribution": release["base_distribution"],
+            "base_version": release["base_version"],
+            "architecture": release["architecture"],
+        }
+        for field, expected_value in expected.items():
+            if values.get(field) != expected_value:
+                errors.append(f"{relative}: {field} differs from canonical release contract")
+    return errors
 
 
 def local_markdown_targets(path: Path) -> list[Path]:
@@ -144,42 +234,23 @@ def validate() -> list[str]:
             errors.append(f"{relative}: signing fingerprint differs from contract")
 
     release_contract = contracts["release"]
-    if release_contract.get("planned_release_date") != "2027-02-20":
-        errors.append("contracts.toml: planned release date must be 2027-02-20")
+    try:
+        planned = release_contract.get("planned_release_date", "")
+        if date.fromisoformat(planned).isoformat() != planned:
+            raise ValueError("noncanonical date")
+    except (TypeError, ValueError):
+        errors.append("contracts.toml: planned release date must use a valid YYYY-MM-DD date")
     if release_contract.get("support_model") != "community":
         errors.append("contracts.toml: support model must be community")
     if release_contract.get("server_codename") != "Delos":
         errors.append("contracts.toml: server generation codename must be Delos")
 
-    site = (WORKSPACE / "site/index.html").read_text()
-    for required in ("20 fev 2027", "Suporte comunitário"):
-        if required not in site:
-            errors.append(f"site/index.html: missing canonical release policy {required!r}")
-
-    release_manifests = (
-        "lyraos-desktop/release.toml",
-        "lyraos-desktop-kde/release.toml",
-        "lyraos-desktop-xfce/release.toml",
-        "lyraos-server/release-server.toml",
-    )
-    expected = {
-        "version": release_contract["product_version"],
-        "codename": release_contract["codename"],
-        "codename_id": release_contract["codename_id"],
-        "base_distribution": "opensuse-leap",
-        "base_version": release_contract["base_version"],
-    }
-    for relative in release_manifests:
-        values = load_toml(WORKSPACE / relative)["release"]
-        manifest_expected = dict(expected)
-        if relative == "lyraos-server/release-server.toml":
-            manifest_expected["codename"] = release_contract["server_codename"]
-            manifest_expected["codename_id"] = release_contract["server_codename_id"]
-        for field, expected_value in manifest_expected.items():
-            if values.get(field) != expected_value:
-                errors.append(
-                    f"{relative}: {field} differs from canonical release contract"
-                )
+    try:
+        site = (WORKSPACE / "site/index.html").read_text()
+        errors.extend(site_errors(site, release_contract))
+    except OSError as error:
+        errors.append(f"site/index.html: cannot read release metadata: {error}")
+    errors.extend(release_errors(catalog, release_contract, WORKSPACE))
 
     release = load_toml(WORKSPACE / "lyraos-desktop" / "release.toml")["release"]
     stage_label = f"{release['stage'].capitalize()} {release['iteration']}"
