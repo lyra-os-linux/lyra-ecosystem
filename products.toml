@@ -8,7 +8,9 @@ owner = "lyra-os-linux"
 local_path = "lyraos-desktop"
 release_cycle = "independent"
 obs_packages = ["lyra-installer"]
-consumes = ["beam", "sulafat", "vega", "vscode", "zededitor", "lyraos-desktop-linuxtoys", "lyraos-desktop-sheliak", "lyraos-desktop-theme", "lyraos-desktop-updater", "lyraos-desktop-welcome"]
+consumes = ["beam", "sulafat", "vega", "vscode", "zededitor", "lyraos-desktop-linuxtoys", "lyraos-desktop-sheliak", "lyraos-desktop-theme", "lyraos-desktop-updater", "lyraos-desktop-welcome", "lyraos-desktop-icons", "lyraos-desktop-wallpapers"]
+release_manifest = "release.toml"
+release_priority = "primary"
 
 [[products]]
 id = "lyraos-server"
@@ -18,6 +20,7 @@ owner = "lyra-os-linux"
 local_path = "lyraos-server"
 release_cycle = "independent"
 consumes = ["vega-cli", "vega-web", "vegad"]
+release_manifest = "release-server.toml"
 
 [[products]]
 id = "lyraos-desktop-updater"
@@ -26,8 +29,8 @@ repository = "lyra-os-linux/lyraos-desktop-updater"
 owner = "lyra-os-linux"
 local_path = "lyraos-desktop-updater"
 obs_packages = ["lyra-upgrade"]
-consumed_by = ["lyraos-desktop"]
 canonical_docs = ["docs/adr/0007-lyra-upgrade-trust-boundaries.md", "docs/lyra-upgrade-architecture.md", "docs/lyra-upgrade-state-machine.md"]
+consumed_by = ["lyraos-desktop", "lyraos-desktop-kde", "lyraos-desktop-xfce"]
 
 [[products]]
 id = "lyraos-desktop-welcome"
@@ -53,7 +56,8 @@ kind = "branding"
 repository = "lyra-os-linux/lyraos-desktop-theme"
 owner = "lyra-os-linux"
 local_path = "lyraos-desktop-theme"
-obs_packages = ["lyra-theme"]
+obs_packages = ["lyra-os-theme"]
+consumes = ["lyraos-desktop-icons", "lyraos-desktop-wallpapers"]
 consumed_by = ["lyraos-desktop"]
 
 [[products]]
@@ -64,7 +68,7 @@ owner = "lyra-os-linux"
 local_path = "lyraos-desktop-linuxtoys"
 upstream = "psygreg/linuxtoys"
 obs_packages = ["linuxtoys"]
-consumed_by = ["lyraos-desktop"]
+consumed_by = ["lyraos-desktop", "lyraos-desktop-kde", "lyraos-desktop-xfce"]
 
 [[products]]
 id = "vega"
@@ -104,7 +108,7 @@ owner = "lyra-os-linux"
 local_path = "vegad"
 obs_packages = ["vegad"]
 consumes = ["lyra-vega-dbus"]
-consumed_by = ["lyraos-server", "vega", "vega-cli", "vega-web"]
+consumed_by = ["lyraos-server", "vega", "vega-cli", "vega-web", "vega-qt", "vega-xfce"]
 
 [[products]]
 id = "lyra-vega-dbus"
@@ -112,7 +116,7 @@ kind = "shared-contract"
 repository = "lyra-os-linux/lyra-vega-dbus"
 owner = "lyra-os-linux"
 local_path = "lyra-vega-dbus"
-consumed_by = ["vega", "vega-web", "vegad"]
+consumed_by = ["vega", "vega-web", "vegad", "vega-xfce"]
 
 [[products]]
 id = "beam"
@@ -121,7 +125,7 @@ repository = "lyra-os-linux/beam"
 owner = "lyra-os-linux"
 local_path = "beam"
 obs_packages = ["beam"]
-consumed_by = ["lyraos-desktop"]
+consumed_by = ["lyraos-desktop", "lyraos-desktop-kde", "lyraos-desktop-xfce"]
 
 [[products]]
 id = "sulafat"
@@ -130,7 +134,7 @@ repository = "lyra-os-linux/sulafat"
 owner = "lyra-os-linux"
 local_path = "sulafat"
 obs_packages = ["sulafat"]
-consumed_by = ["lyraos-desktop"]
+consumed_by = ["lyraos-desktop", "lyraos-desktop-kde", "lyraos-desktop-xfce"]
 
 [[products]]
 id = "site"
@@ -157,4 +161,88 @@ owner = "lyra-os-linux"
 local_path = "zededitor"
 upstream = "zed-industries/zed"
 obs_packages = ["zed"]
-consumed_by = ["lyraos-desktop"]
+consumed_by = ["lyraos-desktop", "lyraos-desktop-kde", "lyraos-desktop-xfce"]
+
+[[products]]
+id = "lyra-ecosystem"
+kind = "governance"
+repository = "lyra-os-linux/lyra-ecosystem"
+owner = "lyra-os-linux"
+local_path = "lyra-ecosystem"
+
+[[products]]
+id = "lyraos-desktop-icons"
+kind = "branding"
+repository = "lyra-os-linux/lyraos-desktop-icons"
+owner = "lyra-os-linux"
+local_path = "lyraos-desktop-icons"
+obs_packages = ["lyra-os-icons"]
+consumed_by = ["lyraos-desktop", "lyraos-desktop-theme", "lyraos-desktop-kde", "lyraos-desktop-xfce"]
+
+[[products]]
+id = "lyraos-desktop-wallpapers"
+kind = "branding"
+repository = "lyra-os-linux/lyraos-desktop-wallpapers"
+owner = "lyra-os-linux"
+local_path = "lyraos-desktop-wallpapers"
+obs_packages = ["lyra-os-wallpapers"]
+consumed_by = ["lyraos-desktop", "lyraos-desktop-theme", "lyraos-desktop-kde", "lyraos-desktop-xfce"]
+
+[[products]]
+id = "lyraos-desktop-kde"
+kind = "edition"
+repository = "lyra-os-linux/lyraos-desktop-kde"
+owner = "lyra-os-linux"
+local_path = "lyraos-desktop-kde"
+obs_packages = ["lyra-installer"]
+release_manifest = "release.toml"
+release_priority = "secondary"
+consumes = ["beam", "sulafat", "lyraos-desktop-linuxtoys", "lyraos-desktop-updater", "lyraos-desktop-icons", "lyraos-desktop-wallpapers", "zededitor", "vega-qt"]
+
+[[products]]
+id = "lyraos-desktop-xfce"
+kind = "edition"
+repository = "lyra-os-linux/lyraos-desktop-xfce"
+owner = "lyra-os-linux"
+local_path = "lyraos-desktop-xfce"
+obs_packages = ["lyra-installer"]
+release_manifest = "release.toml"
+release_priority = "secondary"
+consumes = ["beam", "sulafat", "lyraos-desktop-linuxtoys", "lyraos-desktop-updater", "lyraos-desktop-icons", "lyraos-desktop-wallpapers", "zededitor", "vega-xfce", "lyraos-desktop-xfce-theme"]
+
+[[products]]
+id = "lyraos-desktop-kde-theme"
+kind = "branding"
+repository = "lyra-os-linux/lyraos-desktop-kde-theme"
+owner = "lyra-os-linux"
+local_path = "lyraos-desktop-kde-theme"
+obs_packages = ["lyra-os-theme", "lyra-os-icons"]
+
+[[products]]
+id = "lyraos-desktop-xfce-theme"
+kind = "branding"
+repository = "lyra-os-linux/lyraos-desktop-xfce-theme"
+owner = "lyra-os-linux"
+local_path = "lyraos-desktop-xfce-theme"
+obs_packages = ["lyra-os-theme", "lyra-os-icons"]
+consumed_by = ["lyraos-desktop-xfce"]
+
+[[products]]
+id = "vega-qt"
+kind = "application"
+repository = "lyra-os-linux/vega-qt"
+owner = "lyra-os-linux"
+local_path = "vega-qt"
+obs_packages = ["vega-qt"]
+consumes = ["vegad"]
+consumed_by = ["lyraos-desktop-kde"]
+
+[[products]]
+id = "vega-xfce"
+kind = "application"
+repository = "lyra-os-linux/vega-xfce"
+owner = "lyra-os-linux"
+local_path = "vega-xfce"
+obs_packages = ["vega-xfce"]
+consumes = ["lyra-vega-dbus", "vegad"]
+consumed_by = ["lyraos-desktop-xfce"]
