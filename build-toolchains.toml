@@ -1,0 +1,60 @@
+schema = 1
+platform = "linux-x86_64"
+base = "openSUSE Leap 16.1"
+
+# Qualification baseline, not a promise of bit-identical RPM output.
+# Change these pins in review together with an offline qualification receipt.
+[tools]
+rustc = "1.97.0"
+cargo = "1.97.0"
+go = "1.27.1"
+node = "24.18.1"
+npm = "11.16.0"
+python3 = "3.13.13"
+
+[native]
+"gtk4" = "4.18.6"
+"libadwaita-1" = "1.7.5"
+"gtk+-3.0" = "3.24.52"
+"webkit2gtk-4.1" = "2.52.5"
+"javascriptcoregtk-4.1" = "2.52.5"
+"gio-2.0" = "2.84.4"
+"dbus-1" = "1.14.10"
+"vte-2.91-gtk4" = "0.80.5"
+
+[[components]]
+id = "beam"
+kind = "rust"
+root = "."
+[[components]]
+id = "sulafat"
+kind = "rust"
+root = "."
+[[components]]
+id = "lyra-vega-dbus"
+kind = "rust"
+root = "."
+[[components]]
+id = "vega"
+kind = "rust"
+root = "."
+[[components]]
+id = "vegad"
+kind = "go"
+root = "."
+[[components]]
+id = "lyraos-desktop-welcome"
+kind = "rust"
+root = "src-tauri"
+[[components]]
+id = "lyraos-desktop-updater"
+kind = "rust"
+root = "."
+[[components]]
+id = "lyraos-desktop"
+kind = "rust"
+root = "installer"
+[[components]]
+id = "lyraos-desktop-sheliak"
+kind = "node"
+root = "."

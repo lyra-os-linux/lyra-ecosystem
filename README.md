@@ -31,11 +31,24 @@ Execute sem acesso à rede:
 python3 scripts/validate.py
 ```
 
+Em uma worktree fora da disposição de diretórios irmãos, defina
+`LYRA_WORKSPACE=/caminho/LyraOS` para localizar o portfólio. Essa opção também
+vale para `workspace-manifest.py`.
+
 A validação confere o schema do catálogo, repositórios locais, documentos
 canônicos, owners, reciprocidade e ausência de ciclos nas dependências,
 componentes distribuídos, contratos compartilhados e consistência da chave
 pública de release. Ela não compila produtos nem modifica o OBS. Em pushes
 para `main` e pull requests, o workflow também executa a suíte `unittest`.
+
+## Compilação GNOME offline
+
+[`scripts/offline-builds.py`](scripts/offline-builds.py) oferece `doctor`,
+`prepare` e `verify` com versões fixadas em
+[`build-toolchains.toml`](build-toolchains.toml). O kit reúne fontes,
+dependências e hashes; o ensaio começa com caches vazios e rede isolada, sem
+alterar a sessão GNOME. Consulte [o procedimento e seus limites](docs/offline-builds.md).
+Os RPMs e as imagens continuam sendo construídos em seus repositórios próprios.
 
 ## Gate integrado em VM
 

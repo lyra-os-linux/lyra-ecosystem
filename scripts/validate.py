@@ -5,6 +5,7 @@ from __future__ import annotations
 
 import hashlib
 import json
+import os
 import re
 import sys
 import tomllib
@@ -14,7 +15,7 @@ from pathlib import Path
 
 
 ECOSYSTEM = Path(__file__).resolve().parents[1]
-WORKSPACE = ECOSYSTEM.parent
+WORKSPACE = Path(os.environ.get("LYRA_WORKSPACE", str(ECOSYSTEM.parent))).resolve()
 REPOSITORY = re.compile(r"^[a-z0-9](?:[a-z0-9-]*/)[a-z0-9][a-z0-9-]*$")
 
 
