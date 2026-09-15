@@ -34,8 +34,21 @@ an empty list. Protection therefore had to be created. The existing workflow
 already published all three successful checks, including `offline-build-driver`,
 which was added after the original issue was written.
 
-Merge-blocking and passing-run evidence is recorded in
-[issue #1](https://github.com/lyra-os-linux/lyra-ecosystem/issues/1).
+[PR #28](https://github.com/lyra-os-linux/lyra-ecosystem/pull/28) exercised actual
+merge requests using the administrator account and the exact head revision
+`ab547478742e198ab4b2be856058b41b138a2d02`:
+
+| Required check state | Merge response |
+| --- | --- |
+| Running | HTTP 405: `Required status check "validate" is in progress.` |
+| Intentionally failed | HTTP 405: `Required status check "validate" is failing.` |
+
+The [controlled run](https://github.com/lyra-os-linux/lyra-ecosystem/actions/runs/34995648150)
+used a temporary failure step limited to that PR branch. Both refusals left
+`main` at `f2baf2612d5d98015dcba05b25e5ef0fd6843b47`. The probe was then removed,
+restoring the workflow byte for byte before running the full CI and integrating
+this documentation. The final passing run and successful squash merge receipt
+are recorded in [issue #1](https://github.com/lyra-os-linux/lyra-ecosystem/issues/1).
 
 ## Exceptions and recovery
 
