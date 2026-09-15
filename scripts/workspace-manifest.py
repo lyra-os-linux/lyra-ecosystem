@@ -5,12 +5,13 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 import subprocess
 import tomllib
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-WORKSPACE = ROOT.parent
+WORKSPACE = Path(os.environ.get("LYRA_WORKSPACE", str(ROOT.parent))).resolve()
 
 
 def git(repo: Path, *arguments: str) -> str:

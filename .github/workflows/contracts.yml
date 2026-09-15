@@ -9,6 +9,15 @@ permissions:
   contents: read
 
 jobs:
+  offline-build-driver:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - name: Validate archival, isolation and failure contracts
+        env:
+          PYTHONDONTWRITEBYTECODE: "1"
+        run: python3 -m unittest discover -s tests -p test_offline_builds.py -v
+
   readonly-gate:
     runs-on: ubuntu-latest
     steps:
