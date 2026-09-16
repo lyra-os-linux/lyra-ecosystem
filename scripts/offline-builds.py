@@ -8,6 +8,7 @@ Native SDK packages remain supplied by the qualified openSUSE build environment.
 from __future__ import annotations
 
 import argparse
+import importlib.util
 import hashlib
 import json
 import os
@@ -143,7 +144,8 @@ def doctor(policy, go_root=None):
         require(match and match[1] == expected, 'TOOL_VERSION_MISMATCH',
                 f'{tool}: required {expected}; found {text}')
         observed[tool] = {'version': match[1], 'executable': str(Path(executable).resolve()), 'reported': text}
-    for tool in ('git', 'bwrap', 'pkg-config', 'cc', 'msgfmt', 'gpg', 'gpgv', 'dbus-daemon'):
+    for tool in ('git', 'bwrap', 'pkg-config', 'cc', 'msgfmt', 'gpg', 'gpgv', 'dbus-daemon',
+                 'glib-compile-schemas', 'findmnt', 'restic'):
         require(shutil.which(tool, path=env.get('PATH')), 'TOOL_MISSING', f'Missing SDK tool: {tool}')
     native = {}
     for library, expected in policy['native'].items():
@@ -347,6 +349,19 @@ def isolated_command(work, go_root, command, cwd='/work'):
 
 def verify(args):
     receipt, policy = verify_kit(args.kit, args.expected_sha256)
+    sdk_record = None
+    require(bool(args.sdk) == bool(args.expected_sdk_sha256), 'CONFIG_INVALID',
+            '--sdk and --expected-sdk-sha256 must be supplied together')
+    if args.sdk:
+        spec = importlib.util.spec_from_file_location('offline_sdk', ROOT / 'scripts/offline-sdk.py')
+        sdk = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(sdk)
+        try:
+            sdk_record = sdk.verify(args.sdk, args.expected_sdk_sha256, installed=True)
+        except (sdk.InvalidSDK, OSError, ValueError, KeyError, TypeError, subprocess.SubprocessError) as error:
+            raise Failure('INTEGRITY_FAILED', f'Archived SDK verification failed: {error}') from error
+        require(sdk_record['policy_sha256'] == receipt['policy_sha256'],
+                'INTEGRITY_FAILED', 'SDK and source kit have different toolchain policies')
     require(not args.output.exists(), 'CONFIG_INVALID', 'Evidence output exists; use a new directory')
     args.output.mkdir(parents=True)
     args.evidence_created = True
@@ -358,6 +373,8 @@ def verify(args):
         extract_checked(args.kit / receipt['go_toolchain']['archive'], go_root)
         observed = doctor(policy, go_root)
         save_json(args.output / 'environment.json', observed)
+        if sdk_record:
+            save_json(args.output / 'sdk.json', sdk_record)
         for name in ('home', 'cargo-home', 'go-path', 'go-cache', 'target', 'sources'):
             (work / name).mkdir()
         probe = "import os,socket; assert not os.listdir('/work/cargo-home'); s=socket.socket(); s.settimeout(1); assert s.connect_ex(('1.1.1.1',443)) != 0; print('network blocked; empty Cargo home')"
@@ -377,7 +394,7 @@ def verify(args):
                 'rust': [['cargo', 'metadata', '--locked', '--offline', '--format-version', '1'],
                          ['cargo', 'test', '--workspace', '--all-targets', '--locked', '--offline'],
                          ['cargo', 'build', '--workspace', '--locked', '--offline']],
-                'go': [['go', 'list', '-mod=vendor', './...'], ['go', 'test', '-mod=vendor', '-count=1', './...'],
+                'go': [['go', 'list', '-mod=vendor', './...'], ['go', 'test', '-v', '-mod=vendor', '-count=1', './...'],
                        ['go', 'build', '-mod=vendor', '-trimpath', './...']],
                 'node': [['npm', 'ci', '--offline', '--ignore-scripts', '--cache', '.offline-npm'],
                          ['npm', 'test'], ['npm', 'run', 'check']],
@@ -391,6 +408,8 @@ def verify(args):
                   'scope': 'gnome', 'network_isolated': True, 'initial_caches_empty': True,
                   'native_sdk_reused': True, 'publishable_sources': receipt['publishable_sources'],
                   'components': results}
+        if sdk_record:
+            result['archived_sdk'] = sdk_record
         save_json(args.output / 'result.json', result)
     return result
 
@@ -411,6 +430,8 @@ def main(argv=None):
     command = sub.add_parser('verify')
     command.add_argument('--kit', type=Path, required=True)
     command.add_argument('--expected-sha256', required=True, help='SHA-256 of the reviewed kit.json, obtained independently')
+    command.add_argument('--sdk', type=Path, help='Optional archived SDK; requires an exact installed RPM inventory')
+    command.add_argument('--expected-sdk-sha256', help='Independently approved digest of sdk.json')
     command.add_argument('--output', type=Path, required=True)
     command.add_argument('--scratch', type=Path, default=Path(tempfile.gettempdir()))
     command.add_argument('--timeout', type=int, default=1800)
