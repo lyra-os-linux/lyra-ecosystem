@@ -144,7 +144,8 @@ def doctor(policy, go_root=None):
         require(match and match[1] == expected, 'TOOL_VERSION_MISMATCH',
                 f'{tool}: required {expected}; found {text}')
         observed[tool] = {'version': match[1], 'executable': str(Path(executable).resolve()), 'reported': text}
-    for tool in ('git', 'bwrap', 'pkg-config', 'cc', 'msgfmt', 'gpg', 'gpgv', 'dbus-daemon'):
+    for tool in ('git', 'bwrap', 'pkg-config', 'cc', 'msgfmt', 'gpg', 'gpgv', 'dbus-daemon',
+                 'glib-compile-schemas', 'findmnt', 'restic'):
         require(shutil.which(tool, path=env.get('PATH')), 'TOOL_MISSING', f'Missing SDK tool: {tool}')
     native = {}
     for library, expected in policy['native'].items():
@@ -393,7 +394,7 @@ def verify(args):
                 'rust': [['cargo', 'metadata', '--locked', '--offline', '--format-version', '1'],
                          ['cargo', 'test', '--workspace', '--all-targets', '--locked', '--offline'],
                          ['cargo', 'build', '--workspace', '--locked', '--offline']],
-                'go': [['go', 'list', '-mod=vendor', './...'], ['go', 'test', '-mod=vendor', '-count=1', './...'],
+                'go': [['go', 'list', '-mod=vendor', './...'], ['go', 'test', '-v', '-mod=vendor', '-count=1', './...'],
                        ['go', 'build', '-mod=vendor', '-trimpath', './...']],
                 'node': [['npm', 'ci', '--offline', '--ignore-scripts', '--cache', '.offline-npm'],
                          ['npm', 'test'], ['npm', 'run', 'check']],

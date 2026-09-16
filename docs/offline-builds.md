@@ -53,6 +53,10 @@ Pacotes de desenvolvimento usados incluem Rust/Cargo, GCC, pkg-config,
 GTK4/libadwaita, GTK3/WebKitGTK 4.1/libsoup, VTE GTK4 >=0.80, gettext-tools,
 D-Bus, GnuPG, Node/npm, Python e bubblewrap. Em Leap, o SDK VTE vem de
 `vte-devel`; a biblioteca de execução sozinha não fornece o arquivo pkg-config.
+`glib-compile-schemas`, `findmnt` e `restic` também são obrigatórios para os
+testes; no Leap, `findmnt` vem de `util-linux-systemd`. O driver recusa sua
+ausência antes do build para não aceitar skips causados por SDK incompleto.
+Go registra testes e skips em modo verboso.
 Os `BuildRequires` dos RPMs continuam canônicos para a construção dos pacotes.
 
 Nenhum comando deste driver usa sudo/pkexec ou instala pacotes automaticamente.

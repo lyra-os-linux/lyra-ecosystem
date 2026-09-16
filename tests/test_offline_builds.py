@@ -203,6 +203,14 @@ class KitTests(unittest.TestCase):
                 build.run([sys.executable, '-c', 'raise SystemExit(1)'], code=code)
             self.assertEqual(error.exception.code, code)
 
+    def test_missing_fixture_and_backup_tools_cannot_silently_skip_tests(self):
+        policy = build.load_policy(ROOT / 'build-toolchains.toml')
+        for missing in ['glib-compile-schemas', 'findmnt', 'restic']:
+            with self.subTest(missing=missing), \
+                 patch.object(build.shutil, 'which', side_effect=lambda name, **kwargs: None if name == missing else '/usr/bin/' + name), \
+                 patch.object(build, 'run', side_effect=lambda argv, **kwargs: policy['tools'][Path(argv[0]).name]):
+                self.failure('TOOL_MISSING', build.doctor, policy)
+
     def test_sandbox_does_not_bind_home_or_system_bus_and_forces_offline_tools(self):
         argv = build.isolated_command(self.root / 'work', self.root / 'go', ['cargo', 'test'])
         self.assertIn('--unshare-all', argv)
