@@ -142,6 +142,34 @@ class KitTests(unittest.TestCase):
         archive.write_bytes(b'altered dependency')
         self.failure('INTEGRITY_FAILED', build.verify_kit, self.root, reviewed)
 
+    def test_incomplete_sdk_arguments_never_start_builds(self):
+        for options in (['--sdk', str(self.root)], ['--expected-sdk-sha256', 'a' * 64]):
+            with self.subTest(options=options), \
+                 patch.object(build, 'verify_kit', return_value=({}, {})), \
+                 patch.object(build, 'doctor') as doctor, \
+                 patch('sys.stderr', new=io.StringIO()):
+                output = self.root / 'evidence'
+                code = build.main(['verify', '--kit', str(self.root),
+                                   '--expected-sha256', '0' * 64, '--output', str(output), *options])
+                self.assertEqual(code, build.EXIT_CODES['CONFIG_INVALID'])
+                self.assertFalse(output.exists())
+                doctor.assert_not_called()
+
+    def test_sdk_integrity_failure_never_creates_build_evidence(self):
+        (self.root / 'keys').mkdir()
+        (self.root / 'rpms').mkdir()
+        (self.root / 'sdk.json').write_text('{"untrusted": true}')
+        output = self.root / 'evidence'
+        with patch.object(build, 'verify_kit', return_value=({}, {})), \
+             patch.object(build, 'doctor') as doctor, \
+             patch('sys.stderr', new=io.StringIO()):
+            code = build.main(['verify', '--kit', str(self.root),
+                               '--expected-sha256', '0' * 64, '--output', str(output),
+                               '--sdk', str(self.root), '--expected-sdk-sha256', 'a' * 64])
+        self.assertEqual(code, build.EXIT_CODES['INTEGRITY_FAILED'])
+        self.assertFalse(output.exists())
+        doctor.assert_not_called()
+
     def test_inherited_tool_overrides_do_not_replace_the_qualified_sdk(self):
         with patch.dict(os.environ, {'PATH': '/unreviewed/bin', 'RUSTC': '/unreviewed/rustc',
                                      'PKG_CONFIG_PATH': '/unreviewed/lib', 'CARGO_HOME': '/private/cache'}):
