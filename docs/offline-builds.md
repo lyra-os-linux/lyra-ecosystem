@@ -36,11 +36,11 @@ usada no desenvolvimento era temporária. Nenhum cache do desenvolvedor é
 montado durante o ensaio. O target pode ser reutilizado entre os componentes
 do mesmo ensaio, depois de iniciar vazio.
 
-Para reproduzir em outra máquina, instalar o mesmo SDK a partir de um mirror
-arquivado da base e transferir o kit completo. Uma atualização do SDK exige
+Para reproduzir em outra máquina, instalar o mesmo SDK a partir dos RPMs
+arquivados da base e transferir o kit completo. Uma atualização do SDK exige
 revisão dos pins e novo recibo, sem aceitar silenciosamente versões diferentes.
-Manter os RPMs do SDK/mirror junto aos artefatos da candidata é responsabilidade
-da composição de release; o kit de dependências não arquiva o sistema inteiro.
+O arquivo de RPMs do SDK é independente do kit de fontes/dependências; ambos
+devem acompanhar a evidência. Ver [provisionamento offline do SDK](offline-sdk.md).
 
 ## Preparação do SDK
 
@@ -53,6 +53,10 @@ Pacotes de desenvolvimento usados incluem Rust/Cargo, GCC, pkg-config,
 GTK4/libadwaita, GTK3/WebKitGTK 4.1/libsoup, VTE GTK4 >=0.80, gettext-tools,
 D-Bus, GnuPG, Node/npm, Python e bubblewrap. Em Leap, o SDK VTE vem de
 `vte-devel`; a biblioteca de execução sozinha não fornece o arquivo pkg-config.
+`glib-compile-schemas`, `findmnt` e `restic` também são obrigatórios para os
+testes; no Leap, `findmnt` vem de `util-linux-systemd`. O driver recusa sua
+ausência antes do build para não aceitar skips causados por SDK incompleto.
+Go registra testes e skips em modo verboso.
 Os `BuildRequires` dos RPMs continuam canônicos para a construção dos pacotes.
 
 Nenhum comando deste driver usa sudo/pkexec ou instala pacotes automaticamente.
@@ -106,6 +110,8 @@ uma segunda fonte de confiança se recebido junto de um kit desconhecido.
 python3 scripts/offline-builds.py verify \
   --kit /artefatos/gnome-kit-001 \
   --expected-sha256 DIGEST_APROVADO_DE_KIT_JSON \
+  --sdk /artefatos/gnome-sdk-001 \
+  --expected-sdk-sha256 DIGEST_APROVADO_DE_SDK_JSON \
   --output /evidencias/gnome-offline-001
 ```
 
@@ -113,6 +119,14 @@ O Go é extraído do kit; não precisa estar instalado no PATH. O verificador
 confere hashes antes de extrair/executar, recusa travessia de caminhos,
 links externos, arquivos especiais e duplicatas. O SDK precisa corresponder
 aos pins do kit. O teste de rede e cache vazio precede os testes dos produtos.
+
+Os argumentos `--sdk` e `--expected-sdk-sha256` são usados juntos. Antes de
+compilar, esse modo verifica todos os RPMs, as assinaturas com as chaves
+arquivadas e o inventário instalado completo, incluindo versões, releases,
+epochs e arquiteturas. A política fixada deve ser a mesma do kit de fontes.
+Qualquer pacote extra ou ausente, exceto as entradas públicas `gpg-pubkey`,
+impede o ensaio. Sem esses argumentos, continua disponível a qualificação local
+anterior, que inventaria o SDK mas não comprova seu provisionamento arquivado.
 
 Rust: metadata offline, testes do workspace/all-targets e build do workspace.
 Go: inventário vendor, testes sem cache e build. Sheliak: npm ci offline,
@@ -157,4 +171,6 @@ responsáveis pelos nomes/camadas esperados por seu pacote. Para release:
    de instalação, atualização, boot, rollback ou hardware.
 
 A ordem do ciclo permanece: issues de implementação → auditoria Desktop #78 →
-testes das duas ISOs GNOME → Alpha 8 após aprovação dos gates.
+construção/testes locais da ISO GNOME única, com NVIDIA opcional pelo Vega →
+Alpha 8 após aprovação dos gates. A estratégia separada de ISOs Server permanece
+nas respectivas issues.

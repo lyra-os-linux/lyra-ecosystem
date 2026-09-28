@@ -72,7 +72,9 @@ local inventariado. Não prova provisionamento de uma máquina vazia, construç�
 RPM, instalação, boot, atualização real, rollback, hardware ou saída binária
 idêntica. Testes de integração ignorados por dependerem de VM/hardware conservam
 seus gates próprios. A consolidação dos commits, preservação do SDK/mirror,
-qualificação de release e testes das duas ISOs continuam necessários.
+qualificação de release e testes de ISO continuam necessários. A decisão
+vigente de 16/09 prevê uma ISO Desktop GNOME sem NVIDIA pré-instalada; a
+estratégia das imagens Server é acompanhada separadamente.
 
 Evidências locais: `analysis/2026-09-15/ecosystem-offline-4/qualification.json`,
 `verification-final/`, `verification-remaining/`, `qualified-sources-match.json`

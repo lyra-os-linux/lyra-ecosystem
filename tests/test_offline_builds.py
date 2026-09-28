@@ -142,6 +142,34 @@ class KitTests(unittest.TestCase):
         archive.write_bytes(b'altered dependency')
         self.failure('INTEGRITY_FAILED', build.verify_kit, self.root, reviewed)
 
+    def test_incomplete_sdk_arguments_never_start_builds(self):
+        for options in (['--sdk', str(self.root)], ['--expected-sdk-sha256', 'a' * 64]):
+            with self.subTest(options=options), \
+                 patch.object(build, 'verify_kit', return_value=({}, {})), \
+                 patch.object(build, 'doctor') as doctor, \
+                 patch('sys.stderr', new=io.StringIO()):
+                output = self.root / 'evidence'
+                code = build.main(['verify', '--kit', str(self.root),
+                                   '--expected-sha256', '0' * 64, '--output', str(output), *options])
+                self.assertEqual(code, build.EXIT_CODES['CONFIG_INVALID'])
+                self.assertFalse(output.exists())
+                doctor.assert_not_called()
+
+    def test_sdk_integrity_failure_never_creates_build_evidence(self):
+        (self.root / 'keys').mkdir()
+        (self.root / 'rpms').mkdir()
+        (self.root / 'sdk.json').write_text('{"untrusted": true}')
+        output = self.root / 'evidence'
+        with patch.object(build, 'verify_kit', return_value=({}, {})), \
+             patch.object(build, 'doctor') as doctor, \
+             patch('sys.stderr', new=io.StringIO()):
+            code = build.main(['verify', '--kit', str(self.root),
+                               '--expected-sha256', '0' * 64, '--output', str(output),
+                               '--sdk', str(self.root), '--expected-sdk-sha256', 'a' * 64])
+        self.assertEqual(code, build.EXIT_CODES['INTEGRITY_FAILED'])
+        self.assertFalse(output.exists())
+        doctor.assert_not_called()
+
     def test_inherited_tool_overrides_do_not_replace_the_qualified_sdk(self):
         with patch.dict(os.environ, {'PATH': '/unreviewed/bin', 'RUSTC': '/unreviewed/rustc',
                                      'PKG_CONFIG_PATH': '/unreviewed/lib', 'CARGO_HOME': '/private/cache'}):
@@ -174,6 +202,14 @@ class KitTests(unittest.TestCase):
             with self.assertRaises(build.Failure) as error:
                 build.run([sys.executable, '-c', 'raise SystemExit(1)'], code=code)
             self.assertEqual(error.exception.code, code)
+
+    def test_missing_fixture_and_backup_tools_cannot_silently_skip_tests(self):
+        policy = build.load_policy(ROOT / 'build-toolchains.toml')
+        for missing in ['glib-compile-schemas', 'findmnt', 'restic']:
+            with self.subTest(missing=missing), \
+                 patch.object(build.shutil, 'which', side_effect=lambda name, **kwargs: None if name == missing else '/usr/bin/' + name), \
+                 patch.object(build, 'run', side_effect=lambda argv, **kwargs: policy['tools'][Path(argv[0]).name]):
+                self.failure('TOOL_MISSING', build.doctor, policy)
 
     def test_sandbox_does_not_bind_home_or_system_bus_and_forces_offline_tools(self):
         argv = build.isolated_command(self.root / 'work', self.root / 'go', ['cargo', 'test'])

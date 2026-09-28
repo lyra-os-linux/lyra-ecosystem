@@ -48,6 +48,9 @@ para `main` e pull requests, o workflow também executa a suíte `unittest`.
 [`build-toolchains.toml`](build-toolchains.toml). O kit reúne fontes,
 dependências e hashes; o ensaio começa com caches vazios e rede isolada, sem
 alterar a sessão GNOME. Consulte [o procedimento e seus limites](docs/offline-builds.md).
+O [SDK arquivado](docs/offline-sdk.md) acrescenta verificação de assinaturas dos
+RPMs e inventário instalado exato para ensaios em máquinas novas, sem aproveitar
+a instalação ou os caches do desenvolvedor.
 Os RPMs e as imagens continuam sendo construídos em seus repositórios próprios.
 
 ## Gate integrado em VM
