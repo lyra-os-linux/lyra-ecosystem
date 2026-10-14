@@ -10,7 +10,7 @@ server_codename_id = "delos"
 base_distribution = "opensuse-leap"
 base_version = "16.1"
 architecture = "x86_64"
-planned_release_date = "2027-02-20"
+planned_release_date = "2026-11-05"
 support_model = "community"
 signing_fingerprint = "399218A6E088C4053F4533BE58097F767EDCA82E"
 
