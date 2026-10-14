@@ -254,7 +254,11 @@ def validate() -> list[str]:
     errors.extend(release_errors(catalog, release_contract, WORKSPACE))
 
     release = load_toml(WORKSPACE / "lyraos-desktop" / "release.toml")["release"]
-    stage_label = f"{release['stage'].capitalize()} {release['iteration']}"
+    # Same labels as lyraos-desktop/scripts/release.py: "RC" is not "Rc".
+    stage_prefix = {"alpha": "Alpha", "beta": "Beta", "rc": "RC"}.get(
+        release["stage"], release["stage"].capitalize()
+    )
+    stage_label = f"{stage_prefix} {release['iteration']}"
     readme = (WORKSPACE / "lyraos-desktop" / "README.md").read_text()
     if stage_label not in readme:
         errors.append(f"lyraos-desktop/README.md: current stage {stage_label!r} not found")
