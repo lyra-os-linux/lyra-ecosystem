@@ -17,9 +17,9 @@ SPEC.loader.exec_module(MODULE)
 
 class EcosystemContractTests(unittest.TestCase):
     def test_site_uses_structured_identity_and_rejects_drift_or_ambiguity(self):
-        release = {"product_version": "1.1", "architecture": "x86_64"}
+        release = {"product_version": "16.1", "architecture": "x86_64"}
         identity = {"@type": "SoftwareApplication", "name": "Lyra OS",
-                    "softwareVersion": "1.1", "operatingSystem": "x86_64"}
+                    "softwareVersion": "16.1", "operatingSystem": "x86_64"}
 
         def script(value):
             return '<script type="application/ld+json">' + json.dumps(value) + '</script>'
