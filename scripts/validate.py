@@ -3,6 +3,7 @@
 
 from __future__ import annotations
 
+import base64
 import hashlib
 import json
 import os
@@ -108,6 +109,58 @@ def release_errors(catalog: dict, release: dict, workspace: Path) -> list[str]:
         for field, expected_value in expected.items():
             if values.get(field) != expected_value:
                 errors.append(f"{relative}: {field} differs from canonical release contract")
+    return errors
+
+
+def openpgp_fingerprint(armored: str) -> str:
+    """Return the v4 fingerprint of the primary key in an armored public key."""
+    lines = armored.strip().splitlines()
+    try:
+        start = lines.index("-----BEGIN PGP PUBLIC KEY BLOCK-----")
+        end = lines.index("-----END PGP PUBLIC KEY BLOCK-----")
+        body = lines[start + 1:end]
+        body = body[body.index("") + 1:]
+    except ValueError as error:
+        raise ValueError("not an armored public key") from error
+    data = base64.b64decode("".join(line for line in body if not line.startswith("=")))
+    if not data or not data[0] & 0x80:
+        raise ValueError("invalid packet header")
+    if data[0] & 0x40:
+        # New-format header (RFC 4880, 4.2.2).
+        if data[0] & 0x3F != 6:
+            raise ValueError("first packet is not a public key")
+        first = data[1]
+        if first < 192:
+            offset, length = 2, first
+        elif first < 224:
+            offset, length = 3, ((first - 192) << 8) + data[2] + 192
+        elif first == 255:
+            offset, length = 6, int.from_bytes(data[2:6], "big")
+        else:
+            raise ValueError("partial packet length in public key")
+    else:
+        # Old-format header, as exported by GnuPG (RFC 4880, 4.2.1).
+        if (data[0] >> 2) & 0x0F != 6 or data[0] & 0x03 == 3:
+            raise ValueError("first packet is not a public key")
+        size = 1 << (data[0] & 0x03)
+        offset, length = 1 + size, int.from_bytes(data[1:1 + size], "big")
+    packet = data[offset:offset + length]
+    if len(packet) != length or packet[0] != 4:
+        raise ValueError("unsupported public key packet")
+    header = b"\x99" + length.to_bytes(2, "big")
+    return hashlib.sha1(header + packet).hexdigest().upper()
+
+
+def release_script_errors(catalog: dict, fingerprint: str, workspace: Path) -> list[str]:
+    errors: list[str] = []
+    for product in catalog.get("products", []):
+        if product.get("kind") != "edition":
+            continue
+        scripts = workspace / product["local_path"] / "scripts"
+        for script in sorted(scripts.glob("*.sh")):
+            for value in re.findall(r'^RELEASE_SIGNING_FINGERPRINT="?([^"\s]*)"?', script.read_text(), re.MULTILINE):
+                if value != fingerprint:
+                    errors.append(f"{script.relative_to(workspace)}: release key fingerprint differs from contract")
     return errors
 
 
@@ -227,12 +280,26 @@ def validate() -> list[str]:
     if len(key_hashes) > 1:
         errors.append("contracts.toml: public release key replicas differ")
 
-    fingerprint = contracts["release"]["signing_fingerprint"]
+    # The OBS project key signs RPMs and repository metadata; the release key,
+    # held by the maintainer, signs ISO checksums and the upgrade manifest.
+    release_key = contracts["release"]["release_key_fingerprint"]
+    canonical_key = WORKSPACE / key_contract["canonical"]
+    if canonical_key.is_file():
+        try:
+            if openpgp_fingerprint(canonical_key.read_text()) != release_key:
+                errors.append(f"{key_contract['canonical']}: fingerprint differs from release_key_fingerprint")
+        except ValueError as error:
+            errors.append(f"{key_contract['canonical']}: cannot read public key: {error}")
+    errors.extend(release_script_errors(catalog, release_key, WORKSPACE))
+
+    obs_key = contracts["release"]["obs_signing_fingerprint"]
+    if obs_key == release_key:
+        errors.append("contracts.toml: OBS and release keys must be distinct")
     for relative in ("lyraos-desktop/obs/projects.toml", "lyraos-server/obs/projects.toml"):
         manifest = load_toml(WORKSPACE / relative)
         actual = manifest.get("signing", {}).get("fingerprint")
-        if actual != fingerprint:
-            errors.append(f"{relative}: signing fingerprint differs from contract")
+        if actual != obs_key:
+            errors.append(f"{relative}: signing fingerprint differs from obs_signing_fingerprint")
 
     release_contract = contracts["release"]
     try:

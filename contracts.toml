@@ -12,7 +12,10 @@ base_version = "16.1"
 architecture = "x86_64"
 planned_release_date = "2026-11-05"
 support_model = "community"
-signing_fingerprint = "399218A6E088C4053F4533BE58097F767EDCA82E"
+# Chave do projeto OBS home:rodrigosbrito: assina RPMs e metadados dos repositórios.
+obs_signing_fingerprint = "399218A6E088C4053F4533BE58097F767EDCA82E"
+# Chave "Lyra OS Release" do mantenedor: assina checksums das ISOs e o manifesto de upgrade.
+release_key_fingerprint = "01B63EEDBE6B079126A0116EFA7353A131ECEFEB"
 
 [release.evidence]
 schema = 1
