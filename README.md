@@ -37,8 +37,13 @@ vale para `workspace-manifest.py`.
 
 A validação confere o schema do catálogo, repositórios locais, documentos
 canônicos, owners, reciprocidade e ausência de ciclos nas dependências,
-componentes distribuídos, contratos compartilhados e consistência da chave
-pública de release. Ela não compila produtos nem modifica o OBS. Em pushes
+componentes distribuídos, contratos compartilhados e as duas chaves de
+assinatura. A chave do projeto OBS (`obs_signing_fingerprint`) assina RPMs e
+repositórios e precisa coincidir com o `[signing]` de cada edição. A chave
+"Lyra OS Release" (`release_key_fingerprint`) assina os checksums das ISOs e o
+manifesto de upgrade; suas réplicas públicas precisam ser idênticas, ter esse
+fingerprint e coincidir com o `RELEASE_SIGNING_FINGERPRINT` dos scripts das
+edições. Ela não compila produtos nem modifica o OBS. Em pushes
 para `main` e pull requests, o workflow também executa a suíte `unittest`.
 
 ## Compilação GNOME offline

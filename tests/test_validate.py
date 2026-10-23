@@ -1,3 +1,4 @@
+import base64
 import importlib.util
 import json
 import shlex
@@ -54,6 +55,45 @@ class EcosystemContractTests(unittest.TestCase):
                 self.assertEqual(len(MODULE.release_errors(catalog, release, workspace)), 1)
             manifest.write_text("invalid toml [")
             self.assertIn("cannot read release manifest", MODULE.release_errors(catalog, release, workspace)[0])
+
+    def test_release_key_fingerprint_is_read_from_armored_key(self):
+        contracts = MODULE.load_toml(MODULE.ECOSYSTEM / "contracts.toml")
+        expected = contracts["release"]["release_key_fingerprint"]
+        armored = (MODULE.WORKSPACE / contracts["keys"]["release_public"]["canonical"]).read_text()
+        self.assertEqual(MODULE.openpgp_fingerprint(armored), expected)
+
+        lines = armored.strip().splitlines()
+        blank = lines.index("")
+        data = base64.b64decode("".join(line for line in lines[blank + 1:-1] if not line.startswith("=")))
+        size = 1 << (data[0] & 0x03)
+        length = int.from_bytes(data[1:1 + size], "big")
+        packet = data[1 + size:1 + size + length]
+        # Same key with a new-format two-octet length header.
+        high, low = divmod(length - 192, 256)
+        rewritten = bytes([0xC6, high + 192, low]) + packet
+        armor = "\n".join(["-----BEGIN PGP PUBLIC KEY BLOCK-----", "",
+                           base64.b64encode(rewritten).decode(), "-----END PGP PUBLIC KEY BLOCK-----"])
+        self.assertEqual(MODULE.openpgp_fingerprint(armor), expected)
+
+        for broken in ("", "not a key", armored.replace("PUBLIC KEY", "PRIVATE KEY")):
+            with self.subTest(broken=broken[:20]):
+                with self.assertRaises(ValueError):
+                    MODULE.openpgp_fingerprint(broken)
+
+    def test_edition_scripts_must_pin_the_release_key(self):
+        catalog = {"products": [{"id": "edition", "kind": "edition", "local_path": "edition"},
+                                {"id": "app", "kind": "application", "local_path": "app"}]}
+        with tempfile.TemporaryDirectory() as directory:
+            workspace = Path(directory)
+            for name in ("edition", "app"):
+                (workspace / name / "scripts").mkdir(parents=True)
+            good = workspace / "edition/scripts/build.sh"
+            good.write_text('#!/bin/bash\nRELEASE_SIGNING_FINGERPRINT="AAAA"\n')
+            (workspace / "app/scripts/build.sh").write_text('RELEASE_SIGNING_FINGERPRINT="BBBB"\n')
+            self.assertEqual(MODULE.release_script_errors(catalog, "AAAA", workspace), [])
+            (workspace / "edition/scripts/upload.sh").write_text("RELEASE_SIGNING_FINGERPRINT=BBBB\n")
+            errors = MODULE.release_script_errors(catalog, "AAAA", workspace)
+            self.assertEqual(errors, ["edition/scripts/upload.sh: release key fingerprint differs from contract"])
 
     def test_workspace_contracts(self):
         self.assertEqual(MODULE.validate(), [])
