@@ -16,7 +16,7 @@ runtime.
 - [`contracts.toml`](contracts.toml): valores que precisam permanecer
   coerentes entre mais de um repositório.
 
-O catálogo inclui os 26 repositórios. O Desktop GNOME 16.1 tem cronograma
+O catálogo inclui os 29 repositórios. O Desktop GNOME 16.1 tem cronograma
 próprio; KDE Plasma e XFCE foram retomados e serão lançados quando estiverem
 prontos, sem data (ADR 0017 de `lyraos-desktop`). O campo `release_manifest` de cada edição determina os contratos
 validados e todos os repositórios do catálogo são obtidos no CI.

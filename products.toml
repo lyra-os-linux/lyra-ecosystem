@@ -8,7 +8,7 @@ owner = "lyra-os-linux"
 local_path = "lyraos-desktop"
 release_cycle = "independent"
 obs_packages = ["lyra-installer"]
-consumes = ["beam", "sulafat", "vega", "vscode", "zededitor", "lyraos-desktop-linuxtoys", "lyraos-desktop-sheliak", "lyraos-desktop-theme", "lyraos-desktop-updater", "lyraos-desktop-welcome", "lyraos-desktop-icons", "lyraos-desktop-wallpapers"]
+consumes = ["beam", "sulafat", "vega", "vscode", "zededitor", "lyraos-desktop-linuxtoys", "lyraos-desktop-sheliak", "lyraos-desktop-theme", "lyraos-desktop-updater", "lyraos-desktop-welcome", "lyraos-desktop-icons", "lyraos-desktop-wallpapers", "lyra-downloads", "lyra-firefox-ext", "lyra-vms"]
 release_manifest = "release.toml"
 release_priority = "primary"
 
@@ -78,7 +78,7 @@ owner = "lyra-os-linux"
 local_path = "vega"
 obs_packages = ["vega-gtk"]
 consumes = ["lyra-vega-dbus", "vegad"]
-consumed_by = ["lyraos-desktop"]
+consumed_by = ["lyraos-desktop", "lyra-vms"]
 
 [[products]]
 id = "vega-cli"
@@ -246,3 +246,32 @@ local_path = "vega-xfce"
 obs_packages = ["vega-xfce"]
 consumes = ["lyra-vega-dbus", "vegad"]
 consumed_by = ["lyraos-desktop-xfce"]
+
+[[products]]
+id = "lyra-downloads"
+kind = "application"
+repository = "lyra-os-linux/lyra-downloads"
+owner = "lyra-os-linux"
+local_path = "lyra-downloads"
+obs_packages = ["lyra-downloads", "lyra-downloads-firefox-integration"]
+consumed_by = ["lyraos-desktop", "lyra-firefox-ext"]
+
+[[products]]
+id = "lyra-firefox-ext"
+kind = "application-component"
+repository = "lyra-os-linux/lyra-firefox-ext"
+owner = "lyra-os-linux"
+local_path = "lyra-firefox-ext"
+obs_packages = ["lyra-firefox-ext"]
+consumes = ["lyra-downloads"]
+consumed_by = ["lyraos-desktop"]
+
+[[products]]
+id = "lyra-vms"
+kind = "application"
+repository = "lyra-os-linux/lyra-vms"
+owner = "lyra-os-linux"
+local_path = "lyra-vms"
+obs_packages = ["lyra-vms"]
+consumes = ["vega"]
+consumed_by = ["lyraos-desktop"]
