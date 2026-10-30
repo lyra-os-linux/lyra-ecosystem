@@ -2,7 +2,7 @@
 
 - **Onde:** o GitHub usa os arquivos de comunidade do repositório `.github` da
   organização em qualquer repositório que não tenha os seus. Assim, um texto só
-  vale para os 23 repositórios, e cada um pode sobrescrever quando precisar
+  vale para os demais repositórios, e cada um pode sobrescrever quando precisar
   (o Desktop e o Server ganham formulários próprios).
 - **Idioma:** português, como o resto do projeto; os formulários aceitam
   relatos em inglês e espanhol.
