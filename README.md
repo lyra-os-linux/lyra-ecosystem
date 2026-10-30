@@ -16,7 +16,7 @@ runtime.
 - [`contracts.toml`](contracts.toml): valores que precisam permanecer
   coerentes entre mais de um repositório.
 
-O catálogo inclui os 23 repositórios. O GNOME é a única edição Desktop; KDE
+O catálogo inclui os 24 repositórios. O GNOME é a única edição Desktop; KDE
 Plasma e XFCE foram abandonados (ADR 0018 de `lyraos-desktop`). O campo
 `release_manifest` de cada edição determina os contratos validados e todos os
 repositórios do catálogo são obtidos no CI.
