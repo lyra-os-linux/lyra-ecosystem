@@ -137,6 +137,13 @@ obs_packages = ["sulafat"]
 consumed_by = ["lyraos-desktop"]
 
 [[products]]
+id = "org-github"
+kind = "community"
+repository = "lyra-os-linux/.github"
+owner = "lyra-os-linux"
+local_path = ".github"
+
+[[products]]
 id = "site"
 kind = "website"
 repository = "lyra-os-linux/site"

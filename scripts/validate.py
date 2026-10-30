@@ -17,7 +17,8 @@ from pathlib import Path
 
 ECOSYSTEM = Path(__file__).resolve().parents[1]
 WORKSPACE = Path(os.environ.get("LYRA_WORKSPACE", str(ECOSYSTEM.parent))).resolve()
-REPOSITORY = re.compile(r"^[a-z0-9](?:[a-z0-9-]*/)[a-z0-9][a-z0-9-]*$")
+# The organization's community-health repository is the only dotted name.
+REPOSITORY = re.compile(r"^[a-z0-9](?:[a-z0-9-]*/)(?:\.github|[a-z0-9][a-z0-9-]*)$")
 
 
 def load_toml(path: Path) -> dict:
