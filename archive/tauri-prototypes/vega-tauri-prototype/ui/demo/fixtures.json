@@ -1,0 +1,169 @@
+{
+  "updates": [
+    { "name": "kernel-default", "from": "6.12.0-160100.7.1", "to": "6.12.0-160100.9.1", "repo": "repo-update", "kind": "security", "size": 102865920, "summary": "Corrige CVE-2026-31042 (escalada de privilégio no io_uring) e regressões do amdgpu.", "reboot": true },
+    { "name": "openssl-3", "from": "3.5.1-160100.3.2", "to": "3.5.1-160100.4.1", "repo": "repo-update", "kind": "security", "size": 2412544, "summary": "Corrige CVE-2026-27715 na verificação de certificados X.509.", "reboot": false },
+    { "name": "firefox-esr", "from": "140.3.0-160100.1.1", "to": "140.4.0-160100.1.1", "repo": "repo-update", "kind": "security", "size": 74868736, "summary": "Atualização de segurança mensal do Firefox ESR (MFSA 2026-81).", "reboot": false },
+    { "name": "mesa", "from": "25.1.3-160100.2.1", "to": "25.1.4-160100.1.1", "repo": "repo-update", "kind": "recommended", "size": 6501171, "summary": "Corrige travamentos em jogos Vulkan com RADV e melhora o desempenho do Iris.", "reboot": false },
+    { "name": "gnome-shell", "from": "48.4-160100.2.3", "to": "48.5-160100.1.1", "repo": "repo-update", "kind": "recommended", "size": 4823449, "summary": "Corrige vazamento de memória ao alternar áreas de trabalho.", "reboot": false },
+    { "name": "NetworkManager", "from": "1.52.0-160100.1.4", "to": "1.52.2-160100.1.1", "repo": "repo-update", "kind": "recommended", "size": 3145728, "summary": "Reconexão Wi-Fi mais confiável após suspensão.", "reboot": false },
+    { "name": "vega-gtk", "from": "4.9.2-lp161.1.1", "to": "4.9.3-lp161.1.1", "repo": "lyra", "kind": "recommended", "size": 5976883, "summary": "Corrige o cartão de atualizações do painel após erro de rede.", "reboot": false },
+    { "name": "lyra-os-icons", "from": "3.4.0-lp161.1.1", "to": "3.4.1-lp161.1.1", "repo": "lyra", "kind": "optional", "size": 9437184, "summary": "Novos ícones para o Beam e o Sulafat.", "reboot": false },
+    { "name": "libreoffice", "from": "25.8.1.2-160100.1.1", "to": "25.8.2.1-160100.1.1", "repo": "repo-update", "kind": "optional", "size": 187695104, "summary": "Versão de manutenção com 84 correções.", "reboot": false },
+    { "name": "tzdata", "from": "2026a-160100.1.1", "to": "2026c-160100.1.1", "repo": "repo-update", "kind": "optional", "size": 524288, "summary": "Regras de horário de verão atualizadas.", "reboot": false }
+  ],
+  "flatpak_updates": [
+    { "name": "Blender", "id": "org.blender.Blender", "from": "4.5.3", "to": "4.5.4", "size": 312475648 },
+    { "name": "Obsidian", "id": "md.obsidian.Obsidian", "from": "1.9.12", "to": "1.9.14", "size": 128974848 },
+    { "name": "GNOME Platform", "id": "org.gnome.Platform//48", "from": "48.5", "to": "48.6", "size": 41943040 }
+  ],
+  "installed": [
+    { "name": "Firefox ESR", "id": "firefox-esr", "source": "zypper", "version": "140.3.0", "size": 268435456, "category": "Internet" },
+    { "name": "LibreOffice", "id": "libreoffice", "source": "zypper", "version": "25.8.1.2", "size": 734003200, "category": "Escritório" },
+    { "name": "Beam", "id": "beam", "source": "zypper", "version": "1.3.0", "size": 18874368, "category": "Internet" },
+    { "name": "Sulafat", "id": "sulafat", "source": "zypper", "version": "0.8.2", "size": 9437184, "category": "Desenvolvimento" },
+    { "name": "Lyra Downloads", "id": "lyra-downloads", "source": "zypper", "version": "2.1.0", "size": 12582912, "category": "Internet" },
+    { "name": "Zed", "id": "zed", "source": "zypper", "version": "0.208.4", "size": 377487360, "category": "Desenvolvimento" },
+    { "name": "GIMP", "id": "gimp", "source": "zypper", "version": "3.0.6", "size": 201326592, "category": "Gráficos" },
+    { "name": "Blender", "id": "org.blender.Blender", "source": "flatpak", "version": "4.5.3", "size": 1048576000, "category": "Gráficos" },
+    { "name": "Obsidian", "id": "md.obsidian.Obsidian", "source": "flatpak", "version": "1.9.12", "size": 398458880, "category": "Escritório" },
+    { "name": "Spotify", "id": "com.spotify.Client", "source": "flatpak", "version": "1.2.70", "size": 314572800, "category": "Multimídia" },
+    { "name": "Steam", "id": "com.valvesoftware.Steam", "source": "flatpak", "version": "1.0.0.83", "size": 524288000, "category": "Jogos" },
+    { "name": "Visual Studio Code", "id": "code", "source": "zypper", "version": "1.105.1", "size": 445644800, "category": "Desenvolvimento" }
+  ],
+  "repos": [
+    { "alias": "repo-oss", "name": "Leap 16.1 OSS", "url": "https://download.opensuse.org/distribution/leap/16.1/repo/oss/", "enabled": true, "autorefresh": true, "priority": 99, "official": true },
+    { "alias": "repo-non-oss", "name": "Leap 16.1 Non-OSS", "url": "https://download.opensuse.org/distribution/leap/16.1/repo/non-oss/", "enabled": true, "autorefresh": true, "priority": 99, "official": true },
+    { "alias": "repo-update", "name": "Leap 16.1 Updates", "url": "https://download.opensuse.org/update/leap/16.1/oss/", "enabled": true, "autorefresh": true, "priority": 99, "official": true },
+    { "alias": "lyra", "name": "Lyra OS", "url": "https://download.opensuse.org/repositories/home:/rodrigosbrito:/lyra/openSUSE_Leap_16.1/", "enabled": true, "autorefresh": true, "priority": 90, "official": true },
+    { "alias": "vega", "name": "Vega", "url": "https://download.opensuse.org/repositories/home:/rodrigosbrito:/vega/openSUSE_Leap_16.1/", "enabled": true, "autorefresh": true, "priority": 90, "official": true },
+    { "alias": "vscode", "name": "Visual Studio Code", "url": "https://packages.microsoft.com/yumrepos/vscode", "enabled": true, "autorefresh": true, "priority": 99, "official": false },
+    { "alias": "packman", "name": "Packman", "url": "https://ftp.gwdg.de/pub/linux/misc/packman/suse/openSUSE_Leap_16.1/", "enabled": false, "autorefresh": true, "priority": 90, "official": false }
+  ],
+  "snapshots": [
+    { "number": 417, "type": "single", "date": "2026-10-24T09:12:00", "description": "Diário", "cleanup": "timeline", "important": false, "size": 0 },
+    { "number": 416, "type": "post", "pre": 415, "date": "2026-10-23T18:41:00", "description": "vega: instalar beam", "cleanup": "number", "important": false, "size": 18874368 },
+    { "number": 415, "type": "pre", "date": "2026-10-23T18:40:00", "description": "vega: instalar beam", "cleanup": "number", "important": false, "size": 0 },
+    { "number": 414, "type": "single", "date": "2026-10-23T09:00:00", "description": "Diário", "cleanup": "timeline", "important": false, "size": 0 },
+    { "number": 413, "type": "post", "pre": 412, "date": "2026-10-21T20:15:00", "description": "vega: atualização do sistema (31 pacotes)", "cleanup": "number", "important": true, "size": 1288490188 },
+    { "number": 412, "type": "pre", "date": "2026-10-21T20:07:00", "description": "vega: atualização do sistema (31 pacotes)", "cleanup": "number", "important": true, "size": 0 },
+    { "number": 408, "type": "single", "date": "2026-10-18T14:30:00", "description": "Antes de testar o kernel 6.17", "cleanup": "", "important": true, "size": 0, "user": true },
+    { "number": 1, "type": "single", "date": "2026-09-30T11:02:00", "description": "Primeira instalação", "cleanup": "", "important": true, "size": 0 }
+  ],
+  "restic": {
+    "configs": [
+      { "id": "home", "name": "Pasta pessoal", "source": "/home/rodrigo", "target": "/run/media/rodrigo/Backup/restic", "schedule": "Diário às 13h", "retention": "7 diários · 4 semanais · 6 mensais", "last": "2026-10-24T13:00:00", "status": "ok", "size": 21474836480, "count": 38 },
+      { "id": "projetos", "name": "Projetos", "source": "/home/rodrigo/Git", "target": "sftp:nas.local:/backup/workstation", "schedule": "A cada 6 horas", "retention": "48 horários · 14 diários", "last": "2026-10-24T06:00:00", "status": "warning", "message": "O NAS não respondeu na última execução (12:00).", "size": 6442450944, "count": 112 }
+    ]
+  },
+  "hardware": {
+    "system": { "vendor": "Framework", "model": "Laptop 16 (AMD Ryzen 7040)", "firmware": "UEFI 3.05 · Secure Boot ativo", "board": "FRANMZCP09" },
+    "cpu": { "model": "AMD Ryzen 9 7940HS w/ Radeon 780M", "cores": 8, "threads": 16, "max_mhz": 5200 },
+    "memory": { "total": 34359738368, "modules": ["16 GiB DDR5-5600 (SODIMM A)", "16 GiB DDR5-5600 (SODIMM B)"] },
+    "gpus": [
+      { "name": "AMD Radeon 780M", "vendor": "amd", "driver": "amdgpu", "kind": "integrada", "status": "ok" },
+      { "name": "NVIDIA GeForce RTX 4060 Laptop", "vendor": "nvidia", "driver": "nouveau", "kind": "dedicada", "status": "driver-available" }
+    ],
+    "devices": [
+      { "icon": "wifi", "name": "MediaTek MT7922 Wi-Fi 6E", "detail": "mt7921e" },
+      { "icon": "bluetooth", "name": "MediaTek Bluetooth 5.3", "detail": "btusb" },
+      { "icon": "volume", "name": "Realtek ALC285", "detail": "snd_hda_intel" },
+      { "icon": "camera", "name": "Câmera HD integrada", "detail": "uvcvideo" },
+      { "icon": "fingerprint", "name": "Goodix leitor de digitais", "detail": "fprintd" }
+    ]
+  },
+  "nvidia": { "capability": true, "secure_boot": true, "installed": false, "recommended": "G06 (open, assinado pela SUSE)", "version": "580.95.05" },
+  "kernels": [
+    { "version": "6.12.0-160100.7-default", "flavor": "default", "running": true, "default": true, "installed": "2026-10-02", "size": 312475648 },
+    { "version": "6.12.0-160100.5-default", "flavor": "default", "running": false, "default": false, "installed": "2026-09-30", "size": 310378496, "multiversion": true }
+  ],
+  "kernels_available": [
+    { "version": "6.12.0-160100.9-default", "flavor": "default", "note": "Atualização de segurança" },
+    { "version": "6.17.4-lp161.2-longterm", "flavor": "longterm", "note": "Kernel mais recente (Kernel:stable), sem suporte oficial" }
+  ],
+  "boot": { "loader": "systemd-boot", "timeout": 3, "secure_boot": true, "cmdline": "root=UUID=3b1f… rootflags=subvol=@/.snapshots/1/snapshot quiet splash mitigations=auto" },
+  "network": {
+    "interfaces": [
+      { "name": "wlp1s0", "kind": "wifi", "label": "Wi-Fi", "state": "connected", "ssid": "Casa-5G", "signal": 82, "ipv4": "192.168.1.42/24", "gateway": "192.168.1.1", "dns": "192.168.1.1", "mac": "8c:3b:4a:21:9f:10", "speed": "1,2 Gbit/s" },
+      { "name": "enp0s13f0u1", "kind": "ethernet", "label": "Ethernet (dock USB-C)", "state": "disconnected", "mac": "00:e0:4c:68:01:7a" },
+      { "name": "wg-office", "kind": "vpn", "label": "VPN WireGuard · Escritório", "state": "disconnected" }
+    ],
+    "wifi": [
+      { "ssid": "Casa-5G", "signal": 82, "secure": true, "known": true },
+      { "ssid": "Casa-2G", "signal": 70, "secure": true, "known": true },
+      { "ssid": "Vizinho_Net", "signal": 41, "secure": true, "known": false },
+      { "ssid": "Café Aberto", "signal": 28, "secure": false, "known": false }
+    ],
+    "proxy": "Nenhum"
+  },
+  "firewall": {
+    "running": true,
+    "zone": "public",
+    "services": [
+      { "id": "ssh", "name": "SSH", "port": "22/tcp", "enabled": true },
+      { "id": "dhcpv6-client", "name": "Cliente DHCPv6", "port": "546/udp", "enabled": true },
+      { "id": "mdns", "name": "mDNS (descoberta na rede local)", "port": "5353/udp", "enabled": true },
+      { "id": "kdeconnect", "name": "GSConnect / KDE Connect", "port": "1714-1764", "enabled": false },
+      { "id": "samba", "name": "Compartilhamento Samba", "port": "139,445/tcp", "enabled": false },
+      { "id": "cockpit", "name": "Painel Web (vega-web)", "port": "9090/tcp", "enabled": false }
+    ],
+    "ports": [{ "port": "8080", "proto": "tcp", "note": "Servidor de desenvolvimento" }]
+  },
+  "users": [
+    { "login": "rodrigo", "name": "Rodrigo Brito", "admin": true, "current": true, "uid": 1000, "shell": "/bin/bash", "last": "Agora", "groups": ["wheel", "video", "libvirt"] },
+    { "login": "ana", "name": "Ana Brito", "admin": false, "current": false, "uid": 1001, "shell": "/bin/bash", "last": "Ontem às 21:14", "groups": ["users"] },
+    { "login": "convidado", "name": "Convidado", "admin": false, "current": false, "uid": 1002, "shell": "/bin/bash", "last": "Nunca", "groups": ["users"], "locked": true }
+  ],
+  "profiles": [
+    { "id": "lyra", "name": "Lyra", "description": "Dock flutuante e painel superior com menus e busca." },
+    { "id": "ubuntu", "name": "Ubuntu", "description": "Dock lateral estendida e botão de áreas de trabalho." },
+    { "id": "vanilla", "name": "GNOME Vanilla", "description": "GNOME como o upstream entrega, sem extensões." },
+    { "id": "classic", "name": "Lyra Classic", "description": "Barra de tarefas inferior com lista de aplicativos." },
+    { "id": "central", "name": "Lyra Central", "description": "Barra inferior com apps centralizados e grade fixada." },
+    { "id": "floating", "name": "Lyra Floating", "description": "Painel e dock flutuantes, com cantos arredondados." }
+  ],
+  "preview_overview": { "hostname": "odisseia", "os_name": "Lyra OS 16.1 (Odisseia)", "kernel": "6.12.0-160100.7-default", "arch": "x86_64", "uptime_secs": 196320, "cpu_model": "AMD Ryzen 9 7940HS w/ Radeon 780M", "cpu_threads": 16, "mem_total": 32912072704, "disk_total": 510770802688, "disk_used": 187904819200 },
+  "preview_processes": [
+    { "pid": 1955, "user": "rodrigo", "cpu": 8.4, "mem": 3.1, "rss": 1040187392, "name": "gnome-shell" },
+    { "pid": 4120, "user": "rodrigo", "cpu": 6.9, "mem": 7.4, "rss": 2453667840, "name": "firefox-esr" },
+    { "pid": 4188, "user": "rodrigo", "cpu": 3.2, "mem": 2.2, "rss": 723517440, "name": "Isolated Web Co" },
+    { "pid": 5502, "user": "rodrigo", "cpu": 2.4, "mem": 1.9, "rss": 629145600, "name": "zed" },
+    { "pid": 2210, "user": "rodrigo", "cpu": 1.1, "mem": 0.4, "rss": 125829120, "name": "pipewire" },
+    { "pid": 812, "user": "root", "cpu": 0.6, "mem": 0.2, "rss": 62914560, "name": "NetworkManager" },
+    { "pid": 6011, "user": "rodrigo", "cpu": 0.5, "mem": 1.0, "rss": 335544320, "name": "kgx" },
+    { "pid": 1, "user": "root", "cpu": 0.1, "mem": 0.1, "rss": 16777216, "name": "systemd" },
+    { "pid": 977, "user": "root", "cpu": 0.0, "mem": 0.1, "rss": 31457280, "name": "vegad" },
+    { "pid": 690, "user": "root", "cpu": 0.0, "mem": 0.0, "rss": 9437184, "name": "systemd-journal" }
+  ],
+  "preview_services": [
+    { "unit": "NetworkManager.service", "load": "loaded", "active": "active", "sub": "running", "description": "Network Manager", "enabled": "enabled" },
+    { "unit": "firewalld.service", "load": "loaded", "active": "active", "sub": "running", "description": "firewalld - dynamic firewall daemon", "enabled": "enabled" },
+    { "unit": "gdm.service", "load": "loaded", "active": "active", "sub": "running", "description": "GNOME Display Manager", "enabled": "enabled" },
+    { "unit": "snapper-timeline.service", "load": "loaded", "active": "inactive", "sub": "dead", "description": "Timeline of Snapper Snapshots", "enabled": "static" },
+    { "unit": "sshd.service", "load": "loaded", "active": "active", "sub": "running", "description": "OpenSSH Daemon", "enabled": "enabled" },
+    { "unit": "cups.service", "load": "loaded", "active": "inactive", "sub": "dead", "description": "CUPS Scheduler", "enabled": "disabled" },
+    { "unit": "libvirtd.service", "load": "loaded", "active": "active", "sub": "running", "description": "libvirt legacy monolithic daemon", "enabled": "enabled" },
+    { "unit": "nfs-blkmap.service", "load": "loaded", "active": "failed", "sub": "failed", "description": "pNFS block layout mapping daemon", "enabled": "disabled" },
+    { "unit": "bluetooth.service", "load": "loaded", "active": "active", "sub": "running", "description": "Bluetooth service", "enabled": "enabled" },
+    { "unit": "vegad.service", "load": "loaded", "active": "active", "sub": "running", "description": "Vega privileged daemon", "enabled": "static" }
+  ],
+  "preview_journal": [
+    { "ts": 1792859718591, "priority": 6, "ident": "systemd", "unit": "", "message": "Started vte-spawn-711a32cd.scope - VTE child process." },
+    { "ts": 1792859700000, "priority": 4, "ident": "gnome-shell", "unit": "", "message": "Window manager warning: Overwriting existing binding of keysym 6c with keysym 6c (keycode 2e)." },
+    { "ts": 1792859650000, "priority": 3, "ident": "nfs-blkmap", "unit": "nfs-blkmap.service", "message": "blkmapd: open pipe file /run/rpc_pipefs/nfs/blocklayout failed: No such file or directory" },
+    { "ts": 1792859600000, "priority": 6, "ident": "vegad", "unit": "vegad.service", "message": "Software.ListUpdates: 10 atualizações nativas, 3 flatpak (412 ms)" },
+    { "ts": 1792859500000, "priority": 6, "ident": "NetworkManager", "unit": "NetworkManager.service", "message": "<info>  [1792859500.0012] device (wlp1s0): state change: ip-check -> secondaries (reason 'none')" },
+    { "ts": 1792859400000, "priority": 5, "ident": "kernel", "unit": "", "message": "amdgpu 0000:c1:00.0: amdgpu: SMU is resumed successfully!" },
+    { "ts": 1792859300000, "priority": 2, "ident": "kernel", "unit": "", "message": "nouveau 0000:01:00.0: gsp: mmu fault queued" },
+    { "ts": 1792859200000, "priority": 6, "ident": "snapper", "unit": "snapper-timeline.service", "message": "Created timeline snapshot 417" }
+  ],
+  "preview_volumes": { "blockdevices": [
+    { "name": "nvme0n1", "size": 1024209543168, "type": "disk", "mountpoint": null, "fstype": null, "label": null, "fsused": null, "fssize": null, "model": "WD_BLACK SN850X 1TB", "tran": "nvme", "rm": false, "children": [
+      { "name": "nvme0n1p1", "size": 1073741824, "type": "part", "mountpoint": "/boot/efi", "fstype": "vfat", "label": "EFI", "fsused": 104857600, "fssize": 1071644672, "model": null, "tran": null, "rm": false },
+      { "name": "nvme0n1p2", "size": 1006029651968, "type": "part", "mountpoint": "/", "fstype": "btrfs", "label": "lyra", "fsused": 187904819200, "fssize": 1006029651968, "model": null, "tran": null, "rm": false },
+      { "name": "nvme0n1p3", "size": 17179869184, "type": "part", "mountpoint": "[SWAP]", "fstype": "swap", "label": null, "fsused": null, "fssize": null, "model": null, "tran": null, "rm": false }
+    ] },
+    { "name": "sda", "size": 2000398934016, "type": "disk", "mountpoint": null, "fstype": null, "label": null, "fsused": null, "fssize": null, "model": "Seagate Expansion", "tran": "usb", "rm": true, "children": [
+      { "name": "sda1", "size": 2000397795328, "type": "part", "mountpoint": "/run/media/rodrigo/Backup", "fstype": "ext4", "label": "Backup", "fsused": 612490231808, "fssize": 1967634350080, "model": null, "tran": null, "rm": true }
+    ] }
+  ] }
+}

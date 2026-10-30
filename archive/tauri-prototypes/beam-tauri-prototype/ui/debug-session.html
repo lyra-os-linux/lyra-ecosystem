@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="pt-BR" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Beam — sessão</title>
+  <link rel="stylesheet" href="css/app.css">
+  <link rel="stylesheet" href="css/session.css">
+  <script>
+function show(m){const p=document.createElement("pre");p.style.cssText="position:fixed;z-index:999;background:#fee;color:#900;padding:8px;bottom:0;left:0;right:0;white-space:pre-wrap;font-size:12px";p.textContent=m;(document.body||document.documentElement).append(p);}
+window.addEventListener("error",e=>show("ERR "+e.message+" @ "+e.filename+":"+e.lineno));
+window.addEventListener("unhandledrejection",e=>show("REJ "+(e.reason&&e.reason.stack||e.reason)));
+</script><style>*,*::before,*::after{animation:none!important;transition:none!important}</style>
+<script type="module" src="js/session.js"></script>
+</head>
+<body class="session">
+  <header class="session-bar" id="bar" data-drag>
+    <div class="session-title" data-drag>
+      <span class="status-dot" id="dot"></span>
+      <div data-drag><strong id="name" data-drag></strong><small id="meta" data-drag></small></div>
+    </div>
+    <div class="capture-hint" id="capture" hidden></div>
+    <div class="session-actions" id="actions"></div>
+    <div class="window-controls" id="window-controls"></div>
+  </header>
+  <main class="stage" id="stage">
+    <div class="remote" id="remote"></div>
+    <div class="connecting" id="connecting"></div>
+  </main>
+  <div class="toasts" id="toasts" role="status" aria-live="polite"></div>
+</body>
+</html>
