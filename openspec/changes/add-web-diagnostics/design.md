@@ -81,15 +81,22 @@ instalação da NVIDIA:
 - `/armazenamento`: Liberar espaço (medir, escolher, confirmar, total).
 - `/`: o cartão da verificação semanal.
 
-O texto segue os do Vega e do `vega-cli` (pt, en, es), e o JSON do
-relatório é renderizado no servidor, sem JavaScript novo.
+O texto segue os do Vega e do `vega-cli`, em português como as demais
+páginas do painel (só a página da NVIDIA é trilíngue), e o JSON do relatório
+é renderizado no servidor, sem JavaScript novo. A orientação de cada achado é
+gerada do `GUIDE` do Vega, com os links apontando para as páginas do painel.
+
+O relatório `0` é o mais recente (`Diagnostics.Report`): "Ver o último
+relatório" usa esse número e o painel guarda o resultado pelo `jobId` real.
 
 ## Pedir ajuda
 
 Porta o `help-text.js` do Vega para Rust (`help_text.rs`), com o mesmo limite
 de 6000 caracteres e o mesmo corte dos dados brutos. O texto vem de
 `Report(job, redact=true)`. A página mostra o texto para copiar e os links
-para as Discussions (Q&A) e para uma issue nova, preenchidos pela URL.
+para as Discussions (Q&A) e para uma issue nova, preenchidos pela URL. O
+ponto de ajuda é o mesmo do Vega, o repositório `lyraos-desktop`, para as
+duas edições: o `lyraos-server` não tem Discussions.
 
 ## Testes
 
@@ -97,6 +104,9 @@ para as Discussions (Q&A) e para uma issue nova, preenchidos pela URL.
   ajuda (os mesmos casos de `tests/test_help_text.py`).
 - Integração HTTP com o barramento privado e o daemon simulado: CSRF,
   sessão, ids inválidos, operação composta.
-- VM descartável (`check-admin-helper-vm.py`): as linhas da tabela de
-  autorização com vegad 5.6.2 e polkit reais.
+- VM descartável (`check-admin-helper-vm.py`): continua cobrindo instalação e
+  firewall. Ela só carrega a regra polkit do próprio `vega-web`, não a
+  `50-vegad-remote-admin`, então as linhas novas da tabela foram qualificadas
+  na VM do Server RC 3 (vegad 5.6.2, polkit e PAM reais), pelo navegador e por
+  `curl`, em 30/10/2026.
 - Gate da RC 3 do Server: o fluxo completo no navegador.

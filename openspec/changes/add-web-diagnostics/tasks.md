@@ -7,15 +7,15 @@
 - [x] 1.4 Senha: uma por ação, com a operação composta da rede
 
 ## 2. vega-web
-- [ ] 2.1 Pin do `lyra-vega-dbus` em `7333f57` e os clientes de `Diagnostics` e `Cleanup`
-- [ ] 2.2 Operações novas no broker e no helper, com testes de codificação
-- [ ] 2.3 Diagnóstico de saúde: lista, executar, progresso, relatório (boot e rede), Corrigir, Já vi, periódica, última verificação semanal
-- [ ] 2.4 Minha internet não funciona (operação composta)
-- [ ] 2.5 Liberar espaço
-- [ ] 2.6 Pedir ajuda (`help_text.rs`)
-- [ ] 2.7 Cartão da verificação semanal no painel inicial
-- [ ] 2.8 Testes de integração e a VM do broker
-- [ ] 2.9 Teste do mantenedor numa VM do Server com o RPM novo
+- [x] 2.1 Pin do `lyra-vega-dbus` em `7333f57` e os clientes de `Diagnostics` e `Cleanup`
+- [x] 2.2 Operações novas no broker e no helper, com testes de codificação
+- [x] 2.3 Diagnóstico de saúde: lista, executar, progresso, relatório (boot e rede), Corrigir, Já vi, periódica, última verificação semanal
+- [x] 2.4 Minha internet não funciona (operação composta)
+- [x] 2.5 Liberar espaço
+- [x] 2.6 Pedir ajuda (`help_text.rs`)
+- [x] 2.7 Cartão da verificação semanal no painel inicial
+- [x] 2.8 Testes de integração (porta de entrada); a VM do broker segue cobrindo instalação e firewall
+- [x] 2.9 Teste do mantenedor numa VM do Server com os binários novos (30/10/2026)
 
 ## 3. Release
 - [ ] 3.1 vega-web 5.2.0: tag, staging, check, SR, release
