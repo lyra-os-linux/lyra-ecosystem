@@ -19,7 +19,7 @@ jobs:
         run: python3 -m unittest discover -s tests -p 'test_offline*.py' -v
 
   readonly-gate:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
       - name: Validate read-only VM gate independently of portfolio drift
@@ -28,7 +28,7 @@ jobs:
         run: python3 -m unittest discover -s tests -p test_vm_integration_gate.py -v
 
   validate:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
         with:
