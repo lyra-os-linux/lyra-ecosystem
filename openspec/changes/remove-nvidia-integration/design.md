@@ -56,6 +56,41 @@ manualmente com o `restic`, como a documentação do Server vai explicar.
 mantêm KMP e userspace em sincronia sem o `lyra-nvidia`, numa VM com a pilha
 615.71.09 instalada pelo Vega, passando por uma atualização de kernel.
 
+Achado de 31/10/2026: o `lyra-nvidia` usa o repositório **CUDA** da NVIDIA
+(`developer.download.nvidia.com/compute/cuda/repos/suse16`), que já publica
+`nvidia-open` 615.71.10, enquanto o KMP CUDA assinado no OSS do Leap continua
+em 615.71.09. Tirar as exigências de versão com esse repositório ativo deixa
+o solver escolher userspace 615.71.10 e, para casar, um módulo **sem
+assinatura da SUSE** (`nvidia-open-driver-G07-kmp`, DKMS), o que quebra o
+boot com Secure Boot. Por isso a versão de transição precisa ser decidida
+com cuidado; as opções são:
+
+1. **Migrar para o caminho padrão** (recomendado): o `lyra-nvidia` final
+   troca o repositório CUDA pelo repositório gráfico
+   (`download.nvidia.com/opensuse/leap/16.1`) e exige
+   `nvidia-open-driver-G07-signed-kmp-meta` (KMP assinado do OSS, hoje
+   595.99.02). É um *downgrade* do driver 615 para 595, feito pelo `zypper`
+   na atualização; exige qualificação em VM e no notebook de referência.
+2. **Congelar**: o `lyra-nvidia` final mantém o repositório CUDA e as
+   exigências, e só deixa de ser atualizado. Quando a SUSE trocar a versão do
+   KMP CUDA, a máquina fica sem módulo para o kernel novo.
+
+## Guia para quem não usa o Vega
+
+O texto publicado nas Discussions (#234, #366) e no site segue o openSUSE com
+uma diferença: **não** recomenda o `openSUSE-repos-Leap-NVIDIA`, porque ele
+depende do `openSUSE-repos-Leap`, que renomeia `repo-oss.repo` e
+`repo-non-oss.repo` e recria os repositórios como serviço com prioridade 99.
+No Lyra isso faria os repositórios do Lyra (90) ganharem dos oficiais. O guia
+adiciona o mesmo repositório gráfico direto (`zypper addrepo`), com a chave
+`2FB0 3195 DECD 4949 2BD1 C17A B1D0 D788 DB27 FD5A`, e instala
+`nvidia-open-driver-G07-signed-kmp-meta` (Turing e mais novas) ou
+`nvidia-driver-G06-kmp-meta` (Maxwell/Pascal). O G06 registra uma chave MOK
+com a senha de root, bloqueada no Lyra; com Secure Boot, o guia manda
+desligá-lo antes do G06. Notebooks híbridos pré-Ampere recebem a linha do
+`60-lyra-nvidia-pm.conf` (`NVreg_DynamicPowerManagement=0x02`) como passo
+manual.
+
 ## Frontends
 
 - **`vega-gtk`:** remover `software_nvidia_status`, a ação `InstallNvidia`,

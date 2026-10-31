@@ -3,7 +3,8 @@
 ## 1. Decisões
 - [x] 1.1 Mantenedor valida esta proposta (aprovada em 31/10/2026)
 - [x] 1.2 Migração: `lyra-nvidia` de transição (31/10/2026)
-- [ ] 1.3 Guia NVIDIA de destino (procedimento oficial do openSUSE)
+- [x] 1.3 Guia NVIDIA de destino: repositório gráfico da NVIDIA + metapacotes do Leap 16.1 (31/10/2026)
+- [ ] 1.4 Versão de transição do `lyra-nvidia`: migrar para o caminho padrão ou congelar (ver design)
 
 ## 2. lyra-vega-dbus
 - [ ] 2.1 XML: métodos NVIDIA `Deprecated`, comentário de `NotSupported`
@@ -27,11 +28,12 @@
 - [ ] 5.2 Qualificação numa VM com a pilha instalada pelo Vega + kernel novo
 - [ ] 5.3 Remover o pacote do OBS depois do período combinado
 
-## 6. Edições e site
+## 6. Edições, site e Discussions
 - [ ] 6.1 lyraos-desktop: README e docs NVIDIA
 - [ ] 6.2 lyraos-server: `nvidia-recovery.md` e comentário do `restic`
 - [ ] 6.3 site: página de documentação NVIDIA (prévia local antes do merge)
-- [ ] 6.4 `products.toml`/`contracts.toml`, se citarem NVIDIA
+- [ ] 6.4 Discussions #234, #366, #352 e citações ao Vega em #247, #279, #348, #351, #355, #429
+- [ ] 6.5 `products.toml`/`contracts.toml`, se citarem NVIDIA
 
 ## 7. Release (um lote só)
 - [ ] 7.1 Tags, staging, check, SR e aceite: lyra-vega-dbus, vegad, vega, vega-web, vega-cli, lyra-nvidia
