@@ -4,8 +4,8 @@
 
 ### Requirement: Instalação opcional do driver NVIDIA oficial
 **Motivo:** decisão do mantenedor de 31/10/2026; o Vega deixa de instalar,
-diagnosticar e recuperar a pilha NVIDIA. **Migração:** `lyra-nvidia` de
-transição e o procedimento oficial do openSUSE.
+diagnosticar e recuperar a pilha NVIDIA. **Migração:** passos manuais na
+Discussion #234 e o procedimento oficial do openSUSE.
 
 ### Requirement: Ponto de recuperação NVIDIA
 **Motivo:** sai junto com a instalação. **Migração:** pontos existentes são
@@ -45,11 +45,13 @@ versão do `vegad`.
 - **WHEN** o `vegad` ainda anuncia `nvidia-official-v1`
 - **THEN** o menu Hardware e Kernel não mostra NVIDIA
 
-### Requirement: Atualização sem travar o Zypper
-SE uma máquina tem o `lyra-nvidia` instalado pelo Vega, ENTÃO a atualização
-para o `lyra-nvidia` de transição DEVE remover as exigências de versão sem
-desinstalar o driver e sem mudar o boot.
+### Requirement: Migração das máquinas instaladas pelo Vega
+QUANDO uma máquina com o `lyra-nvidia` instalado pelo Vega segue os passos de
+migração da Discussion #234, o `zypper` DEVE trocar a pilha CUDA 615 pelo G07 do
+guia numa única transação, com o módulo assinado pela SUSE, sem deixar
+`lyra-nvidia`, `nvidia-open` nem os repositórios `lyra-nvidia` e
+`lyra-nvidia-upstream`.
 
-#### Scenario: kernel novo depois da transição
-- **WHEN** a VM com a pilha 615.71.09 recebe o `lyra-nvidia` de transição e depois uma atualização de kernel com outro KMP
-- **THEN** o `zypper` atualiza sem conflito e o módulo NVIDIA carrega após reiniciar
+#### Scenario: migração da pilha 615.71.09
+- **WHEN** o ambiente com a pilha 615.71.09 roda os comandos de migração
+- **THEN** ficam só os pacotes G07 do guia com o KMP assinado e `zypper verify` passa

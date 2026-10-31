@@ -30,8 +30,8 @@ requalificação a cada versão de driver e de kernel.
 4. **`vega-web`:** sai `/hardware/nvidia`, a operação `InstallNvidia` do
    broker e do helper administrativo.
 5. **`vega-cli`:** sai Hardware e Kernel → NVIDIA (`lib/nvidia.sh`).
-6. **`lyra-nvidia`:** uma última versão de transição (ver design) e depois
-   o fim da manutenção no OBS.
+6. **`lyra-nvidia`:** descontinuado e apagado do OBS em 31/10/2026, com
+   migração manual validada (ver design).
 7. **Edições e site:** `lyraos-desktop` e `lyraos-server` deixam de prometer
    a instalação pelo Vega e passam a apontar o procedimento oficial do
    openSUSE para NVIDIA.

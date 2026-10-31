@@ -33,47 +33,41 @@ pin com `scripts/check-consumer-pin.sh`).
 
 ## Quem já instalou (migração)
 
-O `lyra-nvidia` exige bibliotecas e KMP na versão 615.71.09. Se ele ficar
-instalado sem manutenção, a próxima atualização de kernel do Leap que trouxer
-outra versão do KMP assinado vai **travar o `zypper` com conflito de
-dependências**. Por isso não basta apagar o pacote do OBS.
+Decisão de 31/10/2026: o `lyra-nvidia` foi **descontinuado**, e os projetos
+`home:rodrigosbrito:nvidia` e `nvidia:staging` foram apagados do OBS. Quem
+instalou o driver pelo Vega migra à mão para o caminho do guia, numa única
+transação do `zypper`:
 
-Proposta: publicar um **`lyra-nvidia` final de transição** que:
+```bash
+sudo zypper removerepo lyra-nvidia
+sudo zypper addrepo --refresh https://download.nvidia.com/opensuse/leap/16.1 repo-nvidia
+sudo zypper refresh repo-nvidia
+sudo zypper install --allow-downgrade --allow-vendor-change nvidia-open-driver-G07-signed-kmp-meta -lyra-nvidia -nvidia-open -nvidia-open-driver-G07-signed-cuda-kmp-default
+```
 
-- tira as exigências de versão (bibliotecas, KMP) e os conflitos;
-- mantém o repositório oficial NVIDIA com verificação de assinatura e o
-  `60-lyra-nvidia-pm.conf`, para a máquina continuar funcionando e
-  atualizando pelos metapacotes do openSUSE/NVIDIA;
-- não executa nada em scriptlets.
+Por que não uma versão de transição automática:
 
-Depois de um período com essa versão publicada, o pacote sai do OBS. Ele
-continua instalado nas máquinas, inofensivo, e pode ser removido com o
-`zypper`. A recuperação offline (`vegad nvidia-recover`) deixa de existir:
-pontos de recuperação já criados continuam no disco e podem ser restaurados
-manualmente com o `restic`, como a documentação do Server vai explicar.
+- O pacote não pode exigir o metapacote do repositório gráfico, porque esse
+  repositório só existiria depois de ele mesmo ser instalado, e o `zypper up`
+  não faz o *downgrade* de 615 para 595.
+- A versão sem as travas seria segura (os `Conflicts` contra
+  `nvidia-open-driver-G07-kmp` já bloqueiam o módulo DKMS sem assinatura), mas
+  manteria um pacote e um projeto OBS só para essas máquinas. O mantenedor
+  preferiu excluir.
 
-**A validar antes de executar:** quais metapacotes NVIDIA do Leap 16.1
-mantêm KMP e userspace em sincronia sem o `lyra-nvidia`, numa VM com a pilha
-615.71.09 instalada pelo Vega, passando por uma atualização de kernel.
+Validação (31/10/2026), num chroot Leap 16.1 com `zypper --root`: o estado do
+Vega foi recriado (`lyra-nvidia` 615.71.09, KMP CUDA assinado, repositórios
+`lyra-nvidia` e `lyra-nvidia-upstream`); nesse estado o `zypper up` já segurava
+8 atualizações NVIDIA. As variantes sem `--allow-downgrade` e
+`--allow-vendor-change` falham (`nvidia-modprobe` e `nvidia-persistenced` mudam
+de fornecedor). Com os dois, a transação remove `lyra-nvidia`, `nvidia-open` e o
+KMP CUDA, instala o G07 595.99.02 com o KMP assinado do OSS e o arquivo
+`lyra-nvidia-upstream.repo` sai junto com o pacote; `zypper verify` passa. O
+estado final é idêntico ao de uma instalação pelo guia, conferida no notebook
+de referência (GTX 1650, Secure Boot ligado, módulo carregado).
 
-Achado de 31/10/2026: o `lyra-nvidia` usa o repositório **CUDA** da NVIDIA
-(`developer.download.nvidia.com/compute/cuda/repos/suse16`), que já publica
-`nvidia-open` 615.71.10, enquanto o KMP CUDA assinado no OSS do Leap continua
-em 615.71.09. Tirar as exigências de versão com esse repositório ativo deixa
-o solver escolher userspace 615.71.10 e, para casar, um módulo **sem
-assinatura da SUSE** (`nvidia-open-driver-G07-kmp`, DKMS), o que quebra o
-boot com Secure Boot. Por isso a versão de transição precisa ser decidida
-com cuidado; as opções são:
-
-1. **Migrar para o caminho padrão** (recomendado): o `lyra-nvidia` final
-   troca o repositório CUDA pelo repositório gráfico
-   (`download.nvidia.com/opensuse/leap/16.1`) e exige
-   `nvidia-open-driver-G07-signed-kmp-meta` (KMP assinado do OSS, hoje
-   595.99.02). É um *downgrade* do driver 615 para 595, feito pelo `zypper`
-   na atualização; exige qualificação em VM e no notebook de referência.
-2. **Congelar**: o `lyra-nvidia` final mantém o repositório CUDA e as
-   exigências, e só deixa de ser atualizado. Quando a SUSE trocar a versão do
-   KMP CUDA, a máquina fica sem módulo para o kernel novo.
+A recuperação offline (`vegad nvidia-recover`) deixou de existir: pontos já
+criados continuam no disco (ver `lyraos-server/docs/nvidia-recovery.md`).
 
 ## Guia para quem não usa o Vega
 
@@ -110,10 +104,11 @@ manual.
 - `lyraos-server`: `docs/nvidia-recovery.md` vira "como restaurar um ponto
   antigo"; o comentário do `restic` no `kiwi/config.xml` passa a citar só os
   backups do Vega (o pacote continua).
-- `site`: a página de documentação que orienta NVIDIA; notas antigas ficam.
+- `site`: dispensado; o guia mora nas Discussions #234 e #366. Notas antigas ficam.
 
 ## Reversão
 
-Cada repositório volta pela tag anterior no OBS (staging = release). O
-`lyra-nvidia` de transição não altera o sistema além das dependências, então
-voltar à versão anterior é um `zypper install --oldpackage`.
+Cada repositório volta pela tag anterior no OBS (staging = release). A
+exclusão do `lyra-nvidia` não tem reversão pelo OBS: os projetos foram
+apagados. Numa máquina, a migração manual se desfaz pelo ponto de restauração
+criado antes dela (Desktop) ou pelo backup (Server).
