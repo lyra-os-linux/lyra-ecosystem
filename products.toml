@@ -8,7 +8,7 @@ owner = "lyra-os-linux"
 local_path = "lyraos-desktop"
 release_cycle = "independent"
 obs_packages = ["lyra-installer"]
-consumes = ["beam", "sulafat", "vega", "vscode", "cursor", "claude-code", "zededitor", "lyraos-desktop-linuxtoys", "lyraos-desktop-sheliak", "lyraos-desktop-theme", "lyraos-desktop-updater", "lyraos-desktop-welcome", "lyraos-desktop-icons", "lyraos-desktop-wallpapers", "lyra-downloads", "lyra-firefox-ext", "lyra-vms"]
+consumes = ["beam", "sulafat", "vega", "vscode", "cursor", "claude-code", "cloud-cli", "zededitor", "lyraos-desktop-linuxtoys", "lyraos-desktop-sheliak", "lyraos-desktop-theme", "lyraos-desktop-updater", "lyraos-desktop-welcome", "lyraos-desktop-icons", "lyraos-desktop-wallpapers", "lyra-downloads", "lyra-firefox-ext", "lyra-vms"]
 release_manifest = "release.toml"
 release_priority = "primary"
 
@@ -178,6 +178,16 @@ owner = "lyra-os-linux"
 local_path = "claude-code"
 upstream = "anthropics/claude-code"
 obs_packages = ["claude-code-repo"]
+consumed_by = ["lyraos-desktop"]
+
+[[products]]
+id = "cloud-cli"
+kind = "third-party-packaging"
+repository = "lyra-os-linux/cloud-cli"
+owner = "lyra-os-linux"
+local_path = "cloud-cli"
+upstream = "aws/aws-cli, Azure/azure-cli, digitalocean/doctl, Google Cloud CLI"
+obs_packages = ["aws-cli-v2", "azure-cli", "doctl", "google-cloud-cli"]
 consumed_by = ["lyraos-desktop"]
 
 [[products]]
