@@ -8,7 +8,7 @@ owner = "lyra-os-linux"
 local_path = "lyraos-desktop"
 release_cycle = "independent"
 obs_packages = ["lyra-installer"]
-consumes = ["beam", "sulafat", "vega", "vscode", "zededitor", "lyraos-desktop-linuxtoys", "lyraos-desktop-sheliak", "lyraos-desktop-theme", "lyraos-desktop-updater", "lyraos-desktop-welcome", "lyraos-desktop-icons", "lyraos-desktop-wallpapers", "lyra-downloads", "lyra-firefox-ext", "lyra-vms"]
+consumes = ["beam", "sulafat", "vega", "vscode", "cursor", "claude-code", "zededitor", "lyraos-desktop-linuxtoys", "lyraos-desktop-sheliak", "lyraos-desktop-theme", "lyraos-desktop-updater", "lyraos-desktop-welcome", "lyraos-desktop-icons", "lyraos-desktop-wallpapers", "lyra-downloads", "lyra-firefox-ext", "lyra-vms"]
 release_manifest = "release.toml"
 release_priority = "primary"
 
@@ -158,6 +158,26 @@ owner = "lyra-os-linux"
 local_path = "vscode"
 upstream = "microsoft/vscode"
 obs_packages = ["vscode-repo"]
+consumed_by = ["lyraos-desktop"]
+
+[[products]]
+id = "cursor"
+kind = "third-party-packaging"
+repository = "lyra-os-linux/cursor"
+owner = "lyra-os-linux"
+local_path = "cursor"
+upstream = "cursor/cursor"
+obs_packages = ["cursor-repo"]
+consumed_by = ["lyraos-desktop"]
+
+[[products]]
+id = "claude-code"
+kind = "third-party-packaging"
+repository = "lyra-os-linux/claude-code"
+owner = "lyra-os-linux"
+local_path = "claude-code"
+upstream = "anthropics/claude-code"
+obs_packages = ["claude-code-repo"]
 consumed_by = ["lyraos-desktop"]
 
 [[products]]
