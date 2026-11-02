@@ -108,6 +108,19 @@ done
 ok "ferramentas"
 gh auth status >/dev/null 2>&1 || fail "gh não está autenticado (gh auth login)"
 ok "gh autenticado"
+# O promote-16.1.sh cria tags anotadas e faz push por HTTPS. Sem mexer na
+# configuração global: identidade de quem promove e credencial do gh só
+# para os comandos git desta execução.
+if [ -z "$(git config user.email || true)" ]; then
+  export GIT_COMMITTER_NAME="Rodrigo Brito" GIT_COMMITTER_EMAIL="rodrigo@w3ti.com.br"
+  export GIT_AUTHOR_NAME="$GIT_COMMITTER_NAME" GIT_AUTHOR_EMAIL="$GIT_COMMITTER_EMAIL"
+fi
+export GIT_CONFIG_COUNT=2
+export GIT_CONFIG_KEY_0=credential.helper GIT_CONFIG_VALUE_0=""
+export GIT_CONFIG_KEY_1=credential.helper GIT_CONFIG_VALUE_1='!gh auth git-credential'
+git ls-remote --exit-code "https://github.com/$ORG/lyraos-desktop.git" HEAD >/dev/null \
+  || fail "git não consegue acessar o GitHub com a credencial do gh"
+ok "git com identidade e credencial para as tags"
 if ! gpg --list-keys "$RELEASE_KEY" >/dev/null 2>&1; then
   gpg --batch --import "$WORKSPACE/lyraos-desktop/docs/release-signing-key.asc"
 fi
@@ -129,9 +142,9 @@ if [ "$PR_STATE" = OPEN ]; then
 else
   ok "PR do site #$PR_NUMBER já está $PR_STATE"
 fi
-LEAP_DATE="$(curl -fsSI "$LEAP_REPO" | awk -F': ' 'tolower($1)=="last-modified"{print $2}' | tr -d '\r')" \
+LEAP_DATE="$(curl -fsSIL "$LEAP_REPO" | awk -F': ' 'tolower($1)=="last-modified"{d=$2} END{print d}' | tr -d '\r')" \
   || fail "repositório do Leap 16.1 fora do ar: $LEAP_REPO"
-ok "repositório do Leap 16.1 no ar (atualizado em $LEAP_DATE)"
+ok "repositório do Leap 16.1 no ar${LEAP_DATE:+ (atualizado em $LEAP_DATE)}"
 
 # -------------------------------------------------------- 2. dry-run e confirmação
 step "2/7 Dry-run da promoção"
