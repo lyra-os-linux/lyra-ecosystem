@@ -7,13 +7,17 @@
 #   1. checagens: ferramentas, chave de release, acesso ao SourceForge, PR do
 #      site pronto e repositório do Leap 16.1 no ar;
 #   2. dry-run de scripts/promote-16.1.sh e uma única confirmação;
-#   3. promote-16.1.sh --execute: tags v16.1 / server-v16.1 e publicação em
-#      releases/16.1/stable/<edição>/ no SourceForge;
-#   4. confere o checksum publicado em stable/;
+#   3. promote-16.1.sh --execute com o bundle local da RC 3: tags v16.1 /
+#      server-v16.1 e upload em releases/16.1/stable/<edição>/ (nada é baixado);
+#   4. confere pelo SFTP que os arquivos enviados têm o tamanho dos locais;
 #   5. merge do PR do site (branch release/16.1-estavel), espera o deploy do
 #      GitHub Pages e confere https://lyraos.com.br;
 #   6. GitHub Releases v16.1 e server-v16.1;
 #   7. comenta e fecha lyraos-desktop#227 e lyraos-server#41.
+#
+# O bundle da RC 3 fica em ~/lyra-16.1-rc3/desktop e ~/lyra-16.1-rc3/server
+# (ou LYRA_BUNDLES); promote-16.1.sh confere checksum e assinatura localmente.
+# A senha do SourceForge é pedida uma vez: a conexão SSH é reaproveitada.
 #
 # Pode ser executado de novo depois de uma falha: cada etapa pula o que já
 # foi feito. Todo o terminal fica registrado em ~/lyra-promocao-16.1-*.log.
@@ -33,7 +37,7 @@ SITE_URL="https://lyraos.com.br"
 SF_TARGET="rodrigobritosoa@frs.sourceforge.net"
 SF_ROOT="/home/frs/project/lyra/releases/16.1"
 SF_HOST_KEY='frs.sourceforge.net ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOQD35Ujalhh+JJkPvMckDlhu4dS7WH6NsOJ15iGCJLC'
-SF_DOWNLOAD="https://downloads.sourceforge.net/project/lyra/releases/16.1"
+BUNDLES="${LYRA_BUNDLES:-$HOME/lyra-16.1-rc3}"
 LEAP_REPO="https://download.opensuse.org/distribution/leap/16.1/repo/oss/repodata/repomd.xml"
 RELEASE_KEY="01B63EEDBE6B079126A0116EFA7353A131ECEFEB"
 
@@ -55,7 +59,7 @@ CHECK_ONLY=0
 case "${1:-}" in
   --check) CHECK_ONLY=1 ;;
   "") ;;
-  -h|--help) sed -n '2,24p' "$0" | sed 's/^# \{0,1\}//'; exit 0 ;;
+  -h|--help) awk 'NR > 1 && /^#/ { sub(/^# ?/, ""); print; next } NR > 1 { exit }' "$0"; exit 0 ;;
   *) echo "ERRO: opção desconhecida: $1" >&2; exit 2 ;;
 esac
 
@@ -64,6 +68,9 @@ exec > >(tee -a "$LOG") 2>&1
 
 finish() {
   local status=$?
+  if [ -n "${SSH_CONTROL:-}" ] && [ -S "$SSH_CONTROL" ]; then
+    ssh -o ControlPath="$SSH_CONTROL" -O exit "$SF_TARGET" 2>/dev/null || true
+  fi
   rm -f -- "${KNOWN_HOSTS:-}"
   echo
   if [ "$status" -eq 0 ]; then echo "Registro completo em $LOG"
@@ -79,8 +86,14 @@ fail() { printf '\033[31mERRO\033[0m %s\n' "$*" >&2; exit 1; }
 
 KNOWN_HOSTS="$(mktemp)"
 printf '%s\n' "$SF_HOST_KEY" >"$KNOWN_HOSTS"
-SSH_OPTS=(-o UserKnownHostsFile="$KNOWN_HOSTS" -o StrictHostKeyChecking=yes -o BatchMode=no)
-sf_sftp() { sftp "${SSH_OPTS[@]}" -b - "$SF_TARGET" >/dev/null; }
+# Uma conexão mestre por execução: a senha é pedida no primeiro sftp e o rsync
+# do promote-16.1.sh reaproveita a conexão (LYRA_SSH_OPTS).
+SSH_CONTROL="$(mktemp -u /tmp/lyra-sf-XXXXXX)"
+export LYRA_SSH_OPTS="-o ControlMaster=auto -o ControlPath=$SSH_CONTROL -o ControlPersist=30m"
+SSH_OPTS=(-o UserKnownHostsFile="$KNOWN_HOSTS" -o StrictHostKeyChecking=yes -o BatchMode=no
+  -o ControlMaster=auto -o ControlPath="$SSH_CONTROL" -o ControlPersist=30m)
+sf_sftp() { sftp "${SSH_OPTS[@]}" -b - "$SF_TARGET"; }
+PROMOTE_ARGS=(--source-dir "desktop=$BUNDLES/desktop" --source-dir "server=$BUNDLES/server")
 
 site_pr() {
   gh pr list -R "$ORG/site" --head "$SITE_BRANCH" --state all --json number,state \
@@ -100,7 +113,13 @@ if ! gpg --list-keys "$RELEASE_KEY" >/dev/null 2>&1; then
 fi
 gpg --list-keys "$RELEASE_KEY" >/dev/null 2>&1 || fail "chave pública de release $RELEASE_KEY ausente"
 ok "chave pública de release"
-printf 'ls %s\n' "$SF_ROOT" | sf_sftp || fail "sem acesso SSH ao SourceForge ($SF_TARGET)"
+for edition in desktop server; do
+  [ -s "$BUNDLES/$edition/${PREFIX[$edition]}.iso" ] \
+    || fail "bundle local ausente: $BUNDLES/$edition/${PREFIX[$edition]}.iso"
+done
+ok "bundle local da RC 3 em $BUNDLES"
+echo "Conectando ao SourceForge (a senha é pedida uma vez nesta execução)..."
+printf 'ls %s\n' "$SF_ROOT" | sf_sftp >/dev/null || fail "sem acesso SSH ao SourceForge ($SF_TARGET)"
 ok "acesso ao SourceForge"
 read -r PR_NUMBER PR_STATE <<<"$(site_pr)"
 [ -n "$PR_NUMBER" ] && [ "$PR_NUMBER" != null ] || fail "PR do site ($SITE_BRANCH) não encontrado"
@@ -116,7 +135,7 @@ ok "repositório do Leap 16.1 no ar (atualizado em $LEAP_DATE)"
 
 # -------------------------------------------------------- 2. dry-run e confirmação
 step "2/7 Dry-run da promoção"
-bash "$PROMOTE"
+bash "$PROMOTE" "${PROMOTE_ARGS[@]}"
 if [ "$CHECK_ONLY" -eq 1 ]; then
   echo; ok "checagens e dry-run concluídos (--check); nada foi promovido"
   exit 0
@@ -131,20 +150,18 @@ read -rp "Promover o Lyra OS 16.1 agora? [s/N] " answer
 step "3/7 Tags e publicação no SourceForge"
 { printf -- '-mkdir %s/stable\n' "$SF_ROOT"
   printf -- '-mkdir %s/stable/desktop\n' "$SF_ROOT"
-  printf -- '-mkdir %s/stable/server\n' "$SF_ROOT"; } | sf_sftp
-bash "$PROMOTE" --execute
+  printf -- '-mkdir %s/stable/server\n' "$SF_ROOT"; } | sf_sftp >/dev/null
+bash "$PROMOTE" "${PROMOTE_ARGS[@]}" --execute
 
-# ------------------------------------------------------ 4. checksum publicado
-step "4/7 Conferência do que foi publicado"
+# --------------------------------------------------- 4. conferência do upload
+step "4/7 Conferência do upload"
 for edition in desktop server; do
-  url="$SF_DOWNLOAD/stable/$edition/${PREFIX[$edition]}.iso.sha256"
-  for attempt in $(seq 1 20); do
-    published="$(curl -fsSL "$url" 2>/dev/null | awk '{print $1}')" || published=""
-    [ "$published" = "${SHA256[$edition]}" ] && break
-    echo "Aguardando o SourceForge publicar $edition ($attempt/20)..."; sleep 30
-  done
-  [ "$published" = "${SHA256[$edition]}" ] || fail "checksum em stable/$edition não confere"
-  ok "stable/$edition = ${SHA256[$edition]}"
+  file="${PREFIX[$edition]}.iso"
+  local_size="$(stat -c %s "$BUNDLES/$edition/$file")"
+  remote_size="$(printf 'ls -l %s/stable/%s/%s\n' "$SF_ROOT" "$edition" "$file" | sf_sftp \
+    | awk -v f="$file" '$NF ~ f"$" {print $5}')"
+  [ "$remote_size" = "$local_size" ] || fail "stable/$edition/$file tem ${remote_size:-0} bytes; o local tem $local_size"
+  ok "stable/$edition/$file enviado ($local_size bytes)"
 done
 
 # ------------------------------------------------------------------ 5. site
