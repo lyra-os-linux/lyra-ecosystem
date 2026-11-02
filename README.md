@@ -47,6 +47,29 @@ fingerprint e coincidir com o `RELEASE_SIGNING_FINGERPRINT` dos scripts das
 edições. Ela não compila produtos nem modifica o OBS. Em pushes
 para `main` e pull requests, o workflow também executa a suíte `unittest`.
 
+## Versões upstream dos pacotes de terceiros
+
+[`upstream-versions.toml`](upstream-versions.toml) lista os aplicativos de
+terceiros que a Lyra reempacota (LinuxToys, Zed, CLIs de nuvem) e os pacotes que
+só registram repositórios oficiais (Claude Code, Cursor, HashiCorp).
+[`scripts/check-upstream-versions.py`](scripts/check-upstream-versions.py)
+compara o `Version:` de cada spec com a última versão upstream e cada chave GPG
+fixada com a chave publicada pelo fornecedor, avisando também quando ela expira
+em menos de 60 dias:
+
+```bash
+python3 scripts/check-upstream-versions.py           # specs do workspace local
+python3 scripts/check-upstream-versions.py --remote  # specs da main no GitHub
+```
+
+Sai com 0 quando tudo está em dia, 1 quando algo precisa de atualização e 2
+quando uma verificação falhou. O workflow
+[`upstream-versions.yml`](.github/workflows/upstream-versions.yml) roda todo dia
+às 09:00 UTC (e sob demanda em *Actions → Upstream versions → Run workflow*),
+publica a tabela no resumo do job e mantém aberta a issue "Pacotes de terceiros
+desatualizados" enquanto houver pendências, fechando-a quando tudo fica em dia.
+Para acompanhar um novo pacote, acrescente uma entrada no manifesto.
+
 ## Compilação GNOME offline
 
 [`scripts/offline-builds.py`](scripts/offline-builds.py) oferece `doctor`,

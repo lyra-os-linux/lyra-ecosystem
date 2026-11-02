@@ -1,0 +1,74 @@
+# Third-party applications that Lyra repackages, and where their newest
+# release is published. scripts/check-upstream-versions.py compares each
+# `Version:` in the spec against upstream; `.github/workflows/upstream-versions.yml`
+# runs it every day.
+#
+# [[packages]] source kinds:
+#   github     - latest GitHub release tag of `upstream` (leading "v" dropped)
+#   pypi       - latest PyPI release of `upstream`
+#   gcloud     - top-level "version" of Google's rapid components manifest
+#   aws-cli    - newest entry of the aws/aws-cli v2 CHANGELOG
+#
+# [[keys]] are repository-registration packages (claude-code-repo, ...):
+# they carry no version, only a pinned signing key, which must keep matching
+# the key upstream publishes and must not be close to expiring.
+
+schema = 1
+
+[[packages]]
+name = "linuxtoys"
+repository = "lyra-os-linux/lyraos-desktop-linuxtoys"
+spec = "linuxtoys.spec"
+source = "github"
+upstream = "psygreg/linuxtoys"
+
+[[packages]]
+name = "zed"
+repository = "lyra-os-linux/zededitor"
+spec = "zed.spec"
+source = "github"
+upstream = "zed-industries/zed"
+
+[[packages]]
+name = "doctl"
+repository = "lyra-os-linux/cloud-cli"
+spec = "doctl/doctl.spec"
+source = "github"
+upstream = "digitalocean/doctl"
+
+[[packages]]
+name = "aws-cli-v2"
+repository = "lyra-os-linux/cloud-cli"
+spec = "aws-cli-v2/aws-cli-v2.spec"
+source = "aws-cli"
+
+[[packages]]
+name = "azure-cli"
+repository = "lyra-os-linux/cloud-cli"
+spec = "azure-cli/azure-cli.spec"
+source = "pypi"
+upstream = "azure-cli"
+
+[[packages]]
+name = "google-cloud-cli"
+repository = "lyra-os-linux/cloud-cli"
+spec = "google-cloud-cli/google-cloud-cli.spec"
+source = "gcloud"
+
+[[keys]]
+name = "claude-code-repo"
+repository = "lyra-os-linux/claude-code"
+key = "claude-code.asc"
+upstream = "https://downloads.claude.ai/keys/claude-code.asc"
+
+[[keys]]
+name = "cursor-repo"
+repository = "lyra-os-linux/cursor"
+key = "anysphere.asc"
+upstream = "https://downloads.cursor.com/keys/anysphere.asc"
+
+[[keys]]
+name = "hashicorp-repo"
+repository = "lyra-os-linux/hashicorp"
+key = "hashicorp.asc"
+upstream = "https://rpm.releases.hashicorp.com/gpg"
