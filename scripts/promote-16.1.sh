@@ -210,7 +210,7 @@ publish() {
   local files=()
   while IFS= read -r file; do files+=("$BUNDLE_DIR/$file"); done < <(bundle_files "$edition")
   run rsync -avP --partial \
-    -e "ssh -o UserKnownHostsFile=$KNOWN_HOSTS -o StrictHostKeyChecking=yes" \
+    -e "ssh -o UserKnownHostsFile=$KNOWN_HOSTS -o StrictHostKeyChecking=yes ${LYRA_SSH_OPTS:-}" \
     "${files[@]}" "$remote"
 }
 
