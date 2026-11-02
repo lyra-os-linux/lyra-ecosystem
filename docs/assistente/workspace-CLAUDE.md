@@ -8,7 +8,7 @@ Faça commits, branches e PRs dentro do repositório afetado, nunca na raiz.
 
 Lyra OS é uma distribuição Linux desktop e server baseada no **openSUSE Leap
 16.1**. A edição principal é a **GNOME (Wayland)**, única edição Desktop, com
-lançamento da 16.1 em 05/11/2026. As edições KDE Plasma e XFCE foram
+lançamento da 16.1 em 03/11/2026. As edições KDE Plasma e XFCE foram
 abandonadas em 24/10/2026 (ADR 0018 de `lyraos-desktop`), e seus repositórios
 estão arquivados no GitHub. Os pacotes são publicados no OBS
 (`home:rodrigosbrito:lyra`, `home:rodrigosbrito:lyra:staging` e

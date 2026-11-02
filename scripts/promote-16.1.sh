@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Promoção do Lyra OS 16.1 RC 3 à versão estável 16.1 (19/11/2026).
+# Promoção do Lyra OS 16.1 RC 3 à versão estável 16.1 (03/11/2026).
 #
 # Decisão do mantenedor em 30/10/2026: a RC 3 é a candidata final e a mesma
 # ISO é promovida por tag, sem novo build (lyraos-desktop#227,
