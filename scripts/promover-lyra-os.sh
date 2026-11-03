@@ -164,6 +164,11 @@ step "3/7 Tags e publicação no SourceForge"
 { printf -- '-mkdir %s/stable\n' "$SF_ROOT"
   printf -- '-mkdir %s/stable/desktop\n' "$SF_ROOT"
   printf -- '-mkdir %s/stable/server\n' "$SF_ROOT"; } | sf_sftp >/dev/null
+# Uma execução anterior pode ter parado no meio do envio: apaga o que ela
+# deixou em stable/<edição>/ para o upload começar do zero.
+{ printf -- '-rm %s/stable/desktop/*\n' "$SF_ROOT"
+  printf -- '-rm %s/stable/server/*\n' "$SF_ROOT"; } | sf_sftp >/dev/null
+ok "stable/desktop/ e stable/server/ limpos antes do envio"
 bash "$PROMOTE" "${PROMOTE_ARGS[@]}" --execute
 
 # --------------------------------------------------- 4. conferência do upload
@@ -172,7 +177,7 @@ for edition in desktop server; do
   file="${PREFIX[$edition]}.iso"
   local_size="$(stat -c %s "$BUNDLES/$edition/$file")"
   remote_size="$(printf 'ls -l %s/stable/%s/%s\n' "$SF_ROOT" "$edition" "$file" | sf_sftp \
-    | awk -v f="$file" '$NF ~ f"$" {print $5}')"
+    | awk -v f="$file" '$1 != "sftp>" && $NF ~ f"$" {print $5}')"
   [ "$remote_size" = "$local_size" ] || fail "stable/$edition/$file tem ${remote_size:-0} bytes; o local tem $local_size"
   ok "stable/$edition/$file enviado ($local_size bytes)"
 done
