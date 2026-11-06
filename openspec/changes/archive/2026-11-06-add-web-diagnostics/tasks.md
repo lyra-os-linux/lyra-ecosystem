@@ -18,6 +18,7 @@
 - [x] 2.9 Teste do mantenedor numa VM do Server com os binários novos (30/10/2026)
 
 ## 3. Release
-- [ ] 3.1 vega-web 5.2.0: tag, staging, check, SR, release
-- [ ] 3.2 `lyraos-server`: notas e gate da RC 3 com o `vega-web` 5.2.0
-- [ ] 3.3 Novo build da ISO do Server RC 3 e o gate completo
+- [x] 3.1 vega-web 5.2.0: tag, staging, check, SR, release (tag `v5.2.0`, SR 1393931)
+- [x] 3.2 `lyraos-server`: notas e gate da RC 3 com o `vega-web` 5.2.0
+- [x] 3.3 Novo build da ISO do Server RC 3 e o gate completo (Server 16.1 lançado em 03/11/2026)
+- [x] 3.4 Arquivar a mudança e mover os requisitos para `openspec/specs/`
