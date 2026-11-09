@@ -24,16 +24,28 @@ O vegad DEVE medir e limpar estas categorias:
 | `journal` | arquivos arquivados acima de 500 MB que terminam antes do boot anterior | apaga só esses arquivos, do mais antigo ao mais novo; o boot atual e o anterior ficam |
 | `package-cache` | `/var/cache/zypp/packages` | `zypper clean`, só os pacotes baixados; os metadados ficam |
 | `flatpak-unused` | os runtimes que `flatpak uninstall --unused --system` removeria | esse mesmo comando |
-| `old-kernels` | os kernels que o `purge-kernels` removeria, pela regra `multiversion.kernels` | o `purge-kernels`, dentro de um par de snapshots; um plano com o kernel em uso ou o mais novo é recusado |
+| `old-kernels` | os kernels que o `purge-kernels` removeria, pela regra `multiversion.kernels` | o `purge-kernels`, dentro de um par de snapshots quando o Snapper está configurado (por tentativa: sem Snapper, ou se o snapshot falhar, roda sem ele); um plano com o kernel em uso ou o mais novo é recusado |
 | `snapshots` | os snapshots que a limpeza do Snapper removeria (`number`, `timeline`) | `snapper cleanup number` e `timeline`, que respeitam a política configurada |
 
 Os bytes DEVEM ser os que de fato serão liberados. Onde não dá para medir
 antes (snapshots sem quotas do btrfs), o item DEVE mostrar a quantidade e
-"tamanho desconhecido", nunca um número inventado.
+"tamanho desconhecido", nunca um número inventado. Onde o espaço só volta
+depois (`old-kernels` com Snapper, porque os snapshots ainda guardam os
+arquivos), o item DEVE trazer o token `deferred`, o Vega DEVE dizer que o
+espaço volta quando os snapshots forem limpos, e a limpeza DEVE informar 0
+bytes liberados para essa categoria.
 
 #### Scenario: core dumps
 - **WHEN** existem 30 arquivos em `/var/lib/systemd/coredump` somando 210 MB
 - **THEN** `Scan` devolve `coredumps` com 210 MB, e `Clean` deixa o diretório vazio
+
+#### Scenario: kernels antigos com Snapper
+- **WHEN** o Snapper gerencia a raiz e há kernels antigos a remover
+- **THEN** `Scan` devolve `old-kernels` com o token `deferred`, e `Clean` remove os kernels e informa 0 bytes liberados para a categoria
+
+#### Scenario: kernels antigos sem Snapper
+- **WHEN** a raiz não tem Snapper (Server) e há kernels antigos a remover
+- **THEN** `Clean` remove os kernels sem snapshot e informa os bytes liberados
 
 #### Scenario: kernel em uso
 - **WHEN** há três kernels instalados e o sistema roda no do meio
