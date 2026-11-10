@@ -1,6 +1,6 @@
 # Demais issues
 
-Gerado em 09/11/2026 17:57 a partir do GitHub (`lyra-os-linux`). Todas as outras issues da organização, abertas e fechadas.
+Gerado em 10/11/2026 17:49 a partir do GitHub (`lyra-os-linux`). Todas as outras issues da organização, abertas e fechadas.
 Para atualizar: `python3 relatorios/gerar_relatorios.py`.
 
 Situação: **Na fila** = aberta, sem PR nem commit que a cite · **Começou** = há PR ou commit que cita a issue (citar não prova trabalho: veja a evidência) · **Entregue** = fechada como concluída · **Não planejada** = fechada sem entrega.
@@ -11,7 +11,7 @@ Situação: **Na fila** = aberta, sem PR nem commit que a cite · **Começou** =
 | --- | ---: | ---: | ---: | ---: | ---: |
 | .github | 3 | 1 | 0 | 2 | 0 |
 | beam | 1 | 0 | 0 | 1 | 0 |
-| lyra-ecosystem | 31 | 6 | 1 | 7 | 17 |
+| lyra-ecosystem | 34 | 9 | 1 | 7 | 17 |
 | lyra-firefox-ext | 1 | 0 | 0 | 1 | 0 |
 | lyra-vega-dbus | 3 | 0 | 0 | 3 | 0 |
 | lyraos-desktop | 49 | 6 | 6 | 19 | 18 |
@@ -22,6 +22,7 @@ Situação: **Na fila** = aberta, sem PR nem commit que a cite · **Começou** =
 | lyraos-desktop-welcome | 2 | 1 | 0 | 1 | 0 |
 | lyraos-desktop-xfce | 2 | 2 | 0 | 0 | 0 |
 | lyraos-server | 8 | 1 | 0 | 6 | 1 |
+| site | 2 | 2 | 0 | 0 | 0 |
 | sulafat | 1 | 0 | 0 | 1 | 0 |
 | vega | 171 | 50 | 0 | 121 | 0 |
 | vega-cli | 18 | 0 | 0 | 18 | 0 |
@@ -29,7 +30,7 @@ Situação: **Na fila** = aberta, sem PR nem commit que a cite · **Começou** =
 | vegad | 48 | 2 | 1 | 45 | 0 |
 | vscode | 1 | 0 | 0 | 1 | 0 |
 | zededitor | 1 | 0 | 0 | 1 | 0 |
-| **Total** | **376** | **72** | **9** | **254** | **41** |
+| **Total** | **381** | **77** | **9** | **254** | **41** |
 
 ## .github
 
@@ -80,6 +81,9 @@ Situação: **Na fila** = aberta, sem PR nem commit que a cite · **Começou** =
 | [#64](https://github.com/lyra-os-linux/lyra-ecosystem/issues/64) | Empacotar o SDL Hercules 4.9.1 (emulador de mainframe) para o Leap 16.1 nos repositórios do Lyra | `enhancement` | — | 04/11/2026 | Sim | Não | Não | — | — |
 | [#65](https://github.com/lyra-os-linux/lyra-ecosystem/issues/65) | Lyra no setor público: prefeituras, escolas públicas e órgãos de governo (estudo) | `enhancement` | — | 04/11/2026 | Sim | Não | Não | — | — |
 | [#66](https://github.com/lyra-os-linux/lyra-ecosystem/issues/66) | Hospedar o módulo de segurança Warsaw (bancos) no OBS do Lyra, com binários idênticos aos oficiais | `enhancement` | — | 04/11/2026 | Sim | Não | Não | — | — |
+| [#74](https://github.com/lyra-os-linux/lyra-ecosystem/issues/74) | Criar o livro do Lyra OS (Desktop e Server) | `documentation` | — | 10/11/2026 | Sim | Não | Não | — | — |
+| [#75](https://github.com/lyra-os-linux/lyra-ecosystem/issues/75) | Produto em Rust para criar e pesquisar bugs no GitHub | `enhancement` | — | 10/11/2026 | Sim | Não | Não | — | — |
+| [#76](https://github.com/lyra-os-linux/lyra-ecosystem/issues/76) | Produto para pesquisar e interagir com o fórum (GitHub Discussions) | `enhancement` | — | 10/11/2026 | Sim | Não | Não | — | — |
 
 ## lyra-firefox-ext
 
@@ -222,6 +226,13 @@ Situação: **Na fila** = aberta, sem PR nem commit que a cite · **Começou** =
 | [#25](https://github.com/lyra-os-linux/lyraos-server/issues/25) | [Server RC1] Candidata 16.1-rc.1 sobre Leap 16.1 com as correções #20, #22 e #23 e requalificação do gate | `packaging`, `qa`, `server`, `stability` | — | 14/10/2026 | Não | Sim | Sim | 30/10/2026 | [lyraos-server#26](https://github.com/lyra-os-linux/lyraos-server/pull/26) (mergeado), [lyraos-server#27](https://github.com/lyra-os-linux/lyraos-server/pull/27) (mergeado), [lyraos-server#28](https://github.com/lyra-os-linux/lyraos-server/pull/28) (mergeado), [lyraos-server#29](https://github.com/lyra-os-linux/lyraos-server/pull/29) (mergeado), [lyraos-server#32](https://github.com/lyra-os-linux/lyraos-server/pull/32) (mergeado) |
 | [#41](https://github.com/lyra-os-linux/lyraos-server/issues/41) | Promoção da RC 3 à versão estável 16.1 (03/11/2026) | `server` | — | 30/10/2026 | Não | Sim | Sim | 03/11/2026 | — |
 | [#42](https://github.com/lyra-os-linux/lyraos-server/issues/42) | Notas e site: o Liberar espaço cita Flatpak e Snapper, que não existem no Server | `documentation` | — | 30/10/2026 | Não | Sim | Sim | 06/11/2026 | [site#26](https://github.com/lyra-os-linux/site/pull/26) (mergeado) |
+
+## site
+
+| Issue | Título | Labels | Milestone | Aberta em | Na fila | Começou | Entregue | Fechada em | Evidência |
+| --- | --- | --- | --- | --- | :---: | :---: | :---: | --- | --- |
+| [#27](https://github.com/lyra-os-linux/site/issues/27) | Home: mostrar a quantidade de downloads das ISOs (transparência) | `enhancement` | — | 10/11/2026 | Sim | Não | Não | — | — |
+| [#28](https://github.com/lyra-os-linux/site/issues/28) | Página "Andamento": acompanhar o desenvolvimento sem precisar do GitHub | `enhancement` | — | 10/11/2026 | Sim | Não | Não | — | — |
 
 ## sulafat
 
