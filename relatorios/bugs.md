@@ -1,6 +1,6 @@
 # Bugs
 
-Gerado em 09/11/2026 17:57 a partir do GitHub (`lyra-os-linux`). Issues com o label `bug`, abertas e fechadas (exceto as de Apps Android).
+Gerado em 10/11/2026 09:38 a partir do GitHub (`lyra-os-linux`). Issues com o label `bug`, abertas e fechadas (exceto as de Apps Android).
 Para atualizar: `python3 relatorios/gerar_relatorios.py`.
 
 Situação: **Na fila** = aberta, sem PR nem commit que a cite · **Começou** = há PR ou commit que cita a issue (citar não prova trabalho: veja a evidência) · **Entregue** = fechada como concluída · **Não planejada** = fechada sem entrega.
@@ -9,26 +9,26 @@ Situação: **Na fila** = aberta, sem PR nem commit que a cite · **Começou** =
 
 | Repositório | Total | Na fila | Começou | Entregue | Não planejada |
 | --- | ---: | ---: | ---: | ---: | ---: |
-| beam | 3 | 1 | 0 | 2 | 0 |
+| beam | 3 | 0 | 1 | 2 | 0 |
 | lyra-downloads | 1 | 0 | 0 | 1 | 0 |
 | lyra-ecosystem | 3 | 0 | 0 | 3 | 0 |
-| lyra-vega-dbus | 1 | 1 | 0 | 0 | 0 |
-| lyraos-desktop | 20 | 4 | 2 | 10 | 4 |
+| lyra-vega-dbus | 1 | 0 | 1 | 0 | 0 |
+| lyraos-desktop | 21 | 1 | 6 | 10 | 4 |
 | lyraos-desktop-icons | 1 | 0 | 0 | 1 | 0 |
 | lyraos-desktop-kde | 2 | 0 | 0 | 2 | 0 |
-| lyraos-desktop-linuxtoys | 3 | 1 | 0 | 2 | 0 |
+| lyraos-desktop-linuxtoys | 3 | 0 | 1 | 2 | 0 |
 | lyraos-desktop-sheliak | 5 | 0 | 0 | 5 | 0 |
-| lyraos-desktop-theme | 3 | 1 | 0 | 2 | 0 |
+| lyraos-desktop-theme | 3 | 0 | 1 | 2 | 0 |
 | lyraos-desktop-updater | 9 | 0 | 0 | 9 | 0 |
 | lyraos-desktop-welcome | 1 | 0 | 0 | 1 | 0 |
 | lyraos-desktop-xfce | 2 | 0 | 0 | 2 | 0 |
 | lyraos-server | 6 | 0 | 1 | 5 | 0 |
-| sulafat | 3 | 1 | 0 | 2 | 0 |
-| vega | 20 | 8 | 0 | 12 | 0 |
+| sulafat | 3 | 0 | 1 | 2 | 0 |
+| vega | 20 | 0 | 8 | 12 | 0 |
 | vega-cli | 2 | 0 | 0 | 2 | 0 |
 | vega-web | 10 | 0 | 0 | 10 | 0 |
-| vegad | 31 | 0 | 0 | 31 | 0 |
-| **Total** | **126** | **17** | **3** | **102** | **4** |
+| vegad | 32 | 0 | 1 | 31 | 0 |
+| **Total** | **128** | **1** | **21** | **102** | **4** |
 
 ## beam
 
@@ -36,7 +36,7 @@ Situação: **Na fila** = aberta, sem PR nem commit que a cite · **Começou** =
 | --- | --- | --- | --- | --- | :---: | :---: | :---: | --- | --- |
 | [#2](https://github.com/lyra-os-linux/beam/issues/2) | [P2][RDP] Manter cancelamento e UI responsivos sob bloqueio de escrita | `bug` | Auditoria 2026.09 — Funcionamento e recuperação | 05/09/2026 | Não | Sim | Sim | 11/09/2026 | [beam#3](https://github.com/lyra-os-linux/beam/pull/3) (mergeado) |
 | [#7](https://github.com/lyra-os-linux/beam/issues/7) | Tauri: WebKitWebProcess aborta com corrupção de heap ao fechar (mesmo bug do vega#166) | `bug`, `gnome` | — | 29/10/2026 | Não | Sim | Sim | 29/10/2026 | [beam#8](https://github.com/lyra-os-linux/beam/pull/8) (mergeado), [49546fa](https://github.com/lyra-os-linux/beam/commit/49546fa91427647cf1f366d88467f0ba5c2b731a) |
-| [#11](https://github.com/lyra-os-linux/beam/issues/11) | Chave privada RSA do xrdp (rsakeys.ini) commitada no repositório público | `bug` | — | 09/11/2026 | Sim | Não | Não | — | — |
+| [#11](https://github.com/lyra-os-linux/beam/issues/11) | Chave privada RSA do xrdp (rsakeys.ini) commitada no repositório público | `bug` | — | 09/11/2026 | Não | Sim | Não | — | [beam#12](https://github.com/lyra-os-linux/beam/pull/12) (aberto) |
 
 ## lyra-downloads
 
@@ -56,7 +56,7 @@ Situação: **Na fila** = aberta, sem PR nem commit que a cite · **Começou** =
 
 | Issue | Título | Labels | Milestone | Aberta em | Na fila | Começou | Entregue | Fechada em | Evidência |
 | --- | --- | --- | --- | --- | :---: | :---: | :---: | --- | --- |
-| [#21](https://github.com/lyra-os-linux/lyra-vega-dbus/issues/21) | CI: introspecção contra o vegad não compara assinaturas e o teste ao vivo aceita AuthorizationFailed | `bug` | — | 05/11/2026 | Sim | Não | Não | — | — |
+| [#21](https://github.com/lyra-os-linux/lyra-vega-dbus/issues/21) | CI: introspecção contra o vegad não compara assinaturas e o teste ao vivo aceita AuthorizationFailed | `bug` | — | 05/11/2026 | Não | Sim | Não | — | [lyra-vega-dbus#23](https://github.com/lyra-os-linux/lyra-vega-dbus/pull/23) (aberto), [vegad#155](https://github.com/lyra-os-linux/vegad/pull/155) (aberto) |
 
 ## lyraos-desktop
 
@@ -78,10 +78,11 @@ Situação: **Na fila** = aberta, sem PR nem commit que a cite · **Começou** =
 | [#515](https://github.com/lyra-os-linux/lyraos-desktop/issues/515) | Instalador: subvolume @/var/lib/lyra-upgrade para o rollback guiado | `bug`, `stability` | 16.1-1 | 02/11/2026 | Não | Sim | Não planejada | 03/11/2026 | [lyraos-desktop#513](https://github.com/lyra-os-linux/lyraos-desktop/pull/513) (mergeado) |
 | [#516](https://github.com/lyra-os-linux/lyraos-desktop/issues/516) | Updater 0.2.10: migrar /var/lib/lyra-upgrade para subvolume próprio no boot | `bug`, `packaging`, `stability` | 16.1-1 | 02/11/2026 | Não | Sim | Não planejada | 03/11/2026 | [lyraos-desktop-updater#32](https://github.com/lyra-os-linux/lyraos-desktop-updater/pull/32) (mergeado) |
 | [#517](https://github.com/lyra-os-linux/lyraos-desktop/issues/517) | Updater 0.2.10: recusar Start quando o estado ainda está no subvolume raiz | `bug`, `stability` | 16.1-1 | 02/11/2026 | Não | Sim | Não planejada | 03/11/2026 | [lyraos-desktop-updater#32](https://github.com/lyra-os-linux/lyraos-desktop-updater/pull/32) (mergeado), [75292c4](https://github.com/lyra-os-linux/lyraos-desktop-updater/commit/75292c48c83e5d7f9c72c9b632ac6f9635d5c890) |
-| [#522](https://github.com/lyra-os-linux/lyraos-desktop/issues/522) | Lyra Upgrade: códigos de pós-boot/rollback sem mensagem na interface | `bug` | — | 02/11/2026 | Sim | Não | Não | — | — |
-| [#523](https://github.com/lyra-os-linux/lyraos-desktop/issues/523) | Lyra Upgrade: updated_at não é atualizado pelo worker offline e pelo verificador | `bug` | — | 02/11/2026 | Sim | Não | Não | — | — |
+| [#522](https://github.com/lyra-os-linux/lyraos-desktop/issues/522) | Lyra Upgrade: códigos de pós-boot/rollback sem mensagem na interface | `bug` | — | 02/11/2026 | Não | Sim | Não | — | [lyraos-desktop-updater#34](https://github.com/lyra-os-linux/lyraos-desktop-updater/pull/34) (aberto) |
+| [#523](https://github.com/lyra-os-linux/lyraos-desktop/issues/523) | Lyra Upgrade: updated_at não é atualizado pelo worker offline e pelo verificador | `bug` | — | 02/11/2026 | Não | Sim | Não | — | [lyraos-desktop-updater#35](https://github.com/lyra-os-linux/lyraos-desktop-updater/pull/35) (aberto) |
 | [#524](https://github.com/lyra-os-linux/lyraos-desktop/issues/524) | Sessão live terminou sozinha depois de ociosa (RC 3, causa desconhecida) | `bug`, `qa` | — | 02/11/2026 | Sim | Não | Não | — | — |
-| [#530](https://github.com/lyra-os-linux/lyraos-desktop/issues/530) | Instalador: descoberta de discos roda lsblk como root pelo PATH | `bug` | — | 09/11/2026 | Sim | Não | Não | — | — |
+| [#530](https://github.com/lyra-os-linux/lyraos-desktop/issues/530) | Instalador: descoberta de discos roda lsblk como root pelo PATH | `bug` | — | 09/11/2026 | Não | Sim | Não | — | [lyraos-desktop#533](https://github.com/lyra-os-linux/lyraos-desktop/pull/533) (aberto) |
+| [#531](https://github.com/lyra-os-linux/lyraos-desktop/issues/531) | Sistemas instalados e a ISO 16.1 final se identificam como "16.1 RC 3" | `bug` | — | 10/11/2026 | Não | Sim | Não | — | [lyraos-desktop#532](https://github.com/lyra-os-linux/lyraos-desktop/pull/532) (aberto) |
 
 ## lyraos-desktop-icons
 
@@ -102,7 +103,7 @@ Situação: **Na fila** = aberta, sem PR nem commit que a cite · **Começou** =
 | --- | --- | --- | --- | --- | :---: | :---: | :---: | --- | --- |
 | [#9](https://github.com/lyra-os-linux/lyraos-desktop-linuxtoys/issues/9) | [P2][Automação] Retomar publicação staging após falha parcial | `bug` | Auditoria 2026.09 — Funcionamento e recuperação | 05/09/2026 | Não | Sim | Sim | 10/09/2026 | [lyraos-desktop-linuxtoys#11](https://github.com/lyra-os-linux/lyraos-desktop-linuxtoys/pull/11) (mergeado) |
 | [#10](https://github.com/lyra-os-linux/lyraos-desktop-linuxtoys/issues/10) | [P2][Promoção] Fixar no submitrequest a revisão mostrada na confirmação | `bug` | Auditoria 2026.09 — Manutenção e qualidade | 05/09/2026 | Não | Sim | Sim | 10/09/2026 | [lyraos-desktop-linuxtoys#11](https://github.com/lyra-os-linux/lyraos-desktop-linuxtoys/pull/11) (mergeado), [lyraos-desktop-linuxtoys#13](https://github.com/lyra-os-linux/lyraos-desktop-linuxtoys/pull/13) (mergeado) |
-| [#22](https://github.com/lyra-os-linux/lyraos-desktop-linuxtoys/issues/22) | Timer de atualização aponta para ~/Git/Lyra, e o workspace está em ~/Git/LyraOS | `bug` | — | 09/11/2026 | Sim | Não | Não | — | — |
+| [#22](https://github.com/lyra-os-linux/lyraos-desktop-linuxtoys/issues/22) | Timer de atualização aponta para ~/Git/Lyra, e o workspace está em ~/Git/LyraOS | `bug` | — | 09/11/2026 | Não | Sim | Não | — | [lyraos-desktop-linuxtoys#23](https://github.com/lyra-os-linux/lyraos-desktop-linuxtoys/pull/23) (aberto) |
 
 ## lyraos-desktop-sheliak
 
@@ -120,7 +121,7 @@ Situação: **Na fila** = aberta, sem PR nem commit que a cite · **Começou** =
 | --- | --- | --- | --- | --- | :---: | :---: | :---: | --- | --- |
 | [#11](https://github.com/lyra-os-linux/lyraos-desktop-theme/issues/11) | [P3][Manutenção] Corrigir wrapper de rollback que aponta para script removido | `bug` | Auditoria 2026.09 — Manutenção e qualidade | 05/09/2026 | Não | Sim | Sim | 10/09/2026 | [lyraos-desktop-theme#12](https://github.com/lyra-os-linux/lyraos-desktop-theme/pull/12) (mergeado) |
 | [#22](https://github.com/lyra-os-linux/lyraos-desktop-theme/issues/22) | [GNOME][P3][LibreOffice] libreoffice-branding-Lyra não fornece intro-highres.png, shell/logo.svg e logo_inverted.svg (rpm -V libreoffice acusa 3 arquivos ausentes) | `bug`, `gnome` | — | 18/10/2026 | Não | Sim | Sim | 18/10/2026 | [lyraos-desktop#170](https://github.com/lyra-os-linux/lyraos-desktop/pull/170) (mergeado), [lyraos-desktop-theme#23](https://github.com/lyra-os-linux/lyraos-desktop-theme/pull/23) (mergeado) |
-| [#27](https://github.com/lyra-os-linux/lyraos-desktop-theme/issues/27) | Perfil do GDM criado pelo install-rpm.sh não é removido ao desinstalar | `bug` | — | 09/11/2026 | Sim | Não | Não | — | — |
+| [#27](https://github.com/lyra-os-linux/lyraos-desktop-theme/issues/27) | Perfil do GDM criado pelo install-rpm.sh não é removido ao desinstalar | `bug` | — | 09/11/2026 | Não | Sim | Não | — | [lyraos-desktop-theme#28](https://github.com/lyra-os-linux/lyraos-desktop-theme/pull/28) (aberto) |
 
 ## lyraos-desktop-updater
 
@@ -166,7 +167,7 @@ Situação: **Na fila** = aberta, sem PR nem commit que a cite · **Começou** =
 | --- | --- | --- | --- | --- | :---: | :---: | :---: | --- | --- |
 | [#2](https://github.com/lyra-os-linux/sulafat/issues/2) | [P2][SSH] Preservar precedência de Include ao editar um host | `bug` | Auditoria 2026.09 — Funcionamento e recuperação | 05/09/2026 | Não | Sim | Sim | 10/09/2026 | [sulafat#3](https://github.com/lyra-os-linux/sulafat/pull/3) (mergeado) |
 | [#6](https://github.com/lyra-os-linux/sulafat/issues/6) | Tauri: WebKitWebProcess aborta com corrupção de heap ao fechar (mesmo bug do vega#166) | `bug`, `gnome` | — | 29/10/2026 | Não | Sim | Sim | 29/10/2026 | [sulafat#7](https://github.com/lyra-os-linux/sulafat/pull/7) (mergeado), [ac11f80](https://github.com/lyra-os-linux/sulafat/commit/ac11f801062cff04fbb027a20640604ffcd4e8fd) |
-| [#10](https://github.com/lyra-os-linux/sulafat/issues/10) | Em release, um intervalo de 400 ms serializa o terminal inteiro sem parar | `bug` | — | 09/11/2026 | Sim | Não | Não | — | — |
+| [#10](https://github.com/lyra-os-linux/sulafat/issues/10) | Em release, um intervalo de 400 ms serializa o terminal inteiro sem parar | `bug` | — | 09/11/2026 | Não | Sim | Não | — | [sulafat#11](https://github.com/lyra-os-linux/sulafat/pull/11) (aberto) |
 
 ## vega
 
@@ -184,14 +185,14 @@ Situação: **Na fila** = aberta, sem PR nem commit que a cite · **Começou** =
 | [#126](https://github.com/lyra-os-linux/vega/issues/126) | [P2][Personalização] Fixar cabeçalho durante rolagem e exibir ícone de Tema | `bug` | Auditoria 2026.09 — Funcionamento e recuperação | 05/09/2026 | Não | Sim | Sim | 10/09/2026 | [677818b](https://github.com/lyra-os-linux/vega/commit/677818b2290d901e8ec696a9a650269f44ba6079) |
 | [#166](https://github.com/lyra-os-linux/vega/issues/166) | Tauri: WebKitWebProcess aborta com corrupção de heap ao fechar o Vega (EGL Mesa+NVIDIA no mesmo processo) | `bug`, `gnome` | — | 28/10/2026 | Não | Sim | Sim | 28/10/2026 | [vega#167](https://github.com/lyra-os-linux/vega/pull/167) (mergeado) |
 | [#178](https://github.com/lyra-os-linux/vega/issues/178) | Diagnóstico: teste recusado mostra o toast "Diagnóstico concluído" e esconde o motivo | `bug`, `gnome` | — | 31/10/2026 | Não | Sim | Sim | 31/10/2026 | [vega#179](https://github.com/lyra-os-linux/vega/pull/179) (mergeado), [10f56bd](https://github.com/lyra-os-linux/vega/commit/10f56bd4ad44f976caf5be9ee00ffdc5cdde0c39) |
-| [#238](https://github.com/lyra-os-linux/vega/issues/238) | Liberar espaço: XDG_CACHE_HOME igual ao $HOME lista pastas pessoais como cache de aplicativo | `bug` | — | 05/11/2026 | Sim | Não | Não | — | — |
-| [#239](https://github.com/lyra-os-linux/vega/issues/239) | Liberar espaço: categoria desconhecida do vegad conta como segura e quebra "Limpar tudo" | `bug` | — | 05/11/2026 | Sim | Não | Não | — | — |
-| [#240](https://github.com/lyra-os-linux/vega/issues/240) | Liberar espaço: checagem de pasta em uso falha quando o cache é acessado por link simbólico | `bug` | — | 05/11/2026 | Sim | Não | Não | — | — |
-| [#241](https://github.com/lyra-os-linux/vega/issues/241) | Liberar espaço: política inconsistente para pastas ancestrais que são links (lixeira, miniaturas, cache) | `bug` | — | 05/11/2026 | Sim | Não | Não | — | — |
-| [#242](https://github.com/lyra-os-linux/vega/issues/242) | Liberar espaço: tamanho dos runtimes Flatpak do usuário é superestimado | `bug` | — | 05/11/2026 | Sim | Não | Não | — | — |
-| [#243](https://github.com/lyra-os-linux/vega/issues/243) | Liberar espaço: mensagens do backend sem tradução, rótulo em inglês duplicado e .pot desatualizado | `bug`, `i18n` | — | 05/11/2026 | Sim | Não | Não | — | — |
-| [#245](https://github.com/lyra-os-linux/vega/issues/245) | IDs de transação colidem entre apps do Windows e atualização de firmware | `bug` | — | 09/11/2026 | Sim | Não | Não | — | — |
-| [#246](https://github.com/lyra-os-linux/vega/issues/246) | scripts/qa-packaging.sh falha: confere um arquivo que não existe mais | `bug` | — | 09/11/2026 | Sim | Não | Não | — | — |
+| [#238](https://github.com/lyra-os-linux/vega/issues/238) | Liberar espaço: XDG_CACHE_HOME igual ao $HOME lista pastas pessoais como cache de aplicativo | `bug` | — | 05/11/2026 | Não | Sim | Não | — | [vega#247](https://github.com/lyra-os-linux/vega/pull/247) (aberto), [vega#250](https://github.com/lyra-os-linux/vega/pull/250) (aberto) |
+| [#239](https://github.com/lyra-os-linux/vega/issues/239) | Liberar espaço: categoria desconhecida do vegad conta como segura e quebra "Limpar tudo" | `bug` | — | 05/11/2026 | Não | Sim | Não | — | [vega#248](https://github.com/lyra-os-linux/vega/pull/248) (aberto) |
+| [#240](https://github.com/lyra-os-linux/vega/issues/240) | Liberar espaço: checagem de pasta em uso falha quando o cache é acessado por link simbólico | `bug` | — | 05/11/2026 | Não | Sim | Não | — | [vega#249](https://github.com/lyra-os-linux/vega/pull/249) (aberto) |
+| [#241](https://github.com/lyra-os-linux/vega/issues/241) | Liberar espaço: política inconsistente para pastas ancestrais que são links (lixeira, miniaturas, cache) | `bug` | — | 05/11/2026 | Não | Sim | Não | — | [vega#250](https://github.com/lyra-os-linux/vega/pull/250) (aberto) |
+| [#242](https://github.com/lyra-os-linux/vega/issues/242) | Liberar espaço: tamanho dos runtimes Flatpak do usuário é superestimado | `bug` | — | 05/11/2026 | Não | Sim | Não | — | [vega#251](https://github.com/lyra-os-linux/vega/pull/251) (aberto), [vegad#154](https://github.com/lyra-os-linux/vegad/pull/154) (aberto) |
+| [#243](https://github.com/lyra-os-linux/vega/issues/243) | Liberar espaço: mensagens do backend sem tradução, rótulo em inglês duplicado e .pot desatualizado | `bug`, `i18n` | — | 05/11/2026 | Não | Sim | Não | — | [vega#247](https://github.com/lyra-os-linux/vega/pull/247) (aberto), [vega#252](https://github.com/lyra-os-linux/vega/pull/252) (aberto) |
+| [#245](https://github.com/lyra-os-linux/vega/issues/245) | IDs de transação colidem entre apps do Windows e atualização de firmware | `bug` | — | 09/11/2026 | Não | Sim | Não | — | [vega#253](https://github.com/lyra-os-linux/vega/pull/253) (aberto) |
+| [#246](https://github.com/lyra-os-linux/vega/issues/246) | scripts/qa-packaging.sh falha: confere um arquivo que não existe mais | `bug` | — | 09/11/2026 | Não | Sim | Não | — | [vega#254](https://github.com/lyra-os-linux/vega/pull/254) (aberto) |
 
 ## vega-cli
 
@@ -250,3 +251,4 @@ Situação: **Na fila** = aberta, sem PR nem commit que a cite · **Começou** =
 | [#146](https://github.com/lyra-os-linux/vegad/issues/146) | Snapshots: recusar o snapshot 0 do Snapper no próprio vegad | `bug` | — | 09/11/2026 | Não | Sim | Sim | 09/11/2026 | [vegad#147](https://github.com/lyra-os-linux/vegad/pull/147) (mergeado), [vegad#152](https://github.com/lyra-os-linux/vegad/pull/152) (mergeado) |
 | [#148](https://github.com/lyra-os-linux/vegad/issues/148) | Kernel: instalar ou remover dá sucesso mesmo sem refazer o initrd e o GRUB | `bug` | — | 09/11/2026 | Não | Sim | Sim | 09/11/2026 | [vegad#149](https://github.com/lyra-os-linux/vegad/pull/149) (mergeado), [vegad#152](https://github.com/lyra-os-linux/vegad/pull/152) (mergeado) |
 | [#150](https://github.com/lyra-os-linux/vegad/issues/150) | Diagnóstico: limite de 32 MiB da saída nunca funcionou, e o corte não é avisado | `bug` | — | 09/11/2026 | Não | Sim | Sim | 09/11/2026 | [vegad#151](https://github.com/lyra-os-linux/vegad/pull/151) (mergeado), [vegad#152](https://github.com/lyra-os-linux/vegad/pull/152) (mergeado) |
+| [#153](https://github.com/lyra-os-linux/vegad/issues/153) | flatpak-unused: tamanho conta arquivos compartilhados com runtimes que ficam | `bug` | — | 10/11/2026 | Não | Sim | Não | — | [vegad#154](https://github.com/lyra-os-linux/vegad/pull/154) (aberto) |
