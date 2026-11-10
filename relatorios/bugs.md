@@ -1,6 +1,6 @@
 # Bugs
 
-Gerado em 10/11/2026 17:49 a partir do GitHub (`lyra-os-linux`). Issues com o label `bug`, abertas e fechadas (exceto as de Apps Android).
+Gerado em 10/11/2026 18:04 a partir do GitHub (`lyra-os-linux`). Issues com o label `bug`, abertas e fechadas (exceto as de Apps Android).
 Para atualizar: `python3 relatorios/gerar_relatorios.py`.
 
 Situação: **Na fila** = aberta, sem PR nem commit que a cite · **Começou** = há PR ou commit que cita a issue (citar não prova trabalho: veja a evidência) · **Entregue** = fechada como concluída · **Não planejada** = fechada sem entrega.
@@ -82,7 +82,7 @@ Situação: **Na fila** = aberta, sem PR nem commit que a cite · **Começou** =
 | [#523](https://github.com/lyra-os-linux/lyraos-desktop/issues/523) | Lyra Upgrade: updated_at não é atualizado pelo worker offline e pelo verificador | `bug` | — | 02/11/2026 | Não | Sim | Sim | 10/11/2026 | [lyraos-desktop-updater#35](https://github.com/lyra-os-linux/lyraos-desktop-updater/pull/35) (mergeado), [lyraos-desktop-updater#36](https://github.com/lyra-os-linux/lyraos-desktop-updater/pull/36) (mergeado) |
 | [#524](https://github.com/lyra-os-linux/lyraos-desktop/issues/524) | Sessão live terminou sozinha depois de ociosa (RC 3, causa desconhecida) | `bug`, `qa` | — | 02/11/2026 | Não | Não | Não planejada | 10/11/2026 | — |
 | [#530](https://github.com/lyra-os-linux/lyraos-desktop/issues/530) | Instalador: descoberta de discos roda lsblk como root pelo PATH | `bug` | — | 09/11/2026 | Não | Sim | Sim | 10/11/2026 | [lyraos-desktop#533](https://github.com/lyra-os-linux/lyraos-desktop/pull/533) (mergeado), [lyraos-desktop#534](https://github.com/lyra-os-linux/lyraos-desktop/pull/534) (mergeado) |
-| [#531](https://github.com/lyra-os-linux/lyraos-desktop/issues/531) | Sistemas instalados e a ISO 16.1 final se identificam como "16.1 RC 3" | `bug` | — | 10/11/2026 | Não | Sim | Sim | 10/11/2026 | [lyraos-desktop#532](https://github.com/lyra-os-linux/lyraos-desktop/pull/532) (mergeado) |
+| [#531](https://github.com/lyra-os-linux/lyraos-desktop/issues/531) | Sistemas instalados e a ISO 16.1 final se identificam como "16.1 RC 3" | `bug` | — | 10/11/2026 | Não | Sim | Sim | 10/11/2026 | [lyraos-desktop#532](https://github.com/lyra-os-linux/lyraos-desktop/pull/532) (mergeado), [lyraos-desktop#537](https://github.com/lyra-os-linux/lyraos-desktop/pull/537) (mergeado) |
 
 ## lyraos-desktop-icons
 

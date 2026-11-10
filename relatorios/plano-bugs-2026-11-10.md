@@ -2,7 +2,7 @@
 
 Regras do dia:
 
-- Bug se resolve **sem EGM**. Se um item virar melhoria, ele sai do plano e vai para o EGM.
+- Só bugs. Se um item virar melhoria, ele sai do plano e vira uma demanda própria.
 - As decisões são do mantenedor, uma pergunta por vez.
 - Cada issue tem branch e PR próprios.
   - Código empacotado no OBS: o PR usa `Refs #N`, e a issue só fecha depois da publicação no OBS.
@@ -73,10 +73,10 @@ Fechar com a versão nova do vega (hoje 5.13.1) no lote do OBS.
 - **lyraos-desktop#524**: a sessão live cai por ociosidade. Precisa reproduzir com `systemd.journald.forward_to_console=1 console=ttyS0`.
 - **#22 e #82 (NVIDIA)**: dependem de hardware físico, o mantenedor decide quando.
 
-## Fora do dia (EGM ou decisão pendente)
+## Fora do dia (melhoria ou decisão pendente)
 
 - vega-web #19 e #25, e o `deferred` no Liberar espaço.
 - vegad #145, #122 e #123.
 - Brainstorm da loja (parado na pergunta 4).
-- `EGM.md`: commitar ou apagar.
+- `EGM.md`: apagados em 11/11/2026 (EGM abandonado por custo).
 - Seção "Driver NVIDIA" desatualizada no README do vega-web.
