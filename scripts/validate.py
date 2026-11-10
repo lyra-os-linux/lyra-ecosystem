@@ -326,9 +326,11 @@ def validate() -> list[str]:
     stage_prefix = {"alpha": "Alpha", "beta": "Beta", "rc": "RC"}.get(
         release["stage"], release["stage"].capitalize()
     )
-    stage_label = f"{stage_prefix} {release['iteration']}"
+    # A final release has no stage label: the README must not name any stage.
+    final = release["stage"] == "release"
+    stage_label = "" if final else f"{stage_prefix} {release['iteration']}"
     readme = (WORKSPACE / "lyraos-desktop" / "README.md").read_text()
-    if stage_label not in readme:
+    if not final and stage_label not in readme:
         errors.append(f"lyraos-desktop/README.md: current stage {stage_label!r} not found")
     stale = re.findall(r"\b(?:Alpha|Beta|RC)\s+\d+\b", readme, flags=re.IGNORECASE)
     mismatches = sorted({value for value in stale if value.lower() != stage_label.lower()})
