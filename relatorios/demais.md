@@ -1,6 +1,6 @@
 # Demais issues
 
-Gerado em 11/11/2026 07:32 a partir do GitHub (`lyra-os-linux`). Todas as outras issues da organização, abertas e fechadas.
+Gerado em 11/11/2026 07:34 a partir do GitHub (`lyra-os-linux`). Todas as outras issues da organização, abertas e fechadas.
 Para atualizar: `python3 relatorios/gerar_relatorios.py`.
 
 Situação: **Na fila** = aberta, sem PR nem commit que a cite · **Começou** = há PR ou commit que cita a issue (citar não prova trabalho: veja a evidência) · **Entregue** = fechada como concluída · **Não planejada** = fechada sem entrega.
@@ -24,13 +24,13 @@ Situação: **Na fila** = aberta, sem PR nem commit que a cite · **Começou** =
 | lyraos-server | 8 | 1 | 0 | 6 | 1 |
 | site | 2 | 2 | 0 | 0 | 0 |
 | sulafat | 1 | 0 | 0 | 1 | 0 |
-| vega | 172 | 47 | 3 | 122 | 0 |
+| vega | 172 | 47 | 2 | 123 | 0 |
 | vega-cli | 18 | 0 | 0 | 18 | 0 |
 | vega-web | 9 | 1 | 1 | 7 | 0 |
 | vegad | 48 | 2 | 1 | 45 | 0 |
 | vscode | 1 | 0 | 0 | 1 | 0 |
 | zededitor | 1 | 0 | 0 | 1 | 0 |
-| **Total** | **382** | **68** | **8** | **261** | **45** |
+| **Total** | **382** | **68** | **7** | **262** | **45** |
 
 ## .github
 
@@ -385,7 +385,7 @@ Situação: **Na fila** = aberta, sem PR nem commit que a cite · **Começou** =
 | [#203](https://github.com/lyra-os-linux/vega/issues/203) | Sites como apps (PWA): Microsoft 365, Jira, Asana, Trello, Canva… com ícone e janela própria | `enhancement` | — | 04/11/2026 | Sim | Não | Não | — | — |
 | [#204](https://github.com/lyra-os-linux/vega/issues/204) | Público ciência de dados e IA local (estudo) | `enhancement` | — | 04/11/2026 | Sim | Não | Não | — | — |
 | [#205](https://github.com/lyra-os-linux/vega/issues/205) | Público arquitetura e engenharia: CAD, BIM, eletrônica e simulação (estudo) | `enhancement` | — | 04/11/2026 | Sim | Não | Não | — | — |
-| [#206](https://github.com/lyra-os-linux/vega/issues/206) | Loja: verificação automática do catálogo no CI (IDs do Flathub, pacotes, URLs e checksums) | `enhancement` | — | 04/11/2026 | Não | Sim | Não | — | [vega#259](https://github.com/lyra-os-linux/vega/pull/259) (aberto) |
+| [#206](https://github.com/lyra-os-linux/vega/issues/206) | Loja: verificação automática do catálogo no CI (IDs do Flathub, pacotes, URLs e checksums) | `enhancement` | — | 04/11/2026 | Não | Sim | Sim | 11/11/2026 | [vega#259](https://github.com/lyra-os-linux/vega/pull/259) (mergeado), [4c172f2](https://github.com/lyra-os-linux/vega/commit/4c172f2136f9735b915d897a21c7244d7234200f) |
 | [#207](https://github.com/lyra-os-linux/vega/issues/207) | Loja: busca e tags no catálogo curado, entre todas as abas | `enhancement` | — | 04/11/2026 | Não | Sim | Não | — | [vega#262](https://github.com/lyra-os-linux/vega/pull/262) (aberto) |
 | [#208](https://github.com/lyra-os-linux/vega/issues/208) | Loja: componente compartilhado de download guiado pelo navegador (login no site do fabricante + conferência do arquivo) | `enhancement` | — | 04/11/2026 | Sim | Não | Não | — | — |
 | [#209](https://github.com/lyra-os-linux/vega/issues/209) | Abrir o Vega numa página e aba específicas (deep link), para o Welcome e para links da documentação | `enhancement` | — | 04/11/2026 | Não | Sim | Sim | 11/11/2026 | [vega#257](https://github.com/lyra-os-linux/vega/pull/257) (mergeado), [vega#258](https://github.com/lyra-os-linux/vega/pull/258) (mergeado) |
@@ -415,7 +415,7 @@ Situação: **Na fila** = aberta, sem PR nem commit que a cite · **Começou** =
 | [#235](https://github.com/lyra-os-linux/vega/issues/235) | Caso Rapid Photo Downloader: importação de fotos de cartões (unresolvable no openSUSE) | `enhancement` | — | 04/11/2026 | Sim | Não | Não | — | — |
 | [#236](https://github.com/lyra-os-linux/vega/issues/236) | Caso DeVeDe: criação de DVD de vídeo (upstream arquivado — provavelmente descartar) | `enhancement` | — | 04/11/2026 | Sim | Não | Não | — | — |
 | [#237](https://github.com/lyra-os-linux/vega/issues/237) | Caso IDJC: rádio online / DJ ao vivo (sem pacote no openSUSE) | `enhancement` | — | 04/11/2026 | Sim | Não | Não | — | — |
-| [#261](https://github.com/lyra-os-linux/vega/issues/261) | Avaliar o Raven no lugar do Wine nos Apps do Windows (estudo) | `enhancement` | — | 10/11/2026 | Não | Sim | Não | — | [lyra-ecosystem#80](https://github.com/lyra-os-linux/lyra-ecosystem/pull/80) (aberto) |
+| [#261](https://github.com/lyra-os-linux/vega/issues/261) | Avaliar o Raven no lugar do Wine nos Apps do Windows (estudo) | `enhancement` | — | 10/11/2026 | Não | Sim | Não | — | [lyra-ecosystem#80](https://github.com/lyra-os-linux/lyra-ecosystem/pull/80) (mergeado) |
 
 ## vega-cli
 
