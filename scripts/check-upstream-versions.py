@@ -2,10 +2,10 @@
 """Report repackaged third-party applications that are behind upstream.
 
 Reads upstream-versions.toml, compares each spec `Version:` with the newest
-upstream release and each pinned repository signing key with the key upstream
-publishes. Specs and keys come from the local workspace (LYRA_WORKSPACE, the
-directory above lyra-ecosystem by default) or, with --remote, from the main
-branch on GitHub.
+upstream release (or the pinned official file checksum) and each pinned
+repository signing key with the key upstream publishes. Specs and keys come
+from the local workspace (LYRA_WORKSPACE, the directory above lyra-ecosystem
+by default) or, with --remote, from the main branch on GitHub.
 
 Exit codes:
   0 - everything is current
@@ -16,6 +16,7 @@ Exit codes:
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 import os
 import re
@@ -26,6 +27,7 @@ import tempfile
 import time
 import tomllib
 import urllib.request
+import xml.etree.ElementTree as ET
 from dataclasses import dataclass
 from pathlib import Path
 
@@ -66,6 +68,34 @@ def read_packaged(repository: str, path: str, remote: bool) -> bytes:
     return (WORKSPACE / repository.split("/", 1)[1] / path).read_bytes()
 
 
+def service_checksum(service: str, filename: str) -> str:
+    """SHA-256 pinned by the OBS verify_file service for a downloaded file."""
+    root = ET.fromstring(service)
+    expected = f"_service:download_url:{filename}"
+    for item in root.findall("service"):
+        if item.get("name") != "verify_file":
+            continue
+        params = {param.get("name"): (param.text or "").strip() for param in item}
+        if params.get("file") != expected:
+            continue
+        if params.get("verifier") != "sha256":
+            raise ValueError(f"{filename}: verifier não é sha256")
+        checksum = params.get("checksum", "")
+        if not re.fullmatch(r"[0-9a-f]{64}", checksum):
+            raise ValueError(f"{filename}: checksum inválido em _service")
+        return checksum
+    raise ValueError(f"{filename}: verify_file ausente em _service")
+
+
+def fetch_digest(url: str) -> tuple[str, str | None]:
+    request = urllib.request.Request(url, headers={"User-Agent": "lyra-upstream-versions"})
+    digest = hashlib.sha256()
+    with urllib.request.urlopen(request, timeout=60) as response:
+        for chunk in iter(lambda: response.read(1 << 20), b""):
+            digest.update(chunk)
+        return digest.hexdigest(), response.headers.get("Last-Modified")
+
+
 def spec_version(spec: str) -> str:
     match = re.search(r"^Version:\s*(\S+)", spec, re.MULTILINE)
     if not match:
@@ -95,10 +125,37 @@ def latest_upstream(package: dict) -> str:
     raise ValueError(f"source desconhecido: {source}")
 
 
+def upstream_urls(package: dict) -> list[str]:
+    upstream = package["upstream"]
+    return [upstream] if isinstance(upstream, str) else list(upstream)
+
+
+def check_pinned_file(package: dict, current: str, remote: bool) -> Result:
+    service = read_packaged(package["repository"], package["service"], remote).decode()
+    expected = service_checksum(service, package["file"])
+    digests: list[str] = []
+    notes: list[str] = []
+    for url in upstream_urls(package):
+        actual, modified = fetch_digest(url)
+        digests.append(actual)
+        label = url.rsplit("/", 1)[-1]
+        if actual == expected:
+            note = f"{label}: SHA-256 confere"
+        else:
+            note = f"{label}: SHA-256 divergente; atualizar _service, manifesto e spec em {package['repository']}"
+        if modified:
+            note += f" (Last-Modified {modified})"
+        notes.append(note)
+    status = OK if all(digest == expected for digest in digests) else OUTDATED
+    return Result(package["name"], current, f"sha256:{digests[0][:12]}", status, "; ".join(notes))
+
+
 def check_package(package: dict, remote: bool) -> Result:
     name = package["name"]
     try:
         current = spec_version(read_packaged(package["repository"], package["spec"], remote).decode())
+        if package["source"] == "url-sha256":
+            return check_pinned_file(package, current, remote)
         upstream = latest_upstream(package)
     except Exception as error:  # noqa: BLE001 - every failure is reported, not raised
         return Result(name, "?", "?", ERROR, str(error))

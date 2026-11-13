@@ -8,6 +8,10 @@
 #   pypi       - latest PyPI release of `upstream`
 #   gcloud     - top-level "version" of Google's rapid components manifest
 #   aws-cli    - newest entry of the aws/aws-cli v2 CHANGELOG
+#   url-sha256 - official file at `upstream` (a URL or a list of mirrors) whose
+#                SHA-256 is pinned in the `service` file of `repository` for
+#                `file`; reports a change (and Last-Modified) when the remote
+#                bytes differ. Every mirror must match the same checksum.
 #
 # [[keys]] are repository-registration packages (claude-code-repo, ...):
 # they carry no version, only a pinned signing key, which must keep matching
@@ -54,6 +58,18 @@ name = "google-cloud-cli"
 repository = "lyra-os-linux/cloud-cli"
 spec = "google-cloud-cli/google-cloud-cli.spec"
 source = "gcloud"
+
+[[packages]]
+name = "warsaw"
+repository = "lyra-os-linux/warsaw"
+spec = "warsaw.spec"
+source = "url-sha256"
+upstream = [
+  "https://cloud.gastecnologia.com.br/bb/downloads/ws/warsaw_setup64.rpm",
+  "https://cloud.gastecnologia.com.br/cef/warsaw/install/GBPCEFwr64.rpm",
+]
+service = "_service"
+file = "warsaw_setup64.rpm"
 
 [[keys]]
 name = "claude-code-repo"

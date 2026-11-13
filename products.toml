@@ -8,7 +8,7 @@ owner = "lyra-os-linux"
 local_path = "lyraos-desktop"
 release_cycle = "independent"
 obs_packages = ["lyra-installer"]
-consumes = ["beam", "sulafat", "vega", "vscode", "cursor", "claude-code", "cloud-cli", "hashicorp", "zededitor", "lyraos-desktop-linuxtoys", "lyraos-desktop-sheliak", "lyraos-desktop-theme", "lyraos-desktop-updater", "lyraos-desktop-welcome", "lyraos-desktop-icons", "lyraos-desktop-wallpapers", "lyra-downloads", "lyra-firefox-ext", "lyra-vms"]
+consumes = ["beam", "sulafat", "vega", "vscode", "cursor", "claude-code", "cloud-cli", "hashicorp", "zededitor", "warsaw", "lyraos-desktop-linuxtoys", "lyraos-desktop-sheliak", "lyraos-desktop-theme", "lyraos-desktop-updater", "lyraos-desktop-welcome", "lyraos-desktop-icons", "lyraos-desktop-wallpapers", "lyra-downloads", "lyra-firefox-ext", "lyra-vms"]
 release_manifest = "release.toml"
 release_priority = "primary"
 
@@ -208,6 +208,16 @@ owner = "lyra-os-linux"
 local_path = "zededitor"
 upstream = "zed-industries/zed"
 obs_packages = ["zed"]
+consumed_by = ["lyraos-desktop"]
+
+[[products]]
+id = "warsaw"
+kind = "third-party-packaging"
+repository = "lyra-os-linux/warsaw"
+owner = "lyra-os-linux"
+local_path = "warsaw"
+upstream = "topaz/warsaw"
+obs_packages = ["warsaw"]
 consumed_by = ["lyraos-desktop"]
 
 [[products]]
