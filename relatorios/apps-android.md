@@ -1,6 +1,6 @@
 # Apps Android
 
-Gerado em 11/11/2026 10:57 a partir do GitHub (`lyra-os-linux`). Issues da milestone **Apps Android** ou com o label `aguardando-estabilizar`.
+Gerado em 14/11/2026 08:56 a partir do GitHub (`lyra-os-linux`). Issues da milestone **Apps Android** ou com o label `aguardando-estabilizar`.
 Para atualizar: `python3 relatorios/gerar_relatorios.py`.
 
 Situação: **Na fila** = aberta, sem PR nem commit que a cite · **Começou** = há PR ou commit que cita a issue (citar não prova trabalho: veja a evidência) · **Entregue** = fechada como concluída · **Não planejada** = fechada sem entrega.
