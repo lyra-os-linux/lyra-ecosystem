@@ -1,6 +1,6 @@
 # Bugs
 
-Gerado em 12/11/2026 09:52 a partir do GitHub (`lyra-os-linux`). Issues com o label `bug`, abertas e fechadas (exceto as de Apps Android).
+Gerado em 14/11/2026 08:56 a partir do GitHub (`lyra-os-linux`). Issues com o label `bug`, abertas e fechadas (exceto as de Apps Android).
 Para atualizar: `python3 relatorios/gerar_relatorios.py`.
 
 Situação: **Na fila** = aberta, sem PR nem commit que a cite · **Começou** = há PR ou commit que cita a issue (citar não prova trabalho: veja a evidência) · **Entregue** = fechada como concluída · **Não planejada** = fechada sem entrega.
@@ -28,7 +28,8 @@ Situação: **Na fila** = aberta, sem PR nem commit que a cite · **Começou** =
 | vega-cli | 2 | 0 | 0 | 2 | 0 |
 | vega-web | 10 | 0 | 0 | 10 | 0 |
 | vegad | 32 | 0 | 0 | 32 | 0 |
-| **Total** | **128** | **0** | **0** | **121** | **7** |
+| warsaw | 2 | 1 | 1 | 0 | 0 |
+| **Total** | **130** | **1** | **1** | **121** | **7** |
 
 ## beam
 
@@ -252,3 +253,10 @@ Situação: **Na fila** = aberta, sem PR nem commit que a cite · **Começou** =
 | [#148](https://github.com/lyra-os-linux/vegad/issues/148) | Kernel: instalar ou remover dá sucesso mesmo sem refazer o initrd e o GRUB | `bug` | — | 09/11/2026 | Não | Sim | Sim | 09/11/2026 | [vegad#149](https://github.com/lyra-os-linux/vegad/pull/149) (mergeado), [vegad#152](https://github.com/lyra-os-linux/vegad/pull/152) (mergeado) |
 | [#150](https://github.com/lyra-os-linux/vegad/issues/150) | Diagnóstico: limite de 32 MiB da saída nunca funcionou, e o corte não é avisado | `bug` | — | 09/11/2026 | Não | Sim | Sim | 09/11/2026 | [vegad#151](https://github.com/lyra-os-linux/vegad/pull/151) (mergeado), [vegad#152](https://github.com/lyra-os-linux/vegad/pull/152) (mergeado) |
 | [#153](https://github.com/lyra-os-linux/vegad/issues/153) | flatpak-unused: tamanho conta arquivos compartilhados com runtimes que ficam | `bug` | — | 10/11/2026 | Não | Sim | Sim | 10/11/2026 | [vegad#154](https://github.com/lyra-os-linux/vegad/pull/154) (mergeado) |
+
+## warsaw
+
+| Issue | Título | Labels | Milestone | Aberta em | Na fila | Começou | Entregue | Fechada em | Evidência |
+| --- | --- | --- | --- | --- | :---: | :---: | :---: | --- | --- |
+| [#1](https://github.com/lyra-os-linux/warsaw/issues/1) | Atualização com o warsaw.service ativo mantém o core antigo rodando | `bug` | — | 14/11/2026 | Não | Sim | Não | — | [warsaw#5](https://github.com/lyra-os-linux/warsaw/pull/5) (aberto) |
+| [#2](https://github.com/lyra-os-linux/warsaw/issues/2) | Confirmar que o pkill da remoção encontra os processos auxiliares do Warsaw | `bug` | — | 14/11/2026 | Sim | Não | Não | — | — |

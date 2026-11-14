@@ -1,6 +1,6 @@
 # Demais issues
 
-Gerado em 12/11/2026 09:52 a partir do GitHub (`lyra-os-linux`). Todas as outras issues da organização, abertas e fechadas.
+Gerado em 14/11/2026 08:56 a partir do GitHub (`lyra-os-linux`). Todas as outras issues da organização, abertas e fechadas.
 Para atualizar: `python3 relatorios/gerar_relatorios.py`.
 
 Situação: **Na fila** = aberta, sem PR nem commit que a cite · **Começou** = há PR ou commit que cita a issue (citar não prova trabalho: veja a evidência) · **Entregue** = fechada como concluída · **Não planejada** = fechada sem entrega.
@@ -11,7 +11,7 @@ Situação: **Na fila** = aberta, sem PR nem commit que a cite · **Começou** =
 | --- | ---: | ---: | ---: | ---: | ---: |
 | .github | 3 | 1 | 0 | 2 | 0 |
 | beam | 1 | 0 | 0 | 1 | 0 |
-| lyra-ecosystem | 34 | 9 | 1 | 7 | 17 |
+| lyra-ecosystem | 35 | 9 | 2 | 7 | 17 |
 | lyra-firefox-ext | 1 | 0 | 0 | 1 | 0 |
 | lyra-vega-dbus | 3 | 0 | 0 | 3 | 0 |
 | lyraos-desktop | 49 | 4 | 2 | 25 | 18 |
@@ -29,8 +29,9 @@ Situação: **Na fila** = aberta, sem PR nem commit que a cite · **Começou** =
 | vega-web | 9 | 1 | 1 | 7 | 0 |
 | vegad | 48 | 2 | 1 | 45 | 0 |
 | vscode | 1 | 0 | 0 | 1 | 0 |
+| warsaw | 2 | 1 | 1 | 0 | 0 |
 | zededitor | 1 | 0 | 0 | 1 | 0 |
-| **Total** | **383** | **44** | **7** | **281** | **51** |
+| **Total** | **386** | **45** | **9** | **281** | **51** |
 
 ## .github
 
@@ -80,10 +81,11 @@ Situação: **Na fila** = aberta, sem PR nem commit que a cite · **Começou** =
 | [#63](https://github.com/lyra-os-linux/lyra-ecosystem/issues/63) | Empacotar x3270 4.5 (x3270, c3270, s3270, pr3287) para o Leap 16.1 nos repositórios do Lyra | `enhancement` | E6 — COBOL e mainframe | 04/11/2026 | Sim | Não | Não | — | — |
 | [#64](https://github.com/lyra-os-linux/lyra-ecosystem/issues/64) | Empacotar o SDL Hercules 4.9.1 (emulador de mainframe) para o Leap 16.1 nos repositórios do Lyra | `enhancement` | E6 — COBOL e mainframe | 04/11/2026 | Sim | Não | Não | — | — |
 | [#65](https://github.com/lyra-os-linux/lyra-ecosystem/issues/65) | Lyra no setor público: prefeituras, escolas públicas e órgãos de governo (estudo) | `enhancement` | — | 04/11/2026 | Sim | Não | Não | — | — |
-| [#66](https://github.com/lyra-os-linux/lyra-ecosystem/issues/66) | Hospedar o módulo de segurança Warsaw (bancos) no OBS do Lyra, com binários idênticos aos oficiais | `enhancement` | E5 — Bancos e certificado A1 | 04/11/2026 | Sim | Não | Não | — | — |
+| [#66](https://github.com/lyra-os-linux/lyra-ecosystem/issues/66) | Hospedar o módulo de segurança Warsaw (bancos) no OBS do Lyra, com binários idênticos aos oficiais | `enhancement` | E5 — Bancos e certificado A1 | 04/11/2026 | Não | Sim | Não | — | [lyra-ecosystem#86](https://github.com/lyra-os-linux/lyra-ecosystem/pull/86) (aberto) |
 | [#74](https://github.com/lyra-os-linux/lyra-ecosystem/issues/74) | Criar o livro do Lyra OS (Desktop e Server) | `documentation` | — | 10/11/2026 | Sim | Não | Não | — | — |
 | [#75](https://github.com/lyra-os-linux/lyra-ecosystem/issues/75) | Produto em Rust para criar e pesquisar bugs no GitHub | `enhancement` | — | 10/11/2026 | Sim | Não | Não | — | — |
 | [#76](https://github.com/lyra-os-linux/lyra-ecosystem/issues/76) | Produto para pesquisar e interagir com o fórum (GitHub Discussions) | `enhancement` | — | 10/11/2026 | Sim | Não | Não | — | — |
+| [#85](https://github.com/lyra-os-linux/lyra-ecosystem/issues/85) | Produto para gravar a ISO do Lyra OS em pendrive (Lyra Writer, inspirado no Fedora Media Writer) | `enhancement` | — | 12/11/2026 | Sim | Não | Não | — | — |
 
 ## lyra-firefox-ext
 
@@ -513,6 +515,13 @@ Situação: **Na fila** = aberta, sem PR nem commit que a cite · **Começou** =
 | Issue | Título | Labels | Milestone | Aberta em | Na fila | Começou | Entregue | Fechada em | Evidência |
 | --- | --- | --- | --- | --- | :---: | :---: | :---: | --- | --- |
 | [#1](https://github.com/lyra-os-linux/vscode/issues/1) | [GNOME] [CI] Tornar obrigatórios os checks de vscode no main | `gnome` | Estabilização 2026.08 | 24/08/2026 | Não | Sim | Sim | 15/09/2026 | [vscode#2](https://github.com/lyra-os-linux/vscode/pull/2) (mergeado) |
+
+## warsaw
+
+| Issue | Título | Labels | Milestone | Aberta em | Na fila | Começou | Entregue | Fechada em | Evidência |
+| --- | --- | --- | --- | --- | :---: | :---: | :---: | --- | --- |
+| [#3](https://github.com/lyra-os-linux/warsaw/issues/3) | Build deve falhar se o pacote tiver arquivo fora do warsaw-files.sha256 | `enhancement` | — | 14/11/2026 | Sim | Não | Não | — | — |
+| [#4](https://github.com/lyra-os-linux/warsaw/issues/4) | Qualificar o pacote numa VM Leap 16.1 limpa | `enhancement` | — | 14/11/2026 | Não | Sim | Não | — | [warsaw#5](https://github.com/lyra-os-linux/warsaw/pull/5) (aberto) |
 
 ## zededitor
 
