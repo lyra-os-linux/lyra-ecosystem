@@ -57,21 +57,28 @@ requalificação a cada versão de driver e de kernel.
 - A ISO do Desktop 16.1 não traz NVIDIA e contava com o Vega para isso;
   quem tiver NVIDIA passa a seguir o procedimento do openSUSE.
 
-## Atualização de 16/11/2026: cartão "Driver NVIDIA"
+## Atualização de 16/11/2026: app Lyra Driver
 
-Decisão do mantenedor: o guia NVIDIA do fórum vira o primeiro cartão de
-Populares no `vega-gtk` (lyra-os-linux/vega#277). Isso **não** reverte esta
-proposta: continua sem `lyra-nvidia`, sem versão fixa, sem métodos NVIDIA no
-contrato e sem mudança no `vegad`. O cartão só repete o guia com o que o
-Vega já tem:
+Decisão do mantenedor: o guia NVIDIA do fórum vira o app **Lyra Driver**
+(`lyra-os-linux/lyra-driver`, pacote `lyra-driver`), e o primeiro cartão de
+Populares no `vega-gtk` (lyra-os-linux/vega#277) só instala esse pacote e
+abre o app. Isso **não** reverte esta proposta: continua sem `lyra-nvidia`,
+sem versão fixa, sem métodos NVIDIA no contrato e sem mudança no `vegad`.
+O Lyra Driver repete o guia:
 
-- detecta a placa pelo `lspci` (G07 aberto e assinado pela SUSE, G06, ou
-  antiga demais), o Secure Boot e a integração antiga;
+- detecta a placa (G07 aberto e assinado pela SUSE, G06, ou antiga demais),
+  o Secure Boot e a integração antiga;
 - adiciona o repositório oficial `repo-nvidia` com a chave
-  `2FB0 3195 DECD 4949 2BD1 C17A B1D0 D788 DB27 FD5A` conferida e instala o
-  metapacote como qualquer pacote (polkit e snapshot do vegad);
-- recusa o G06 com Secure Boot ligado e deixa a migração de quem usou o
-  `lyra-nvidia` no guia do fórum.
+  `2FB0 3195 DECD 4949 2BD1 C17A B1D0 D788 DB27 FD5A` conferida e instala,
+  testa depois do reinício, atualiza, reinstala ou remove o metapacote, com
+  um ponto de restauração do Snapper antes de cada mudança;
+- faz as ações privilegiadas por `pkexec` num helper fixo
+  (`/usr/libexec/lyra-driver/lyra-driver-helper`, lista fechada de ações),
+  autorizado pelo polkit `org.lyraos.driver.manage` (`auth_admin`);
+- recusa o G06 com Secure Boot ligado e migra quem usou o `lyra-nvidia`
+  numa única transação.
 
 Sem requalificação por versão: os metapacotes da NVIDIA acompanham o kernel
-do Leap, como no guia.
+do Leap, como no guia. O `lyra-driver` 0.1.0 foi testado na máquina do
+mantenedor (GTX 1650, G07, Secure Boot ligado) e promovido ao release em
+16/11/2026 (SR 1397965).
