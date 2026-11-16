@@ -8,7 +8,7 @@ owner = "lyra-os-linux"
 local_path = "lyraos-desktop"
 release_cycle = "independent"
 obs_packages = ["lyra-installer"]
-consumes = ["beam", "sulafat", "vega", "vscode", "cursor", "claude-code", "cloud-cli", "hashicorp", "zededitor", "warsaw", "lyraos-desktop-linuxtoys", "lyraos-desktop-sheliak", "lyraos-desktop-theme", "lyraos-desktop-updater", "lyraos-desktop-welcome", "lyraos-desktop-icons", "lyraos-desktop-wallpapers", "lyra-downloads", "lyra-firefox-ext", "lyra-vms"]
+consumes = ["beam", "sulafat", "vega", "vscode", "cursor", "claude-code", "cloud-cli", "hashicorp", "zededitor", "warsaw", "lyraos-desktop-linuxtoys", "lyraos-desktop-sheliak", "lyraos-desktop-theme", "lyraos-desktop-updater", "lyraos-desktop-welcome", "lyraos-desktop-icons", "lyraos-desktop-wallpapers", "lyra-downloads", "lyra-firefox-ext", "lyra-vms", "lyra-driver"]
 release_manifest = "release.toml"
 release_priority = "primary"
 
@@ -272,4 +272,13 @@ owner = "lyra-os-linux"
 local_path = "lyra-vms"
 obs_packages = ["lyra-vms"]
 consumes = ["vega"]
+consumed_by = ["lyraos-desktop"]
+
+[[products]]
+id = "lyra-driver"
+kind = "application"
+repository = "lyra-os-linux/lyra-driver"
+owner = "lyra-os-linux"
+local_path = "lyra-driver"
+obs_packages = ["lyra-driver"]
 consumed_by = ["lyraos-desktop"]
