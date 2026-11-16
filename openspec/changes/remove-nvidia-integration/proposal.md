@@ -56,3 +56,22 @@ requalificação a cada versão de driver e de kernel.
   declarados no `products.toml` (`vega`, `vega-web`, `vega-cli`).
 - A ISO do Desktop 16.1 não traz NVIDIA e contava com o Vega para isso;
   quem tiver NVIDIA passa a seguir o procedimento do openSUSE.
+
+## Atualização de 16/11/2026: cartão "Driver NVIDIA"
+
+Decisão do mantenedor: o guia NVIDIA do fórum vira o primeiro cartão de
+Populares no `vega-gtk` (lyra-os-linux/vega#277). Isso **não** reverte esta
+proposta: continua sem `lyra-nvidia`, sem versão fixa, sem métodos NVIDIA no
+contrato e sem mudança no `vegad`. O cartão só repete o guia com o que o
+Vega já tem:
+
+- detecta a placa pelo `lspci` (G07 aberto e assinado pela SUSE, G06, ou
+  antiga demais), o Secure Boot e a integração antiga;
+- adiciona o repositório oficial `repo-nvidia` com a chave
+  `2FB0 3195 DECD 4949 2BD1 C17A B1D0 D788 DB27 FD5A` conferida e instala o
+  metapacote como qualquer pacote (polkit e snapshot do vegad);
+- recusa o G06 com Secure Boot ligado e deixa a migração de quem usou o
+  `lyra-nvidia` no guia do fórum.
+
+Sem requalificação por versão: os metapacotes da NVIDIA acompanham o kernel
+do Leap, como no guia.
