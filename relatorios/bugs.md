@@ -1,6 +1,6 @@
 # Bugs
 
-Gerado em 16/11/2026 15:13 a partir do GitHub (`lyra-os-linux`). Issues com o label `bug`, abertas e fechadas (exceto as de Apps Android).
+Gerado em 18/11/2026 07:54 a partir do GitHub (`lyra-os-linux`). Issues com o label `bug`, abertas e fechadas (exceto as de Apps Android).
 Para atualizar: `python3 relatorios/gerar_relatorios.py`.
 
 Situação: **Na fila** = aberta, sem PR nem commit que a cite · **Começou** = há PR ou commit que cita a issue (citar não prova trabalho: veja a evidência) · **Entregue** = fechada como concluída · **Não planejada** = fechada sem entrega.
@@ -28,8 +28,8 @@ Situação: **Na fila** = aberta, sem PR nem commit que a cite · **Começou** =
 | vega-cli | 2 | 0 | 0 | 2 | 0 |
 | vega-web | 10 | 0 | 0 | 10 | 0 |
 | vegad | 32 | 0 | 0 | 32 | 0 |
-| warsaw | 6 | 1 | 4 | 1 | 0 |
-| **Total** | **134** | **1** | **4** | **122** | **7** |
+| warsaw | 6 | 0 | 0 | 6 | 0 |
+| **Total** | **134** | **0** | **0** | **127** | **7** |
 
 ## beam
 
@@ -258,9 +258,9 @@ Situação: **Na fila** = aberta, sem PR nem commit que a cite · **Começou** =
 
 | Issue | Título | Labels | Milestone | Aberta em | Na fila | Começou | Entregue | Fechada em | Evidência |
 | --- | --- | --- | --- | --- | :---: | :---: | :---: | --- | --- |
-| [#1](https://github.com/lyra-os-linux/warsaw/issues/1) | Atualização com o warsaw.service ativo mantém o core antigo rodando | `bug` | — | 14/11/2026 | Não | Sim | Não | — | [warsaw#5](https://github.com/lyra-os-linux/warsaw/pull/5) (mergeado), [warsaw#10](https://github.com/lyra-os-linux/warsaw/pull/10) (mergeado), [da965fd](https://github.com/lyra-os-linux/warsaw/commit/da965fd26229eb2f5d9c86785faa0971c58e815b) |
-| [#2](https://github.com/lyra-os-linux/warsaw/issues/2) | Confirmar que o pkill da remoção encontra os processos auxiliares do Warsaw | `bug` | — | 14/11/2026 | Sim | Não | Não | — | — |
-| [#7](https://github.com/lyra-os-linux/warsaw/issues/7) | %config(noreplace) marca arquivos que o RPM oficial não trata como configuração | `bug` | — | 15/11/2026 | Não | Sim | Não | — | [warsaw#10](https://github.com/lyra-os-linux/warsaw/pull/10) (mergeado), [7730546](https://github.com/lyra-os-linux/warsaw/commit/77305463ef0e891dfcb86554d495c3d0207bc087) |
-| [#8](https://github.com/lyra-os-linux/warsaw/issues/8) | Quem migra do RPM do fabricante continua com o warsaw.service habilitado no boot | `bug` | — | 15/11/2026 | Não | Sim | Não | — | [warsaw#10](https://github.com/lyra-os-linux/warsaw/pull/10) (mergeado), [warsaw#11](https://github.com/lyra-os-linux/warsaw/pull/11) (mergeado), [warsaw#13](https://github.com/lyra-os-linux/warsaw/pull/13) (mergeado), [077f53b](https://github.com/lyra-os-linux/warsaw/commit/077f53b4bdf91aac9942e7b8b809dea619096ee5), [7730546](https://github.com/lyra-os-linux/warsaw/commit/77305463ef0e891dfcb86554d495c3d0207bc087) |
-| [#9](https://github.com/lyra-os-linux/warsaw/issues/9) | Falta %pre: a atualização troca os arquivos com o Warsaw rodando | `bug` | — | 15/11/2026 | Não | Sim | Não | — | [warsaw#10](https://github.com/lyra-os-linux/warsaw/pull/10) (mergeado), [warsaw#13](https://github.com/lyra-os-linux/warsaw/pull/13) (mergeado), [7730546](https://github.com/lyra-os-linux/warsaw/commit/77305463ef0e891dfcb86554d495c3d0207bc087) |
+| [#1](https://github.com/lyra-os-linux/warsaw/issues/1) | Atualização com o warsaw.service ativo mantém o core antigo rodando | `bug` | — | 14/11/2026 | Não | Sim | Sim | 17/11/2026 | [warsaw#5](https://github.com/lyra-os-linux/warsaw/pull/5) (mergeado), [warsaw#10](https://github.com/lyra-os-linux/warsaw/pull/10) (mergeado), [da965fd](https://github.com/lyra-os-linux/warsaw/commit/da965fd26229eb2f5d9c86785faa0971c58e815b) |
+| [#2](https://github.com/lyra-os-linux/warsaw/issues/2) | Confirmar que o pkill da remoção encontra os processos auxiliares do Warsaw | `bug` | — | 14/11/2026 | Não | Sim | Sim | 17/11/2026 | [warsaw#17](https://github.com/lyra-os-linux/warsaw/pull/17) (mergeado) |
+| [#7](https://github.com/lyra-os-linux/warsaw/issues/7) | %config(noreplace) marca arquivos que o RPM oficial não trata como configuração | `bug` | — | 15/11/2026 | Não | Sim | Sim | 17/11/2026 | [warsaw#10](https://github.com/lyra-os-linux/warsaw/pull/10) (mergeado), [7730546](https://github.com/lyra-os-linux/warsaw/commit/77305463ef0e891dfcb86554d495c3d0207bc087) |
+| [#8](https://github.com/lyra-os-linux/warsaw/issues/8) | Quem migra do RPM do fabricante continua com o warsaw.service habilitado no boot | `bug` | — | 15/11/2026 | Não | Sim | Sim | 17/11/2026 | [warsaw#10](https://github.com/lyra-os-linux/warsaw/pull/10) (mergeado), [warsaw#11](https://github.com/lyra-os-linux/warsaw/pull/11) (mergeado), [warsaw#13](https://github.com/lyra-os-linux/warsaw/pull/13) (mergeado), [077f53b](https://github.com/lyra-os-linux/warsaw/commit/077f53b4bdf91aac9942e7b8b809dea619096ee5), [7730546](https://github.com/lyra-os-linux/warsaw/commit/77305463ef0e891dfcb86554d495c3d0207bc087) |
+| [#9](https://github.com/lyra-os-linux/warsaw/issues/9) | Falta %pre: a atualização troca os arquivos com o Warsaw rodando | `bug` | — | 15/11/2026 | Não | Sim | Sim | 17/11/2026 | [warsaw#10](https://github.com/lyra-os-linux/warsaw/pull/10) (mergeado), [warsaw#13](https://github.com/lyra-os-linux/warsaw/pull/13) (mergeado), [7730546](https://github.com/lyra-os-linux/warsaw/commit/77305463ef0e891dfcb86554d495c3d0207bc087) |
 | [#12](https://github.com/lyra-os-linux/warsaw/issues/12) | Rollback do Snapper deixa o RPM e /usr/local incoerentes: /usr/local fica fora dos snapshots | `bug` | — | 15/11/2026 | Não | Sim | Sim | 15/11/2026 | [vega#273](https://github.com/lyra-os-linux/vega/pull/273) (mergeado), [warsaw#13](https://github.com/lyra-os-linux/warsaw/pull/13) (mergeado), [6b0cb92](https://github.com/lyra-os-linux/warsaw/commit/6b0cb92d5045e138fad8e3e5cca89ca76695c2a8) |
