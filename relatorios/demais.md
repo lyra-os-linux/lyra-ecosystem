@@ -1,6 +1,6 @@
 # Demais issues
 
-Gerado em 16/11/2026 15:13 a partir do GitHub (`lyra-os-linux`). Todas as outras issues da organização, abertas e fechadas.
+Gerado em 18/11/2026 07:54 a partir do GitHub (`lyra-os-linux`). Todas as outras issues da organização, abertas e fechadas.
 Para atualizar: `python3 relatorios/gerar_relatorios.py`.
 
 Situação: **Na fila** = aberta, sem PR nem commit que a cite · **Começou** = há PR ou commit que cita a issue (citar não prova trabalho: veja a evidência) · **Entregue** = fechada como concluída · **Não planejada** = fechada sem entrega.
@@ -9,12 +9,12 @@ Situação: **Na fila** = aberta, sem PR nem commit que a cite · **Começou** =
 
 | Repositório | Total | Na fila | Começou | Entregue | Não planejada |
 | --- | ---: | ---: | ---: | ---: | ---: |
-| .github | 3 | 1 | 0 | 2 | 0 |
+| .github | 3 | 0 | 0 | 3 | 0 |
 | beam | 1 | 0 | 0 | 1 | 0 |
-| lyra-ecosystem | 35 | 7 | 1 | 10 | 17 |
+| lyra-ecosystem | 35 | 6 | 1 | 11 | 17 |
 | lyra-firefox-ext | 1 | 0 | 0 | 1 | 0 |
 | lyra-vega-dbus | 3 | 0 | 0 | 3 | 0 |
-| lyraos-desktop | 49 | 4 | 2 | 25 | 18 |
+| lyraos-desktop | 49 | 3 | 2 | 25 | 19 |
 | lyraos-desktop-kde | 2 | 0 | 0 | 0 | 2 |
 | lyraos-desktop-sheliak | 15 | 0 | 0 | 15 | 0 |
 | lyraos-desktop-theme | 9 | 0 | 0 | 4 | 5 |
@@ -24,14 +24,14 @@ Situação: **Na fila** = aberta, sem PR nem commit que a cite · **Começou** =
 | lyraos-server | 8 | 1 | 0 | 6 | 1 |
 | site | 2 | 0 | 0 | 2 | 0 |
 | sulafat | 1 | 0 | 0 | 1 | 0 |
-| vega | 173 | 16 | 1 | 150 | 6 |
+| vega | 176 | 15 | 1 | 154 | 6 |
 | vega-cli | 18 | 0 | 0 | 18 | 0 |
-| vega-web | 9 | 1 | 1 | 7 | 0 |
+| vega-web | 10 | 0 | 2 | 8 | 0 |
 | vegad | 48 | 0 | 1 | 47 | 0 |
 | vscode | 1 | 0 | 0 | 1 | 0 |
-| warsaw | 2 | 1 | 0 | 1 | 0 |
+| warsaw | 4 | 0 | 0 | 4 | 0 |
 | zededitor | 1 | 0 | 0 | 1 | 0 |
-| **Total** | **386** | **32** | **6** | **297** | **51** |
+| **Total** | **392** | **26** | **7** | **307** | **52** |
 
 ## .github
 
@@ -39,7 +39,7 @@ Situação: **Na fila** = aberta, sem PR nem commit que a cite · **Começou** =
 | --- | --- | --- | --- | --- | :---: | :---: | :---: | --- | --- |
 | [#2](https://github.com/lyra-os-linux/.github/issues/2) | Documentar o ciclo de releases: sem rolling release, 2 anos de suporte por release 16.x | — | — | 03/11/2026 | Não | Sim | Sim | 03/11/2026 | [.github#3](https://github.com/lyra-os-linux/.github/pull/3) (mergeado), [lyraos-desktop#526](https://github.com/lyra-os-linux/lyraos-desktop/pull/526) (mergeado), [lyraos-server#47](https://github.com/lyra-os-linux/lyraos-server/pull/47) (mergeado), [site#22](https://github.com/lyra-os-linux/site/pull/22) (mergeado) |
 | [#4](https://github.com/lyra-os-linux/.github/issues/4) | Git workflow das releases do Desktop e do Server | — | — | 03/11/2026 | Não | Sim | Sim | 03/11/2026 | [0b56883](https://github.com/lyra-os-linux/lyraos-server/commit/0b568836081086aefe618a60c2eb0e7d4d4d475d), [2050a3f](https://github.com/lyra-os-linux/.github/commit/2050a3febb1422911dd6d46b3dfea40fd8007a3e), [2412885](https://github.com/lyra-os-linux/lyraos-desktop/commit/24128851bca17edefe824601596bd4ef570f3f9e) |
-| [#5](https://github.com/lyra-os-linux/.github/issues/5) | Modelo de issue "Problema com banco ou serviço do governo" com diagnóstico do Vega | `enhancement` | — | 04/11/2026 | Sim | Não | Não | — | — |
+| [#5](https://github.com/lyra-os-linux/.github/issues/5) | Modelo de issue "Problema com banco ou serviço do governo" com diagnóstico do Vega | `enhancement` | — | 04/11/2026 | Não | Sim | Sim | 17/11/2026 | [.github#6](https://github.com/lyra-os-linux/.github/pull/6) (mergeado) |
 
 ## beam
 
@@ -76,10 +76,10 @@ Situação: **Na fila** = aberta, sem PR nem commit que a cite · **Começou** =
 | [#44](https://github.com/lyra-os-linux/lyra-ecosystem/issues/44) | Arquivar o spec add-web-diagnostics | `future-release` | — | 30/10/2026 | Não | Sim | Sim | 06/11/2026 | [lyra-ecosystem#70](https://github.com/lyra-os-linux/lyra-ecosystem/pull/70) (mergeado), [7620a1c](https://github.com/lyra-os-linux/lyra-ecosystem/commit/7620a1c0e6c853d4d198ea44cd8cb5464b83b376) |
 | [#45](https://github.com/lyra-os-linux/lyra-ecosystem/issues/45) | Ponto de retomada: RC 3 publicada, promoção 16.1 em 19/11 (estado em 30/10/2026) | — | — | 30/10/2026 | Não | Sim | Não planejada | 06/11/2026 | [lyra-ecosystem#49](https://github.com/lyra-os-linux/lyra-ecosystem/pull/49) (mergeado), [lyra-ecosystem#51](https://github.com/lyra-os-linux/lyra-ecosystem/pull/51) (mergeado) |
 | [#47](https://github.com/lyra-os-linux/lyra-ecosystem/issues/47) | Promoção do Lyra OS 16.1 em 19/11/2026: rodar scripts/promote-16.1.sh | — | — | 30/10/2026 | Não | Sim | Sim | 06/11/2026 | — |
-| [#61](https://github.com/lyra-os-linux/lyra-ecosystem/issues/61) | Pacotes de terceiros desatualizados | — | — | 03/11/2026 | Sim | Não | Não | — | — |
+| [#61](https://github.com/lyra-os-linux/lyra-ecosystem/issues/61) | Pacotes de terceiros desatualizados | — | — | 03/11/2026 | Não | Sim | Sim | 17/11/2026 | [cloud-cli#1](https://github.com/lyra-os-linux/cloud-cli/pull/1) (mergeado), [cloud-cli#2](https://github.com/lyra-os-linux/cloud-cli/pull/2) (mergeado), [lyraos-desktop-linuxtoys#24](https://github.com/lyra-os-linux/lyraos-desktop-linuxtoys/pull/24) (mergeado), [zededitor#6](https://github.com/lyra-os-linux/zededitor/pull/6) (mergeado) |
 | [#62](https://github.com/lyra-os-linux/lyra-ecosystem/issues/62) | Ambiente de desenvolvimento corporativo no Vega — Oracle, SAP, COBOL e mainframe | `enhancement` | — | 04/11/2026 | Sim | Não | Não | — | — |
 | [#63](https://github.com/lyra-os-linux/lyra-ecosystem/issues/63) | Empacotar x3270 4.5 (x3270, c3270, s3270, pr3287) para o Leap 16.1 nos repositórios do Lyra | `enhancement` | E6 — COBOL e mainframe | 04/11/2026 | Não | Sim | Sim | 16/11/2026 | [lyraos-desktop#539](https://github.com/lyra-os-linux/lyraos-desktop/pull/539) (mergeado) |
-| [#64](https://github.com/lyra-os-linux/lyra-ecosystem/issues/64) | Empacotar o SDL Hercules 4.9.1 (emulador de mainframe) para o Leap 16.1 nos repositórios do Lyra | `enhancement` | E6 — COBOL e mainframe | 04/11/2026 | Não | Sim | Sim | 16/11/2026 | [lyraos-desktop#539](https://github.com/lyra-os-linux/lyraos-desktop/pull/539) (mergeado) |
+| [#64](https://github.com/lyra-os-linux/lyra-ecosystem/issues/64) | Empacotar o SDL Hercules 4.9.1 (emulador de mainframe) para o Leap 16.1 nos repositórios do Lyra | `enhancement` | E6 — COBOL e mainframe | 04/11/2026 | Não | Sim | Sim | 16/11/2026 | [lyra-ecosystem#90](https://github.com/lyra-os-linux/lyra-ecosystem/pull/90) (mergeado), [lyraos-desktop#539](https://github.com/lyra-os-linux/lyraos-desktop/pull/539) (mergeado) |
 | [#65](https://github.com/lyra-os-linux/lyra-ecosystem/issues/65) | Lyra no setor público: prefeituras, escolas públicas e órgãos de governo (estudo) | `enhancement` | — | 04/11/2026 | Sim | Não | Não | — | — |
 | [#66](https://github.com/lyra-os-linux/lyra-ecosystem/issues/66) | Hospedar o módulo de segurança Warsaw (bancos) no OBS do Lyra, com binários idênticos aos oficiais | `enhancement` | E5 — Bancos e certificado A1 | 04/11/2026 | Não | Sim | Sim | 16/11/2026 | [lyra-ecosystem#86](https://github.com/lyra-os-linux/lyra-ecosystem/pull/86) (mergeado), [4f7e341](https://github.com/lyra-os-linux/lyra-ecosystem/commit/4f7e341886547e1b0aa4fc743536e9fc1a3ba587) |
 | [#74](https://github.com/lyra-os-linux/lyra-ecosystem/issues/74) | Criar o livro do Lyra OS (Desktop e Server) | `documentation` | — | 10/11/2026 | Sim | Não | Não | — | — |
@@ -134,7 +134,7 @@ Situação: **Na fila** = aberta, sem PR nem commit que a cite · **Começou** =
 | [#43](https://github.com/lyra-os-linux/lyraos-desktop/issues/43) | [P0][Release] Auditar ISOs Alpha 1–5 por vazamento do ambiente de build | — | Estabilização 2026.08 | 24/08/2026 | Não | Sim | Sim | 25/08/2026 | [lyraos-desktop#225](https://github.com/lyra-os-linux/lyraos-desktop/pull/225) (mergeado) |
 | [#50](https://github.com/lyra-os-linux/lyraos-desktop/issues/50) | [Histórico][GNOME] [Desktop Alpha 7][QA] Qualificar candidata sobre Leap 16.1 | `desktop`, `qa`, `stability`, `gnome` | — | 26/08/2026 | Não | Não | Não planejada | 13/09/2026 | — |
 | [#56](https://github.com/lyra-os-linux/lyraos-desktop/issues/56) | [GNOME][Alpha 8][QA] Qualificar a ISO única e NVIDIA opcional via Vega | `gnome` | Alpha 8 — 30/10/2026 | 30/08/2026 | Não | Sim | Sim | 13/10/2026 | [lyraos-desktop#83](https://github.com/lyra-os-linux/lyraos-desktop/pull/83) (mergeado), [lyraos-desktop#87](https://github.com/lyra-os-linux/lyraos-desktop/pull/87) (mergeado), [lyraos-desktop#92](https://github.com/lyra-os-linux/lyraos-desktop/pull/92) (mergeado), [lyraos-desktop#97](https://github.com/lyra-os-linux/lyraos-desktop/pull/97) (mergeado), [lyraos-desktop#98](https://github.com/lyra-os-linux/lyraos-desktop/pull/98) (mergeado) |
-| [#57](https://github.com/lyra-os-linux/lyraos-desktop/issues/57) | [GNOME] [Leap 16.1][QA] Qualificar atualizações da base | `gnome` | — | 30/08/2026 | Sim | Não | Não | — | — |
+| [#57](https://github.com/lyra-os-linux/lyraos-desktop/issues/57) | [GNOME] [Leap 16.1][QA] Qualificar atualizações da base | `gnome` | — | 30/08/2026 | Não | Não | Não planejada | 17/11/2026 | — |
 | [#58](https://github.com/lyra-os-linux/lyraos-desktop/issues/58) | [Desktop Alpha 8][LXQt] Criar quarta edição oficial do Lyra OS | `enhancement`, `alpha-8`, `desktop`, `stability` | — | 31/08/2026 | Não | Não | Não planejada | 31/08/2026 | — |
 | [#59](https://github.com/lyra-os-linux/lyraos-desktop/issues/59) | [GNOME] [Futuro] [Pesquisa]Investigar Poseidon Linux e possível ISO para cientistas e pesquisadores | `enhancement`, `desktop`, `future-release`, `gnome` | 1.2 | 02/09/2026 | Não | Não | Não planejada | 26/10/2026 | — |
 | [#61](https://github.com/lyra-os-linux/lyraos-desktop/issues/61) | [GNOME] [Futuro] [Epic] Criar Lyra Hardware Diagnostics em Rust/Tauri | `enhancement`, `desktop`, `epic`, `qa`, `stability`, `future-release`, `gnome` | 1.2 | 02/09/2026 | Não | Não | Não planejada | 26/10/2026 | — |
@@ -384,14 +384,14 @@ Situação: **Na fila** = aberta, sem PR nem commit que a cite · **Começou** =
 | [#200](https://github.com/lyra-os-linux/vega/issues/200) | Público Brasil: bancos, gov.br, certificado digital A1/A3, Receita Federal, advogados e contadores (estudo) | `enhancement` | E10 — Sites como apps + governo, justiça e contadores | 04/11/2026 | Sim | Não | Não | — | — |
 | [#201](https://github.com/lyra-os-linux/vega/issues/201) | Público gamers: desempenho, controles, anticheat, emuladores e gravação (estudo) | `enhancement` | E14 — Estudos (gamers, educação, dados/IA, engenharia, Raven) | 04/11/2026 | Sim | Não | Não | — | — |
 | [#202](https://github.com/lyra-os-linux/vega/issues/202) | Público educação: estudantes, professores e crianças (estudo) | `enhancement` | E14 — Estudos (gamers, educação, dados/IA, engenharia, Raven) | 04/11/2026 | Sim | Não | Não | — | — |
-| [#203](https://github.com/lyra-os-linux/vega/issues/203) | Sites como apps (PWA): Microsoft 365, Jira, Asana, Trello, Canva… com ícone e janela própria | `enhancement` | E10 — Sites como apps + governo, justiça e contadores | 04/11/2026 | Sim | Não | Não | — | — |
+| [#203](https://github.com/lyra-os-linux/vega/issues/203) | Sites como apps (PWA): Microsoft 365, Jira, Asana, Trello, Canva… com ícone e janela própria | `enhancement` | E10 — Sites como apps + governo, justiça e contadores | 04/11/2026 | Não | Sim | Sim | 17/11/2026 | [vega#289](https://github.com/lyra-os-linux/vega/pull/289) (mergeado), [vega#290](https://github.com/lyra-os-linux/vega/pull/290) (mergeado), [vega#291](https://github.com/lyra-os-linux/vega/pull/291) (mergeado) |
 | [#204](https://github.com/lyra-os-linux/vega/issues/204) | Público ciência de dados e IA local (estudo) | `enhancement` | E14 — Estudos (gamers, educação, dados/IA, engenharia, Raven) | 04/11/2026 | Sim | Não | Não | — | — |
 | [#205](https://github.com/lyra-os-linux/vega/issues/205) | Público arquitetura e engenharia: CAD, BIM, eletrônica e simulação (estudo) | `enhancement` | E14 — Estudos (gamers, educação, dados/IA, engenharia, Raven) | 04/11/2026 | Sim | Não | Não | — | — |
 | [#206](https://github.com/lyra-os-linux/vega/issues/206) | Loja: verificação automática do catálogo no CI (IDs do Flathub, pacotes, URLs e checksums) | `enhancement` | — | 04/11/2026 | Não | Sim | Sim | 11/11/2026 | [vega#259](https://github.com/lyra-os-linux/vega/pull/259) (mergeado), [4c172f2](https://github.com/lyra-os-linux/vega/commit/4c172f2136f9735b915d897a21c7244d7234200f) |
 | [#207](https://github.com/lyra-os-linux/vega/issues/207) | Loja: busca e tags no catálogo curado, entre todas as abas | `enhancement` | E1 — Busca no catálogo | 04/11/2026 | Não | Sim | Sim | 11/11/2026 | [vega#262](https://github.com/lyra-os-linux/vega/pull/262) (mergeado), [vega#264](https://github.com/lyra-os-linux/vega/pull/264) (mergeado) |
 | [#208](https://github.com/lyra-os-linux/vega/issues/208) | Loja: componente compartilhado de download guiado pelo navegador (login no site do fabricante + conferência do arquivo) | `enhancement` | E3 — Download guiado + Imposto de Renda | 04/11/2026 | Não | Sim | Sim | 12/11/2026 | [vega#271](https://github.com/lyra-os-linux/vega/pull/271) (mergeado), [vega#276](https://github.com/lyra-os-linux/vega/pull/276) (mergeado) |
 | [#209](https://github.com/lyra-os-linux/vega/issues/209) | Abrir o Vega numa página e aba específicas (deep link), para o Welcome e para links da documentação | `enhancement` | — | 04/11/2026 | Não | Sim | Sim | 11/11/2026 | [vega#257](https://github.com/lyra-os-linux/vega/pull/257) (mergeado), [vega#258](https://github.com/lyra-os-linux/vega/pull/258) (mergeado) |
-| [#210](https://github.com/lyra-os-linux/vega/issues/210) | Brasil: cartão "Bancos" — módulo de segurança Warsaw ligado sob demanda, navegadores e guia por banco | `enhancement` | E5 — Bancos e certificado A1 | 04/11/2026 | Não | Sim | Sim | 15/11/2026 | [vega#273](https://github.com/lyra-os-linux/vega/pull/273) (mergeado), [vega#274](https://github.com/lyra-os-linux/vega/pull/274) (mergeado), [warsaw#16](https://github.com/lyra-os-linux/warsaw/pull/16) (mergeado), [825ccd9](https://github.com/lyra-os-linux/vega/commit/825ccd98f2648e164bd5641ade01183d03724026) |
+| [#210](https://github.com/lyra-os-linux/vega/issues/210) | Brasil: cartão "Bancos" — módulo de segurança Warsaw ligado sob demanda, navegadores e guia por banco | `enhancement` | E5 — Bancos e certificado A1 | 04/11/2026 | Não | Sim | Sim | 15/11/2026 | [vega#273](https://github.com/lyra-os-linux/vega/pull/273) (mergeado), [vega#274](https://github.com/lyra-os-linux/vega/pull/274) (mergeado), [vega#289](https://github.com/lyra-os-linux/vega/pull/289) (mergeado), [vega#292](https://github.com/lyra-os-linux/vega/pull/292) (mergeado), [warsaw#16](https://github.com/lyra-os-linux/warsaw/pull/16) (mergeado), [825ccd9](https://github.com/lyra-os-linux/vega/commit/825ccd98f2648e164bd5641ade01183d03724026) |
 | [#211](https://github.com/lyra-os-linux/vega/issues/211) | Brasil: assistente de certificado digital ICP-Brasil (A1 e A3: token, cartão e leitora) | `enhancement` | E13 — Certificado A3 (fase 2) | 04/11/2026 | Sim | Não | Não | — | — |
 | [#212](https://github.com/lyra-os-linux/vega/issues/212) | Brasil: Receita Federal — IRPF e outros programas da Receita (Java) instalados e atualizados pelo Vega | `enhancement` | E3 — Download guiado + Imposto de Renda | 04/11/2026 | Não | Sim | Sim | 12/11/2026 | [vega#271](https://github.com/lyra-os-linux/vega/pull/271) (mergeado), [4570aa2](https://github.com/lyra-os-linux/vega/commit/4570aa2c0b5d62d1ab8c3b0170016795c61ee24e), [ff7c02c](https://github.com/lyra-os-linux/vega/commit/ff7c02ce1c72caf8403e4a8f0f6a3311632d1850) |
 | [#213](https://github.com/lyra-os-linux/vega/issues/213) | Brasil: advogados — PJe, PJeOffice Pro e sistemas dos tribunais | `enhancement` | E10 — Sites como apps + governo, justiça e contadores | 04/11/2026 | Sim | Não | Não | — | — |
@@ -419,6 +419,9 @@ Situação: **Na fila** = aberta, sem PR nem commit que a cite · **Começou** =
 | [#237](https://github.com/lyra-os-linux/vega/issues/237) | Caso IDJC: rádio online / DJ ao vivo (sem pacote no openSUSE) | `enhancement` | — | 04/11/2026 | Não | Não | Não planejada | 11/11/2026 | — |
 | [#261](https://github.com/lyra-os-linux/vega/issues/261) | Avaliar o Raven no lugar do Wine nos Apps do Windows (estudo) | `enhancement` | E14 — Estudos (gamers, educação, dados/IA, engenharia, Raven) | 10/11/2026 | Não | Sim | Não | — | [lyra-ecosystem#80](https://github.com/lyra-os-linux/lyra-ecosystem/pull/80) (mergeado) |
 | [#263](https://github.com/lyra-os-linux/vega/issues/263) | Brasil: certificado A3 com middlewares proprietários (SafeNet, Watchdata, GD Burti) pelo download guiado — fase 2 do #211 | — | E13 — Certificado A3 (fase 2) | 11/11/2026 | Sim | Não | Não | — | — |
+| [#283](https://github.com/lyra-os-linux/vega/issues/283) | Mainframe (TK5): mostrar o progresso do download para não parecer travado | `enhancement` | — | 16/11/2026 | Não | Sim | Sim | 17/11/2026 | [vega#286](https://github.com/lyra-os-linux/vega/pull/286) (mergeado), [vega#288](https://github.com/lyra-os-linux/vega/pull/288) (mergeado) |
+| [#284](https://github.com/lyra-os-linux/vega/issues/284) | Desenvolvedores: Microsoft SQL Server e ferramentas (sqlcmd) em contêiner | `enhancement` | — | 16/11/2026 | Não | Sim | Sim | 17/11/2026 | [vega#287](https://github.com/lyra-os-linux/vega/pull/287) (mergeado), [vega#288](https://github.com/lyra-os-linux/vega/pull/288) (mergeado) |
+| [#285](https://github.com/lyra-os-linux/vega/issues/285) | Contêineres (Oracle) e todas as ações: barra de progresso que acompanhe o trabalho | `enhancement` | — | 16/11/2026 | Não | Sim | Sim | 17/11/2026 | [vega#286](https://github.com/lyra-os-linux/vega/pull/286) (mergeado), [vega#288](https://github.com/lyra-os-linux/vega/pull/288) (mergeado) |
 
 ## vega-cli
 
@@ -452,10 +455,11 @@ Situação: **Na fila** = aberta, sem PR nem commit que a cite · **Começou** =
 | [#17](https://github.com/lyra-os-linux/vega-web/issues/17) | [Server][P2][Autorização] Pedir a senha do administrador para todas as ações administrativas, como o vega-gtk | — | — | 19/10/2026 | Não | Sim | Sim | 22/10/2026 | — |
 | [#18](https://github.com/lyra-os-linux/vega-web/issues/18) | [Server][P2][UX] Leituras administrativas negadas para a conta vega-web: páginas exibem erros brutos do D-Bus | — | — | 19/10/2026 | Não | Sim | Sim | 22/10/2026 | [vega-web#21](https://github.com/lyra-os-linux/vega-web/pull/21) (mergeado), [vega-web#22](https://github.com/lyra-os-linux/vega-web/pull/22) (mergeado) |
 | [#19](https://github.com/lyra-os-linux/vega-web/issues/19) | [Epic][UX] Revisão de experiência e leiaute do painel vega-web (edição Server) | — | E11 — Server: Timeshift e painel | 19/10/2026 | Não | Sim | Não | — | [vega-web#20](https://github.com/lyra-os-linux/vega-web/pull/20) (mergeado) |
-| [#25](https://github.com/lyra-os-linux/vega-web/issues/25) | Diagnóstico, rede, Liberar espaço e Pedir ajuda só em português | `enhancement`, `i18n` | E11 — Server: Timeshift e painel | 30/10/2026 | Sim | Não | Não | — | — |
+| [#25](https://github.com/lyra-os-linux/vega-web/issues/25) | Diagnóstico, rede, Liberar espaço e Pedir ajuda só em português | `enhancement`, `i18n` | E11 — Server: Timeshift e painel | 30/10/2026 | Não | Sim | Sim | 17/11/2026 | [vega-web#48](https://github.com/lyra-os-linux/vega-web/pull/48) (mergeado), [vega-web#49](https://github.com/lyra-os-linux/vega-web/pull/49) (mergeado) |
 | [#26](https://github.com/lyra-os-linux/vega-web/issues/26) | VM do broker não cobre as operações de diagnóstico e limpeza | `enhancement` | — | 30/10/2026 | Não | Sim | Sim | 09/11/2026 | [vega-web#32](https://github.com/lyra-os-linux/vega-web/pull/32) (mergeado) |
 | [#27](https://github.com/lyra-os-linux/vega-web/issues/27) | Atalho para o Diagnóstico de saúde no menu lateral | `enhancement` | — | 30/10/2026 | Não | Sim | Sim | 09/11/2026 | [vega-web#31](https://github.com/lyra-os-linux/vega-web/pull/31) (mergeado), [vega-web#44](https://github.com/lyra-os-linux/vega-web/pull/44) (mergeado) |
 | [#38](https://github.com/lyra-os-linux/vega-web/issues/38) | CI: VM do broker qualifica com o vegad v5.10.0 e o os-release do Lyra | `enhancement` | — | 09/11/2026 | Não | Sim | Sim | 09/11/2026 | [vega-web#43](https://github.com/lyra-os-linux/vega-web/pull/43) (mergeado) |
+| [#47](https://github.com/lyra-os-linux/vega-web/issues/47) | Resto do painel em inglês e espanhol | — | E11 — Server: Timeshift e painel | 17/11/2026 | Não | Sim | Não | — | [vega-web#48](https://github.com/lyra-os-linux/vega-web/pull/48) (mergeado) |
 
 ## vegad
 
@@ -520,8 +524,10 @@ Situação: **Na fila** = aberta, sem PR nem commit que a cite · **Começou** =
 
 | Issue | Título | Labels | Milestone | Aberta em | Na fila | Começou | Entregue | Fechada em | Evidência |
 | --- | --- | --- | --- | --- | :---: | :---: | :---: | --- | --- |
-| [#3](https://github.com/lyra-os-linux/warsaw/issues/3) | Build deve falhar se o pacote tiver arquivo fora do warsaw-files.sha256 | `enhancement` | — | 14/11/2026 | Sim | Não | Não | — | — |
-| [#4](https://github.com/lyra-os-linux/warsaw/issues/4) | Qualificar o pacote numa VM Leap 16.1 limpa | `enhancement` | — | 14/11/2026 | Não | Sim | Sim | 15/11/2026 | [warsaw#5](https://github.com/lyra-os-linux/warsaw/pull/5) (mergeado), [warsaw#10](https://github.com/lyra-os-linux/warsaw/pull/10) (mergeado), [warsaw#15](https://github.com/lyra-os-linux/warsaw/pull/15) (mergeado), [36ccd03](https://github.com/lyra-os-linux/warsaw/commit/36ccd0363dd462ea361248515e49be04dfc0aa84), [da965fd](https://github.com/lyra-os-linux/warsaw/commit/da965fd26229eb2f5d9c86785faa0971c58e815b) |
+| [#3](https://github.com/lyra-os-linux/warsaw/issues/3) | Build deve falhar se o pacote tiver arquivo fora do warsaw-files.sha256 | `enhancement` | — | 14/11/2026 | Não | Sim | Sim | 17/11/2026 | [warsaw#17](https://github.com/lyra-os-linux/warsaw/pull/17) (mergeado) |
+| [#4](https://github.com/lyra-os-linux/warsaw/issues/4) | Qualificar o pacote numa VM Leap 16.1 limpa | `enhancement` | — | 14/11/2026 | Não | Sim | Sim | 15/11/2026 | [warsaw#5](https://github.com/lyra-os-linux/warsaw/pull/5) (mergeado), [warsaw#10](https://github.com/lyra-os-linux/warsaw/pull/10) (mergeado), [warsaw#15](https://github.com/lyra-os-linux/warsaw/pull/15) (mergeado), [warsaw#17](https://github.com/lyra-os-linux/warsaw/pull/17) (mergeado), [36ccd03](https://github.com/lyra-os-linux/warsaw/commit/36ccd0363dd462ea361248515e49be04dfc0aa84), [da965fd](https://github.com/lyra-os-linux/warsaw/commit/da965fd26229eb2f5d9c86785faa0971c58e815b) |
+| [#18](https://github.com/lyra-os-linux/warsaw/issues/18) | Banco do Brasil continua pedindo o módulo de segurança com o Warsaw ativo | — | — | 17/11/2026 | Não | Sim | Sim | 17/11/2026 | [vega#292](https://github.com/lyra-os-linux/vega/pull/292) (mergeado), [vega#293](https://github.com/lyra-os-linux/vega/pull/293) (mergeado), [warsaw#19](https://github.com/lyra-os-linux/warsaw/pull/19) (mergeado), [warsaw#20](https://github.com/lyra-os-linux/warsaw/pull/20) (mergeado) |
+| [#21](https://github.com/lyra-os-linux/warsaw/issues/21) | Conta nova: Chromium usa o NSS XDG e o Warsaw grava o certificado em ~/.pki/nssdb | — | — | 17/11/2026 | Não | Sim | Sim | 17/11/2026 | [vega#294](https://github.com/lyra-os-linux/vega/pull/294) (mergeado), [vega#296](https://github.com/lyra-os-linux/vega/pull/296) (mergeado) |
 
 ## zededitor
 
