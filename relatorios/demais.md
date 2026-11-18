@@ -1,6 +1,6 @@
 # Demais issues
 
-Gerado em 18/11/2026 14:28 a partir do GitHub (`lyra-os-linux`). Todas as outras issues da organização, abertas e fechadas.
+Gerado em 18/11/2026 16:53 a partir do GitHub (`lyra-os-linux`). Todas as outras issues da organização, abertas e fechadas.
 Para atualizar: `python3 relatorios/gerar_relatorios.py`.
 
 Situação: **Na fila** = aberta, sem PR nem commit que a cite · **Começou** = há PR ou commit que cita a issue (citar não prova trabalho: veja a evidência) · **Entregue** = fechada como concluída · **Não planejada** = fechada sem entrega.
@@ -11,10 +11,10 @@ Situação: **Na fila** = aberta, sem PR nem commit que a cite · **Começou** =
 | --- | ---: | ---: | ---: | ---: | ---: |
 | .github | 3 | 0 | 0 | 3 | 0 |
 | beam | 1 | 0 | 0 | 1 | 0 |
-| lyra-ecosystem | 35 | 6 | 1 | 11 | 17 |
+| lyra-ecosystem | 36 | 6 | 1 | 12 | 17 |
 | lyra-firefox-ext | 1 | 0 | 0 | 1 | 0 |
 | lyra-vega-dbus | 3 | 0 | 0 | 3 | 0 |
-| lyra-writer | 1 | 1 | 0 | 0 | 0 |
+| lyra-writer | 1 | 0 | 0 | 1 | 0 |
 | lyraos-desktop | 49 | 3 | 2 | 25 | 19 |
 | lyraos-desktop-kde | 2 | 0 | 0 | 0 | 2 |
 | lyraos-desktop-sheliak | 15 | 0 | 0 | 15 | 0 |
@@ -32,7 +32,7 @@ Situação: **Na fila** = aberta, sem PR nem commit que a cite · **Começou** =
 | vscode | 1 | 0 | 0 | 1 | 0 |
 | warsaw | 4 | 0 | 0 | 4 | 0 |
 | zededitor | 1 | 0 | 0 | 1 | 0 |
-| **Total** | **393** | **22** | **10** | **309** | **52** |
+| **Total** | **394** | **21** | **10** | **311** | **52** |
 
 ## .github
 
@@ -86,7 +86,8 @@ Situação: **Na fila** = aberta, sem PR nem commit que a cite · **Começou** =
 | [#74](https://github.com/lyra-os-linux/lyra-ecosystem/issues/74) | Criar o livro do Lyra OS (Desktop e Server) | `documentation` | Após março/2027 | 10/11/2026 | Sim | Não | Não | — | — |
 | [#75](https://github.com/lyra-os-linux/lyra-ecosystem/issues/75) | Produto em Rust para criar e pesquisar bugs no GitHub | `enhancement` | Após março/2027 | 10/11/2026 | Sim | Não | Não | — | — |
 | [#76](https://github.com/lyra-os-linux/lyra-ecosystem/issues/76) | Produto para pesquisar e interagir com o fórum (GitHub Discussions) | `enhancement` | Após março/2027 | 10/11/2026 | Sim | Não | Não | — | — |
-| [#85](https://github.com/lyra-os-linux/lyra-ecosystem/issues/85) | Produto para gravar a ISO do Lyra OS em pendrive (Lyra Writer, inspirado no Fedora Media Writer) | `enhancement` | — | 12/11/2026 | Sim | Não | Não | — | — |
+| [#85](https://github.com/lyra-os-linux/lyra-ecosystem/issues/85) | Produto para gravar a ISO do Lyra OS em pendrive (Lyra Writer, inspirado no Fedora Media Writer) | `enhancement` | — | 12/11/2026 | Não | Sim | Sim | 18/11/2026 | — |
+| [#92](https://github.com/lyra-os-linux/lyra-ecosystem/issues/92) | Pacotes de terceiros desatualizados | — | — | 18/11/2026 | Sim | Não | Não | — | — |
 
 ## lyra-firefox-ext
 
@@ -106,7 +107,7 @@ Situação: **Na fila** = aberta, sem PR nem commit que a cite · **Começou** =
 
 | Issue | Título | Labels | Milestone | Aberta em | Na fila | Começou | Entregue | Fechada em | Evidência |
 | --- | --- | --- | --- | --- | :---: | :---: | :---: | --- | --- |
-| [#1](https://github.com/lyra-os-linux/lyra-writer/issues/1) | Primeira entrega real: gravar, verificar, restaurar, baixar e conferir, OBS | — | — | 18/11/2026 | Sim | Não | Não | — | — |
+| [#1](https://github.com/lyra-os-linux/lyra-writer/issues/1) | Primeira entrega real: gravar, verificar, restaurar, baixar e conferir, OBS | — | — | 18/11/2026 | Não | Sim | Sim | 18/11/2026 | [lyra-writer#2](https://github.com/lyra-os-linux/lyra-writer/pull/2) (mergeado), [lyra-writer#3](https://github.com/lyra-os-linux/lyra-writer/pull/3) (mergeado), [lyra-writer#4](https://github.com/lyra-os-linux/lyra-writer/pull/4) (mergeado), [69a6f6a](https://github.com/lyra-os-linux/lyra-writer/commit/69a6f6a17bfe6af44d3e54c11beea0b3eceb6236) |
 
 ## lyraos-desktop
 
