@@ -1,6 +1,6 @@
 # Bugs
 
-Gerado em 18/11/2026 07:54 a partir do GitHub (`lyra-os-linux`). Issues com o label `bug`, abertas e fechadas (exceto as de Apps Android).
+Gerado em 18/11/2026 14:28 a partir do GitHub (`lyra-os-linux`). Issues com o label `bug`, abertas e fechadas (exceto as de Apps Android).
 Para atualizar: `python3 relatorios/gerar_relatorios.py`.
 
 Situação: **Na fila** = aberta, sem PR nem commit que a cite · **Começou** = há PR ou commit que cita a issue (citar não prova trabalho: veja a evidência) · **Entregue** = fechada como concluída · **Não planejada** = fechada sem entrega.
@@ -28,8 +28,8 @@ Situação: **Na fila** = aberta, sem PR nem commit que a cite · **Começou** =
 | vega-cli | 2 | 0 | 0 | 2 | 0 |
 | vega-web | 10 | 0 | 0 | 10 | 0 |
 | vegad | 32 | 0 | 0 | 32 | 0 |
-| warsaw | 6 | 0 | 0 | 6 | 0 |
-| **Total** | **134** | **0** | **0** | **127** | **7** |
+| warsaw | 7 | 0 | 0 | 7 | 0 |
+| **Total** | **135** | **0** | **0** | **128** | **7** |
 
 ## beam
 
@@ -264,3 +264,4 @@ Situação: **Na fila** = aberta, sem PR nem commit que a cite · **Começou** =
 | [#8](https://github.com/lyra-os-linux/warsaw/issues/8) | Quem migra do RPM do fabricante continua com o warsaw.service habilitado no boot | `bug` | — | 15/11/2026 | Não | Sim | Sim | 17/11/2026 | [warsaw#10](https://github.com/lyra-os-linux/warsaw/pull/10) (mergeado), [warsaw#11](https://github.com/lyra-os-linux/warsaw/pull/11) (mergeado), [warsaw#13](https://github.com/lyra-os-linux/warsaw/pull/13) (mergeado), [077f53b](https://github.com/lyra-os-linux/warsaw/commit/077f53b4bdf91aac9942e7b8b809dea619096ee5), [7730546](https://github.com/lyra-os-linux/warsaw/commit/77305463ef0e891dfcb86554d495c3d0207bc087) |
 | [#9](https://github.com/lyra-os-linux/warsaw/issues/9) | Falta %pre: a atualização troca os arquivos com o Warsaw rodando | `bug` | — | 15/11/2026 | Não | Sim | Sim | 17/11/2026 | [warsaw#10](https://github.com/lyra-os-linux/warsaw/pull/10) (mergeado), [warsaw#13](https://github.com/lyra-os-linux/warsaw/pull/13) (mergeado), [7730546](https://github.com/lyra-os-linux/warsaw/commit/77305463ef0e891dfcb86554d495c3d0207bc087) |
 | [#12](https://github.com/lyra-os-linux/warsaw/issues/12) | Rollback do Snapper deixa o RPM e /usr/local incoerentes: /usr/local fica fora dos snapshots | `bug` | — | 15/11/2026 | Não | Sim | Sim | 15/11/2026 | [vega#273](https://github.com/lyra-os-linux/vega/pull/273) (mergeado), [warsaw#13](https://github.com/lyra-os-linux/warsaw/pull/13) (mergeado), [6b0cb92](https://github.com/lyra-os-linux/warsaw/commit/6b0cb92d5045e138fad8e3e5cca89ca76695c2a8) |
+| [#22](https://github.com/lyra-os-linux/warsaw/issues/22) | Conta nova: o Chromium usa ~/.local/share/pki/nssdb e o Warsaw nunca instala a CA nele | `bug` | — | 18/11/2026 | Não | Sim | Sim | 18/11/2026 | [warsaw#23](https://github.com/lyra-os-linux/warsaw/pull/23) (mergeado), [9913554](https://github.com/lyra-os-linux/warsaw/commit/99135541c839b20554e04e6c37db1d789cfc26bf) |

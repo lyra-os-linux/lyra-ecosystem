@@ -1,6 +1,6 @@
 # Apps Android
 
-Gerado em 18/11/2026 07:54 a partir do GitHub (`lyra-os-linux`). Issues da milestone **Apps Android** ou com o label `aguardando-estabilizar`.
+Gerado em 18/11/2026 14:28 a partir do GitHub (`lyra-os-linux`). Issues da milestone **Apps Android** ou com o label `aguardando-estabilizar`.
 Para atualizar: `python3 relatorios/gerar_relatorios.py`.
 
 Situação: **Na fila** = aberta, sem PR nem commit que a cite · **Começou** = há PR ou commit que cita a issue (citar não prova trabalho: veja a evidência) · **Entregue** = fechada como concluída · **Não planejada** = fechada sem entrega.
@@ -17,9 +17,9 @@ Situação: **Na fila** = aberta, sem PR nem commit que a cite · **Começou** =
 
 | Issue | Título | Labels | Milestone | Aberta em | Na fila | Começou | Entregue | Fechada em | Evidência |
 | --- | --- | --- | --- | --- | :---: | :---: | :---: | --- | --- |
-| [#67](https://github.com/lyra-os-linux/lyra-ecosystem/issues/67) | Apps Android no Lyra com Waydroid (plano e decisões) | `enhancement`, `aguardando-estabilizar` | Apps Android | 04/11/2026 | Sim | Não | Não | — | — |
-| [#68](https://github.com/lyra-os-linux/lyra-ecosystem/issues/68) | Módulo binder para o kernel do Leap 16.1: KMP assinado, compilado das fontes do próprio kernel | `enhancement`, `aguardando-estabilizar` | Apps Android | 04/11/2026 | Sim | Não | Não | — | — |
-| [#69](https://github.com/lyra-os-linux/lyra-ecosystem/issues/69) | Empacotar o Waydroid e dependências nos repositórios do Lyra (link do Emulators:Waydroid) | `enhancement`, `aguardando-estabilizar` | Apps Android | 04/11/2026 | Sim | Não | Não | — | — |
+| [#67](https://github.com/lyra-os-linux/lyra-ecosystem/issues/67) | Apps Android no Lyra com Waydroid (plano e decisões) | `enhancement`, `aguardando-estabilizar` | Após março/2027 | 04/11/2026 | Sim | Não | Não | — | — |
+| [#68](https://github.com/lyra-os-linux/lyra-ecosystem/issues/68) | Módulo binder para o kernel do Leap 16.1: KMP assinado, compilado das fontes do próprio kernel | `enhancement`, `aguardando-estabilizar` | Após março/2027 | 04/11/2026 | Sim | Não | Não | — | — |
+| [#69](https://github.com/lyra-os-linux/lyra-ecosystem/issues/69) | Empacotar o Waydroid e dependências nos repositórios do Lyra (link do Emulators:Waydroid) | `enhancement`, `aguardando-estabilizar` | Após março/2027 | 04/11/2026 | Sim | Não | Não | — | — |
 
 ## vega
 
