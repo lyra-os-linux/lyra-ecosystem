@@ -1,6 +1,6 @@
 # Demais issues
 
-Gerado em 18/11/2026 16:53 a partir do GitHub (`lyra-os-linux`). Todas as outras issues da organização, abertas e fechadas.
+Gerado em 19/11/2026 07:46 a partir do GitHub (`lyra-os-linux`). Todas as outras issues da organização, abertas e fechadas.
 Para atualizar: `python3 relatorios/gerar_relatorios.py`.
 
 Situação: **Na fila** = aberta, sem PR nem commit que a cite · **Começou** = há PR ou commit que cita a issue (citar não prova trabalho: veja a evidência) · **Entregue** = fechada como concluída · **Não planejada** = fechada sem entrega.
@@ -15,24 +15,24 @@ Situação: **Na fila** = aberta, sem PR nem commit que a cite · **Começou** =
 | lyra-firefox-ext | 1 | 0 | 0 | 1 | 0 |
 | lyra-vega-dbus | 3 | 0 | 0 | 3 | 0 |
 | lyra-writer | 1 | 0 | 0 | 1 | 0 |
-| lyraos-desktop | 49 | 3 | 2 | 25 | 19 |
+| lyraos-desktop | 52 | 6 | 2 | 25 | 19 |
 | lyraos-desktop-kde | 2 | 0 | 0 | 0 | 2 |
 | lyraos-desktop-sheliak | 15 | 0 | 0 | 15 | 0 |
 | lyraos-desktop-theme | 9 | 0 | 0 | 4 | 5 |
-| lyraos-desktop-updater | 1 | 0 | 0 | 1 | 0 |
-| lyraos-desktop-welcome | 2 | 1 | 0 | 1 | 0 |
+| lyraos-desktop-updater | 2 | 1 | 0 | 1 | 0 |
+| lyraos-desktop-welcome | 3 | 2 | 0 | 1 | 0 |
 | lyraos-desktop-xfce | 2 | 0 | 0 | 0 | 2 |
 | lyraos-server | 8 | 1 | 0 | 6 | 1 |
 | site | 2 | 0 | 0 | 2 | 0 |
 | sulafat | 1 | 0 | 0 | 1 | 0 |
-| vega | 176 | 10 | 4 | 156 | 6 |
+| vega | 177 | 11 | 4 | 156 | 6 |
 | vega-cli | 18 | 0 | 0 | 18 | 0 |
 | vega-web | 10 | 0 | 2 | 8 | 0 |
 | vegad | 48 | 0 | 1 | 47 | 0 |
 | vscode | 1 | 0 | 0 | 1 | 0 |
 | warsaw | 4 | 0 | 0 | 4 | 0 |
 | zededitor | 1 | 0 | 0 | 1 | 0 |
-| **Total** | **394** | **21** | **10** | **311** | **52** |
+| **Total** | **400** | **27** | **10** | **311** | **52** |
 
 ## .github
 
@@ -86,7 +86,7 @@ Situação: **Na fila** = aberta, sem PR nem commit que a cite · **Começou** =
 | [#74](https://github.com/lyra-os-linux/lyra-ecosystem/issues/74) | Criar o livro do Lyra OS (Desktop e Server) | `documentation` | Após março/2027 | 10/11/2026 | Sim | Não | Não | — | — |
 | [#75](https://github.com/lyra-os-linux/lyra-ecosystem/issues/75) | Produto em Rust para criar e pesquisar bugs no GitHub | `enhancement` | Após março/2027 | 10/11/2026 | Sim | Não | Não | — | — |
 | [#76](https://github.com/lyra-os-linux/lyra-ecosystem/issues/76) | Produto para pesquisar e interagir com o fórum (GitHub Discussions) | `enhancement` | Após março/2027 | 10/11/2026 | Sim | Não | Não | — | — |
-| [#85](https://github.com/lyra-os-linux/lyra-ecosystem/issues/85) | Produto para gravar a ISO do Lyra OS em pendrive (Lyra Writer, inspirado no Fedora Media Writer) | `enhancement` | — | 12/11/2026 | Não | Sim | Sim | 18/11/2026 | — |
+| [#85](https://github.com/lyra-os-linux/lyra-ecosystem/issues/85) | Produto para gravar a ISO do Lyra OS em pendrive (Lyra Writer, inspirado no Fedora Media Writer) | `enhancement` | — | 12/11/2026 | Não | Sim | Sim | 18/11/2026 | [153dd98](https://github.com/lyra-os-linux/lyra-ecosystem/commit/153dd982540f570497458f131dded103ea2ede79) |
 | [#92](https://github.com/lyra-os-linux/lyra-ecosystem/issues/92) | Pacotes de terceiros desatualizados | — | — | 18/11/2026 | Sim | Não | Não | — | — |
 
 ## lyra-firefox-ext
@@ -162,6 +162,9 @@ Situação: **Na fila** = aberta, sem PR nem commit que a cite · **Começou** =
 | [#520](https://github.com/lyra-os-linux/lyraos-desktop/issues/520) | Manifesto stable do SHELL-01 (minimum_updater_version 0.2.10) | `release-1.0` | 16.1-1 | 02/11/2026 | Não | Não | Não planejada | 03/11/2026 | — |
 | [#521](https://github.com/lyra-os-linux/lyraos-desktop/issues/521) | Relatar o bug do libgvc no upstream (libgnome-volume-control) | `gnome` | 16.1-1 | 02/11/2026 | Não | Não | Não planejada | 03/11/2026 | — |
 | [#528](https://github.com/lyra-os-linux/lyraos-desktop/issues/528) | Acessibilidade: leitor de tela, Braille, ampliação e voz em pt-BR (estudo) | `enhancement` | — | 04/11/2026 | Não | Sim | Sim | 10/11/2026 | — |
+| [#546](https://github.com/lyra-os-linux/lyraos-desktop/issues/546) | Euri nos estados vazios e de erro dos apps do Lyra | `enhancement` | Após março/2027 | 19/11/2026 | Sim | Não | Não | — | — |
+| [#547](https://github.com/lyra-os-linux/lyraos-desktop/issues/547) | Avaliar a Euri no Plymouth e no GDM | `enhancement` | Após março/2027 | 19/11/2026 | Sim | Não | Não | — | — |
+| [#548](https://github.com/lyra-os-linux/lyraos-desktop/issues/548) | [16.2] Euri forte no Lyra OS 16.2 (issue-mãe) | `enhancement` | Após março/2027 | 19/11/2026 | Sim | Não | Não | — | — |
 
 ## lyraos-desktop-kde
 
@@ -209,6 +212,7 @@ Situação: **Na fila** = aberta, sem PR nem commit que a cite · **Começou** =
 | Issue | Título | Labels | Milestone | Aberta em | Na fila | Começou | Entregue | Fechada em | Evidência |
 | --- | --- | --- | --- | --- | :---: | :---: | :---: | --- | --- |
 | [#4](https://github.com/lyra-os-linux/lyraos-desktop-updater/issues/4) | [GNOME] [P1][QA] Cobrir atualização offline, verificador e CLI com testes | `gnome` | Estabilização 2026.08 | 24/08/2026 | Não | Sim | Sim | 13/09/2026 | — |
+| [#37](https://github.com/lyra-os-linux/lyraos-desktop-updater/issues/37) | Euri acompanha a atualização no Lyra Upgrade | `enhancement` | — | 19/11/2026 | Sim | Não | Não | — | — |
 
 ## lyraos-desktop-welcome
 
@@ -216,6 +220,7 @@ Situação: **Na fila** = aberta, sem PR nem commit que a cite · **Começou** =
 | --- | --- | --- | --- | --- | :---: | :---: | :---: | --- | --- |
 | [#3](https://github.com/lyra-os-linux/lyraos-desktop-welcome/issues/3) | [GNOME] Oferecer os perfis de desktop no Lyra Welcome | — | — | 10/09/2026 | Não | Sim | Sim | 11/09/2026 | [lyraos-desktop-welcome#5](https://github.com/lyra-os-linux/lyraos-desktop-welcome/pull/5) (mergeado), [vega#137](https://github.com/lyra-os-linux/vega/pull/137) (mergeado) |
 | [#12](https://github.com/lyra-os-linux/lyraos-desktop-welcome/issues/12) | Welcome: perfis de uso (desenvolvedor, criador, gamer, estudante, escola, empresa) que levam à seção certa do Vega | `enhancement` | Após março/2027 | 04/11/2026 | Sim | Não | Não | — | — |
+| [#14](https://github.com/lyra-os-linux/lyraos-desktop-welcome/issues/14) | Euri apresenta o sistema no primeiro login | `enhancement` | Após março/2027 | 19/11/2026 | Sim | Não | Não | — | — |
 
 ## lyraos-desktop-xfce
 
@@ -430,6 +435,7 @@ Situação: **Na fila** = aberta, sem PR nem commit que a cite · **Começou** =
 | [#283](https://github.com/lyra-os-linux/vega/issues/283) | Mainframe (TK5): mostrar o progresso do download para não parecer travado | `enhancement` | — | 16/11/2026 | Não | Sim | Sim | 17/11/2026 | [vega#286](https://github.com/lyra-os-linux/vega/pull/286) (mergeado), [vega#288](https://github.com/lyra-os-linux/vega/pull/288) (mergeado) |
 | [#284](https://github.com/lyra-os-linux/vega/issues/284) | Desenvolvedores: Microsoft SQL Server e ferramentas (sqlcmd) em contêiner | `enhancement` | — | 16/11/2026 | Não | Sim | Sim | 17/11/2026 | [vega#287](https://github.com/lyra-os-linux/vega/pull/287) (mergeado), [vega#288](https://github.com/lyra-os-linux/vega/pull/288) (mergeado) |
 | [#285](https://github.com/lyra-os-linux/vega/issues/285) | Contêineres (Oracle) e todas as ações: barra de progresso que acompanhe o trabalho | `enhancement` | — | 16/11/2026 | Não | Sim | Sim | 17/11/2026 | [vega#286](https://github.com/lyra-os-linux/vega/pull/286) (mergeado), [vega#288](https://github.com/lyra-os-linux/vega/pull/288) (mergeado) |
+| [#301](https://github.com/lyra-os-linux/vega/issues/301) | Dicas da Euri na documentação e estados vazios do Vega | `enhancement` | — | 19/11/2026 | Sim | Não | Não | — | — |
 
 ## vega-cli
 
