@@ -1,6 +1,6 @@
 # Demais issues
 
-Gerado em 19/11/2026 07:46 a partir do GitHub (`lyra-os-linux`). Todas as outras issues da organização, abertas e fechadas.
+Gerado em 19/11/2026 11:50 a partir do GitHub (`lyra-os-linux`). Todas as outras issues da organização, abertas e fechadas.
 Para atualizar: `python3 relatorios/gerar_relatorios.py`.
 
 Situação: **Na fila** = aberta, sem PR nem commit que a cite · **Começou** = há PR ou commit que cita a issue (citar não prova trabalho: veja a evidência) · **Entregue** = fechada como concluída · **Não planejada** = fechada sem entrega.
@@ -11,7 +11,7 @@ Situação: **Na fila** = aberta, sem PR nem commit que a cite · **Começou** =
 | --- | ---: | ---: | ---: | ---: | ---: |
 | .github | 3 | 0 | 0 | 3 | 0 |
 | beam | 1 | 0 | 0 | 1 | 0 |
-| lyra-ecosystem | 36 | 6 | 1 | 12 | 17 |
+| lyra-ecosystem | 36 | 5 | 2 | 12 | 17 |
 | lyra-firefox-ext | 1 | 0 | 0 | 1 | 0 |
 | lyra-vega-dbus | 3 | 0 | 0 | 3 | 0 |
 | lyra-writer | 1 | 0 | 0 | 1 | 0 |
@@ -27,12 +27,12 @@ Situação: **Na fila** = aberta, sem PR nem commit que a cite · **Começou** =
 | sulafat | 1 | 0 | 0 | 1 | 0 |
 | vega | 177 | 11 | 4 | 156 | 6 |
 | vega-cli | 18 | 0 | 0 | 18 | 0 |
-| vega-web | 10 | 0 | 2 | 8 | 0 |
+| vega-web | 10 | 0 | 1 | 9 | 0 |
 | vegad | 48 | 0 | 1 | 47 | 0 |
 | vscode | 1 | 0 | 0 | 1 | 0 |
 | warsaw | 4 | 0 | 0 | 4 | 0 |
 | zededitor | 1 | 0 | 0 | 1 | 0 |
-| **Total** | **400** | **27** | **10** | **311** | **52** |
+| **Total** | **400** | **26** | **10** | **312** | **52** |
 
 ## .github
 
@@ -87,7 +87,7 @@ Situação: **Na fila** = aberta, sem PR nem commit que a cite · **Começou** =
 | [#75](https://github.com/lyra-os-linux/lyra-ecosystem/issues/75) | Produto em Rust para criar e pesquisar bugs no GitHub | `enhancement` | Após março/2027 | 10/11/2026 | Sim | Não | Não | — | — |
 | [#76](https://github.com/lyra-os-linux/lyra-ecosystem/issues/76) | Produto para pesquisar e interagir com o fórum (GitHub Discussions) | `enhancement` | Após março/2027 | 10/11/2026 | Sim | Não | Não | — | — |
 | [#85](https://github.com/lyra-os-linux/lyra-ecosystem/issues/85) | Produto para gravar a ISO do Lyra OS em pendrive (Lyra Writer, inspirado no Fedora Media Writer) | `enhancement` | — | 12/11/2026 | Não | Sim | Sim | 18/11/2026 | [153dd98](https://github.com/lyra-os-linux/lyra-ecosystem/commit/153dd982540f570497458f131dded103ea2ede79) |
-| [#92](https://github.com/lyra-os-linux/lyra-ecosystem/issues/92) | Pacotes de terceiros desatualizados | — | — | 18/11/2026 | Sim | Não | Não | — | — |
+| [#92](https://github.com/lyra-os-linux/lyra-ecosystem/issues/92) | Pacotes de terceiros desatualizados | — | — | 18/11/2026 | Não | Sim | Não | — | [zededitor#7](https://github.com/lyra-os-linux/zededitor/pull/7) (mergeado), [d8019ad](https://github.com/lyra-os-linux/zededitor/commit/d8019ad991594fb9c2f6d947302dc2ffa2cd6939) |
 
 ## lyra-firefox-ext
 
@@ -473,7 +473,7 @@ Situação: **Na fila** = aberta, sem PR nem commit que a cite · **Começou** =
 | [#26](https://github.com/lyra-os-linux/vega-web/issues/26) | VM do broker não cobre as operações de diagnóstico e limpeza | `enhancement` | — | 30/10/2026 | Não | Sim | Sim | 09/11/2026 | [vega-web#32](https://github.com/lyra-os-linux/vega-web/pull/32) (mergeado) |
 | [#27](https://github.com/lyra-os-linux/vega-web/issues/27) | Atalho para o Diagnóstico de saúde no menu lateral | `enhancement` | — | 30/10/2026 | Não | Sim | Sim | 09/11/2026 | [vega-web#31](https://github.com/lyra-os-linux/vega-web/pull/31) (mergeado), [vega-web#44](https://github.com/lyra-os-linux/vega-web/pull/44) (mergeado) |
 | [#38](https://github.com/lyra-os-linux/vega-web/issues/38) | CI: VM do broker qualifica com o vegad v5.10.0 e o os-release do Lyra | `enhancement` | — | 09/11/2026 | Não | Sim | Sim | 09/11/2026 | [vega-web#43](https://github.com/lyra-os-linux/vega-web/pull/43) (mergeado) |
-| [#47](https://github.com/lyra-os-linux/vega-web/issues/47) | Resto do painel em inglês e espanhol | — | E11 — Server: Timeshift e painel | 17/11/2026 | Não | Sim | Não | — | [vega-web#48](https://github.com/lyra-os-linux/vega-web/pull/48) (mergeado) |
+| [#47](https://github.com/lyra-os-linux/vega-web/issues/47) | Resto do painel em inglês e espanhol | — | E11 — Server: Timeshift e painel | 17/11/2026 | Não | Sim | Sim | 19/11/2026 | [vega-web#48](https://github.com/lyra-os-linux/vega-web/pull/48) (mergeado), [vega-web#50](https://github.com/lyra-os-linux/vega-web/pull/50) (mergeado), [793dfde](https://github.com/lyra-os-linux/vega-web/commit/793dfde65280958c31e4ea336b32dae78d3936b8), [f6c6e82](https://github.com/lyra-os-linux/vega-web/commit/f6c6e822bd5eb07c6a0dbba4614474aba9d8f090) |
 
 ## vegad
 
